@@ -43,8 +43,8 @@ CREATE TABLE Addresses
 	AddressID int Identity Primary key NOT NULL,
 	Street int Foreign key references Streets(StreetID) NOT NULL,
 	House varchar(10) NOT NULL,
-	Flat int,
-	Office int,
+	Flat varchar(10),
+	Office varchar(10),
 	BuildingType int Foreign key references Building_types(BuildingTypeID) NOT NULL,
 	EstablishmentName varchar(300)
 )
