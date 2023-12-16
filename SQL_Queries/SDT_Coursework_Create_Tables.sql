@@ -100,8 +100,8 @@ CREATE TABLE PersonData
 	SecondName varchar(100),
 	Gender varchar(10),
 	BirthDate date NOT NULL,
-	PhoneNumber varchar(15) NOT NULL,
-	RsrvPhoneNumber varchar(15),
+	PhoneNumber varchar(13) NOT NULL,
+	RsrvPhoneNumber varchar(13),
 	AddressInfo int Foreign key references Addresses(AddressID)
 )
 
