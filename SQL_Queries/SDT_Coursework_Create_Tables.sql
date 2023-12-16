@@ -79,7 +79,7 @@ CREATE TABLE Indicators
 	IndicatorID int Identity Primary key NOT NULL,
 	Sensor int Foreign key references Sensors(SensorID) NOT NULL,
 	IndDate datetime NOT NULL,
-	Indicator decimal NOT NULL
+	Indicator float NOT NULL
 )
 
 --Таблиця "Дані користувачів"
