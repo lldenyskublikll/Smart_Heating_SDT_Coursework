@@ -46,7 +46,7 @@ CREATE TABLE Addresses
 	Flat int,
 	Office int,
 	BuildingType int Foreign key references Building_types(BuildingTypeID) NOT NULL,
-	EstablishmentName varchar(300) NOT NULL
+	EstablishmentName varchar(300)
 )
 
 --Таблиця "Типи датчиків"
