@@ -1,8 +1,8 @@
 Create view Admin_info_AdminView as
-Select Us.UserID as 'User ID', Us.UserLogin as 'Логін', Ad.AdminID as 'Admin ID', Pd.Surname as 'Прізвище', Pd.PrsnName as 'Ім`я', 
-       ISNULL(Pd.SecondName, 'Відсутнє') as 'По-Батькові',
-	   Pd.Gender as 'Стать', Pd.BirthDate as 'Дата народження', Pd.PhoneNumber as 'Н-р телефону',	   
-	   ISNULL(Pd.RsrvPhoneNumber, 'Не вказано') as 'Резервний н-р телефону'
+Select Us.UserID as 'User ID', Us.UserLogin as 'Р›РѕРіС–РЅ', Ad.AdminID as 'Admin ID', Pd.Surname as 'РџСЂС–Р·РІРёС‰Рµ', Pd.PrsnName as 'Р†Рј`СЏ', 
+       ISNULL(Pd.SecondName, 'Р’С–РґСЃСѓС‚РЅС”') as 'РџРѕ-Р‘Р°С‚СЊРєРѕРІС–',
+	   Pd.Gender as 'РЎС‚Р°С‚СЊ', Pd.BirthDate as 'Р”Р°С‚Р° РЅР°СЂРѕРґР¶РµРЅРЅСЏ', Pd.PhoneNumber as 'Рќ-СЂ С‚РµР»РµС„РѕРЅСѓ',	   
+	   ISNULL(Pd.RsrvPhoneNumber, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'Р РµР·РµСЂРІРЅРёР№ РЅ-СЂ С‚РµР»РµС„РѕРЅСѓ'
 From Administrators Ad
 Join PersonData Pd on Pd.PersonID = Ad.PersonID
 Join Users Us on Us.PersonID = Pd.PersonID
