@@ -1,11 +1,11 @@
 Create view ORS_check_AdminView as
-Select Us.UserID as 'User ID', Us.UserLogin as 'Логін', Ors.ORSUSerID as 'ОРС User ID', 
-       Pd.Surname as 'Прізвище', Pd.PrsnName as 'Ім`я', 
-       ISNULL(Pd.SecondName, 'Відсутнє') as 'По-Батькові',
-	   Pd.Gender as 'Стать', Pd.BirthDate as 'Дата народження', Pd.PhoneNumber as 'Н-р телефону',	   
-	   ISNULL(Pd.RsrvPhoneNumber, 'Не вказано') as 'Резервний н-р телефону',
-	   St.StreetName as 'Назва вулиці', Ds.DistrictName as 'Район', Adr.House as '№ Будинку',
-	   ISNULL(Adr.EstablishmentName, 'Не вказано') as 'Назва закладу'	 
+Select Us.UserID as 'User ID', Us.UserLogin as 'Р›РѕРіС–РЅ', Ors.ORSUSerID as 'РћР РЎ User ID', 
+       Pd.Surname as 'РџСЂС–Р·РІРёС‰Рµ', Pd.PrsnName as 'Р†Рј`СЏ', 
+       ISNULL(Pd.SecondName, 'Р’С–РґСЃСѓС‚РЅС”') as 'РџРѕ-Р‘Р°С‚СЊРєРѕРІС–',
+	   Pd.Gender as 'РЎС‚Р°С‚СЊ', Pd.BirthDate as 'Р”Р°С‚Р° РЅР°СЂРѕРґР¶РµРЅРЅСЏ', Pd.PhoneNumber as 'Рќ-СЂ С‚РµР»РµС„РѕРЅСѓ',	   
+	   ISNULL(Pd.RsrvPhoneNumber, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'Р РµР·РµСЂРІРЅРёР№ РЅ-СЂ С‚РµР»РµС„РѕРЅСѓ',
+	   St.StreetName as 'РќР°Р·РІР° РІСѓР»РёС†С–', Ds.DistrictName as 'Р Р°Р№РѕРЅ', Adr.House as 'в„– Р‘СѓРґРёРЅРєСѓ',
+	   ISNULL(Adr.EstablishmentName, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'РќР°Р·РІР° Р·Р°РєР»Р°РґСѓ'	 
 From ORS_Participants Ors
 Join PersonData Pd on Pd.PersonID = Ors.PersonID
 Join Users Us on Us.PersonID = Pd.PersonID
