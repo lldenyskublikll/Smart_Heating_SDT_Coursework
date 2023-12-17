@@ -1,10 +1,10 @@
 Create view OMS_check_AdminView as
-Select Us.UserID as 'User ID', Us.UserLogin as 'Логін', Oms.OMSUSerID as 'ОМС User ID', 
-       Pd.Surname as 'Прізвище', Pd.PrsnName as 'Ім`я', 
-       ISNULL(Pd.SecondName, 'Відсутнє') as 'По-Батькові',
-	   Pd.Gender as 'Стать', Pd.BirthDate as 'Дата народження', Pd.PhoneNumber as 'Н-р телефону',	   
-	   ISNULL(Pd.RsrvPhoneNumber, 'Не вказано') as 'Резервний н-р телефону',
-	   St.StreetName as 'Назва вулиці', Ds.DistrictName as 'Район', Adr.House as '№ Будинку'
+Select Us.UserID as 'User ID', Us.UserLogin as 'Р›РѕРіС–РЅ', Oms.OMSUSerID as 'ГЋГЊГ‘ User ID', 
+       Pd.Surname as 'ГЏГ°ВіГ§ГўГЁГ№ГҐ', Pd.PrsnName as 'ВІГ¬`Гї', 
+       ISNULL(Pd.SecondName, 'Г‚ВіГ¤Г±ГіГІГ­Вє') as 'ГЏГ®-ГЃГ ГІГјГЄГ®ГўВі',
+	   Pd.Gender as 'Г‘ГІГ ГІГј', Pd.BirthDate as 'Г„Г ГІГ  Г­Г Г°Г®Г¤Г¦ГҐГ­Г­Гї', Pd.PhoneNumber as 'ГЌ-Г° ГІГҐГ«ГҐГґГ®Г­Гі',	   
+	   ISNULL(Pd.RsrvPhoneNumber, 'ГЌГҐ ГўГЄГ Г§Г Г­Г®') as 'ГђГҐГ§ГҐГ°ГўГ­ГЁГ© Г­-Г° ГІГҐГ«ГҐГґГ®Г­Гі',
+	   St.StreetName as 'ГЌГ Г§ГўГ  ГўГіГ«ГЁГ¶Ві', Ds.DistrictName as 'ГђГ Г©Г®Г­', Adr.House as 'В№ ГЃГіГ¤ГЁГ­ГЄГі'
 From OMS_Participants Oms
 Join PersonData Pd on Pd.PersonID = Oms.PersonID
 Join Users Us on Us.PersonID = Pd.PersonID
