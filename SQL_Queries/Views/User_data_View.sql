@@ -1,12 +1,12 @@
 Create view User_data_View as
-Select Us.UserID as 'ID Користувача', Us.UserLogin as 'Логін', Pd.Surname as 'Прізвище', Pd.PrsnName as 'Ім`я', 
-       ISNULL(Pd.SecondName, 'Відсутнє') as 'По-Батькові',
-	   Pd.Gender as 'Стать', Pd.BirthDate as 'Дата народження', Pd.PhoneNumber as 'Н-р телефону',	   
-	   ISNULL(Pd.RsrvPhoneNumber, 'Не вказано') as 'Резервний н-р телефону',
-	   St.StreetName as 'Назва вулиці', Ds.DistrictName as 'Район', Adr.House as '№ Будинку',
-       ISNULL(Adr.Flat, '-----') as '№ Квартири',
-       ISNULL(Adr.Office, '-----') as '№ Офісу',
-       ISNULL(Adr.EstablishmentName, 'Не вказано') as 'Назва закладу'
+Select Us.UserID as 'ID РљРѕСЂРёСЃС‚СѓРІР°С‡Р°', Us.UserLogin as 'Р›РѕРіС–РЅ', Pd.Surname as 'РџСЂС–Р·РІРёС‰Рµ', Pd.PrsnName as 'Р†Рј`СЏ', 
+       ISNULL(Pd.SecondName, 'Р’С–РґСЃСѓС‚РЅС”') as 'РџРѕ-Р‘Р°С‚СЊРєРѕРІС–',
+	   Pd.Gender as 'РЎС‚Р°С‚СЊ', Pd.BirthDate as 'Р”Р°С‚Р° РЅР°СЂРѕРґР¶РµРЅРЅСЏ', Pd.PhoneNumber as 'Рќ-СЂ С‚РµР»РµС„РѕРЅСѓ',	   
+	   ISNULL(Pd.RsrvPhoneNumber, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'Р РµР·РµСЂРІРЅРёР№ РЅ-СЂ С‚РµР»РµС„РѕРЅСѓ',
+	   St.StreetName as 'РќР°Р·РІР° РІСѓР»РёС†С–', Ds.DistrictName as 'Р Р°Р№РѕРЅ', Adr.House as 'в„– Р‘СѓРґРёРЅРєСѓ',
+       ISNULL(Adr.Flat, '-----') as 'в„– РљРІР°СЂС‚РёСЂРё',
+       ISNULL(Adr.Office, '-----') as 'в„– РћС„С–СЃСѓ',
+       ISNULL(Adr.EstablishmentName, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'РќР°Р·РІР° Р·Р°РєР»Р°РґСѓ'
 From Users Us
 Join PersonData Pd on Pd.PersonID = Us.PersonID
 Join Addresses Adr on Adr.AddressID = Pd.AddressInfo
