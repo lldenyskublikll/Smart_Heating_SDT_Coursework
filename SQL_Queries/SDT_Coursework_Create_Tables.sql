@@ -1,5 +1,5 @@
 --Створення таблиць
-USE SMART_HEAT
+USE SMART_HEATING
 
 --Таблиця "Райони міста"
 --  * ID району
@@ -82,8 +82,20 @@ CREATE TABLE Indicators
 	Indicator float NOT NULL
 )
 
---Таблиця "Дані користувачів"
---  * ID Людини
+--Таблиця "Ролі користувачів"
+--  * ID Ролі у системі
+--  * Назва ролі у системі
+CREATE TABLE UserRoles
+(
+	RoleID int Identity Primary Key NOT NULL,
+	RoleName varchar(100) NOT NULL
+)
+
+--Таблиця "Користувачі"
+--  * ID Користувача
+--  * Логін користувача
+--  * Пароль користувача
+--  * Роль користувача
 --  * Прізвище
 --  * Ім'я
 --  * По-батькові
@@ -92,9 +104,12 @@ CREATE TABLE Indicators
 --  * Номер телефону
 --  * Резервний номер телефону
 --  * ID адреси, за якою проживає людина
-CREATE TABLE PersonData
+CREATE TABLE Users
 (
-	PersonID int Identity Primary key NOT NULL,
+	UserID int Identity Primary key NOT NULL,
+	UserLogin varchar(20) NOT NULL,
+	UserPassword varchar(20) NOT NULL,
+	UserRole int Foreign key references UserRoles(RoleID) NOT NULL,
 	Surname varchar(100) NOT NULL,
 	PrsnName varchar(100) NOT NULL,
 	SecondName varchar(100),
@@ -103,66 +118,6 @@ CREATE TABLE PersonData
 	PhoneNumber varchar(13) NOT NULL,
 	RsrvPhoneNumber varchar(13),
 	AddressInfo int Foreign key references Addresses(AddressID)
-)
-
---Таблиця "Користувачі"
---  * ID Користувача
---  * ID Людини
---  * Логін користувача
---  * Пароль користувача
-CREATE TABLE Users
-(
-	UserID int Identity Primary key NOT NULL,
-	PersonID int Foreign key references PersonData(PersonID) NOT NULL,
-	UserLogin varchar(20) NOT NULL,
-	UserPassword varchar(20) Not NULL
-)
-
---Таблиця "Органи місцевого самоврядування"
---  * ID робітника ОМС
---  * ID людини, яка є робітником ОМС
-CREATE TABLE OMS_Participants
-(
-	OMSUSerID int Identity Primary key NOT NULL,
-	PersonID int Foreign key references PersonData(PersonID) NOT NULL
-)
-
---Таблиця "Органи районного самоврядування"
---  * ID робітника ОРС
---  * ID людини, яка є робітником ОРС
-CREATE TABLE ORS_Participants
-(
-	ORSUSerID int Identity Primary key NOT NULL,
-	PersonID int Foreign key references PersonData(PersonID) NOT NULL
-)
-
---Таблиця "Об'єднання співвласників місцевого самоврядування"
---  * ID учасника ОСББ
---  * ID людини, яка є учасником ОСББ
-CREATE TABLE OSBB_Participants
-(
-	OSBBUSerID int Identity Primary key NOT NULL,
-	PersonID int Foreign key references PersonData(PersonID) NOT NULL
-)
-
---Таблиця "Адміністратори"
---  * ID Адміністратора
---  * ID Людини, яка є адміністратором
-CREATE TABLE Administrators
-(
-	AdminID int Identity Primary key NOT NULL,
-	PersonID int Foreign key references PersonData(PersonID) NOT NULL
-)
-
---Таблиця "Обслуговуючий персонал"
---  * ID Робітника
---  * ID Людини
---  * Пост, який дана людина займає
-CREATE TABLE Staff
-(
-	StaffID int Identity Primary key NOT NULL,
-	PersonID int Foreign key references PersonData(PersonID) NOT NULL,
-	Post varchar(50) NOT NULL
 )
 
 -- Таблиця "Технічні роботи"
@@ -176,10 +131,10 @@ CREATE TABLE Staff
 CREATE TABLE Maintenance
 (
 	MaintID int Identity Primary key NOT NULL,
-	Staff int Foreign key references Staff(StaffID) NOT NULL,
+	StaffUserID int Foreign key references Users(UserID) NOT NULL,
 	MaintAddress int Foreign key references Addresses(AddressID) NOT NULL,
 	MaintType varchar(500),
 	MaintStatus varchar(500),
-	MaintStartDate datetime,
-	MaintEndDate datetime 
+	MaintStartDate date,
+	MaintEndDate date 
 )

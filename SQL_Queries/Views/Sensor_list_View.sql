@@ -1,9 +1,9 @@
-Create view Sensor_list_View as
-Select Sn.SensorID as 'ID', Snt.SensorTypeName as 'РўРёРї РґР°С‚С‡РёРєР°', St.StreetName as 'РќР°Р·РІР° РІСѓР»РёС†С–', 
-       Ds.DistrictName as 'Р Р°Р№РѕРЅ', Adr.House as 'в„– Р‘СѓРґРёРЅРєСѓ', 
-	   ISNULL(Adr.Flat, '-----') as 'в„– РљРІР°СЂС‚РёСЂРё', 
-	   ISNULL(Adr.Office, '-----') as 'в„– РћС„С–СЃСѓ',
-	   ISNULL(Adr.EstablishmentName, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'РќР°Р·РІР° Р·Р°РєР»Р°РґСѓ'
+Create view Sensor_List_View as
+Select Sn.SensorID as 'ID датчика', Snt.SensorTypeName as 'Тип датчика', St.StreetName as 'Назва вулиці', 
+       Ds.DistrictName as 'Район', Adr.House as '№ Будинку', 
+	   ISNULL(Adr.Flat, '-----') as '№ Квартири', 
+	   ISNULL(Adr.Office, '-----') as '№ Офісу',
+	   ISNULL(Adr.EstablishmentName, 'Не вказано') as 'Назва закладу'
 From Sensors Sn
 Join SensorTypes Snt on Snt.SensorTypeID = Sn.SensorType
 Join Addresses Adr on Adr.AddressID = Sn.SensorAddress
