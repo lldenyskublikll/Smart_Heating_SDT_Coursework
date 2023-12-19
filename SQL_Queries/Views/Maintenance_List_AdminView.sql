@@ -1,17 +1,17 @@
 Create view Maintenance_List_AdminView as
-Select Mnt.MaintID as 'ID Тех. роботи', Us.UserID as 'ID Працівника', 
-       Us.UserLogin as 'Логін',  Us.Surname as 'Прізвище працівника', 
-       Us.PrsnName as 'Ім`я працівника', ISNULL(Us.SecondName, '-----') as 'По-Батькові працівника',
-	   Us.BirthDate as 'Дата народження', Us.PhoneNumber as 'Н-р телефону',	   
-	   ISNULL(Us.RsrvPhoneNumber, 'Не вказано') as 'Резервний н-р телефону',
-       Mnt.MaintType as 'Тип роботи', Mnt.MaintStatus as 'Статус', 
+Select Mnt.MaintID as 'ID РўРµС…. СЂРѕР±РѕС‚Рё', Us.UserID as 'ID РџСЂР°С†С–РІРЅРёРєР°', 
+       Us.UserLogin as 'Р›РѕРіС–РЅ',  Us.Surname as 'РџСЂС–Р·РІРёС‰Рµ РїСЂР°С†С–РІРЅРёРєР°', 
+       Us.PrsnName as 'Р†Рј`СЏ РїСЂР°С†С–РІРЅРёРєР°', ISNULL(Us.SecondName, '-----') as 'РџРѕ-Р‘Р°С‚СЊРєРѕРІС– РїСЂР°С†С–РІРЅРёРєР°',
+	   Us.BirthDate as 'Р”Р°С‚Р° РЅР°СЂРѕРґР¶РµРЅРЅСЏ', Us.PhoneNumber as 'Рќ-СЂ С‚РµР»РµС„РѕРЅСѓ',	   
+	   ISNULL(Us.RsrvPhoneNumber, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'Р РµР·РµСЂРІРЅРёР№ РЅ-СЂ С‚РµР»РµС„РѕРЅСѓ',
+       Mnt.MaintType as 'РўРёРї СЂРѕР±РѕС‚Рё', Mnt.MaintStatus as 'РЎС‚Р°С‚СѓСЃ', 
 	   Case 
-	       When Mnt.MaintStartDate is null Then 'Не надано'
+	       When Mnt.MaintStartDate is null Then 'РќРµ РЅР°РґР°РЅРѕ'
 		   Else Convert(varchar(50), Mnt.MaintStartDate)
-	   End as 'Дата початку робіт',
+	   End as 'Р”Р°С‚Р° РїРѕС‡Р°С‚РєСѓ СЂРѕР±С–С‚',
 	   Case 
-	       When Mnt.MaintEndDate is null Then 'Не надано'
+	       When Mnt.MaintEndDate is null Then 'РќРµ РЅР°РґР°РЅРѕ'
 		   Else Convert(varchar(50), Mnt.MaintEndDate)
-	   End as 'Дата закінчення робіт'
+	   End as 'Р”Р°С‚Р° Р·Р°РєС–РЅС‡РµРЅРЅСЏ СЂРѕР±С–С‚'
 From Maintenance Mnt
 Join Users Us on Us.UserID = Mnt.StaffUserID
