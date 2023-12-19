@@ -1,37 +1,37 @@
 Create view Users_List_View as
-Select Us.UserID as 'ID Користувача', Us.UserLogin as 'Логін', Usr.RoleName as 'Роль у системі',
-       Us.Surname as 'Прізвище', Us.PrsnName as 'Ім`я', 
-	   ISNULL(Us.SecondName, '-----') as 'По-Батькові',
-	   Us.Gender as 'Стать', Us.BirthDate as 'Дата народження', Us.PhoneNumber as 'Н-р телефону',	   
-	   ISNULL(Us.RsrvPhoneNumber, 'Не вказано') as 'Резервний н-р телефону',
+Select Us.UserID as 'ID РљРѕСЂРёСЃС‚СѓРІР°С‡Р°', Us.UserLogin as 'Р›РѕРіС–РЅ', Usr.RoleName as 'Р РѕР»СЊ Сѓ СЃРёСЃС‚РµРјС–',
+       Us.Surname as 'РџСЂС–Р·РІРёС‰Рµ', Us.PrsnName as 'Р†Рј`СЏ', 
+	   ISNULL(Us.SecondName, '-----') as 'РџРѕ-Р‘Р°С‚СЊРєРѕРІС–',
+	   Us.Gender as 'РЎС‚Р°С‚СЊ', Us.BirthDate as 'Р”Р°С‚Р° РЅР°СЂРѕРґР¶РµРЅРЅСЏ', Us.PhoneNumber as 'Рќ-СЂ С‚РµР»РµС„РѕРЅСѓ',	   
+	   ISNULL(Us.RsrvPhoneNumber, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'Р РµР·РµСЂРІРЅРёР№ РЅ-СЂ С‚РµР»РµС„РѕРЅСѓ',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 		   Else St.StreetName
-	   End as 'Назва вулиці',
+	   End as 'РќР°Р·РІР° РІСѓР»РёС†С–',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 	       Else Adr.House
-	   End as '№ Будинку',
+	   End as 'в„– Р‘СѓРґРёРЅРєСѓ',
 	   Case
 	       When Us.AddressInfo IS NULL Then '-----'
 		   Else ISNULL(Convert(varchar(10),Adr.Flat) , '-----')
-	   End as '№ Квартири',
+	   End as 'в„– РљРІР°СЂС‚РёСЂРё',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 		   Else ISNULL(Convert(varchar(10), Adr.Office), '-----')
-	   End as '№ Офісу',
+	   End as 'в„– РћС„С–СЃСѓ',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 		   Else Ds.DistrictName
-	   End as 'Район',
+	   End as 'Р Р°Р№РѕРЅ',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 		   Else Bdt.BuildingTypeName
-	   End as 'Тип будинку',
+	   End as 'РўРёРї Р±СѓРґРёРЅРєСѓ',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
-	       Else ISNULL(Adr.EstablishmentName, 'Не вказано')
-       End as 'Назва закладу'
+	       Else ISNULL(Adr.EstablishmentName, 'РќРµ РІРєР°Р·Р°РЅРѕ')
+       End as 'РќР°Р·РІР° Р·Р°РєР»Р°РґСѓ'
 From Users Us
 Left Join UserRoles Usr on Usr.RoleID = Us.UserRole
 Left Join Addresses Adr on Adr.AddressID = Us.AddressInfo
