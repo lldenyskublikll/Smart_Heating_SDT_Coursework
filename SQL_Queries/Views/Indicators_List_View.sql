@@ -1,13 +1,13 @@
 Create view Indicators_List_View as
-Select Ind.IndDate as 'Дата та час', Sn.SensorID as 'ID сенсору', Snt.SensorTypeName as 'Тип датчика',
+Select Ind.IndDate as 'Р”Р°С‚Р° С‚Р° С‡Р°СЃ', Sn.SensorID as 'ID СЃРµРЅСЃРѕСЂСѓ', Snt.SensorTypeName as 'РўРёРї РґР°С‚С‡РёРєР°',
        Case
-	       When (Sn.SensorType = 1 or Sn.SensorType = 3) Then Concat(Convert(varchar(30), Ind.Indicator), ' °C') 
-		   Else Concat(Convert(varchar(30), Ind.Indicator), ' Бар') 
-       End as 'Показник',
-       St.StreetName as 'Назва вулиці', Ds.DistrictName as 'Район', Adr.House as '№ Будинку', 
-	   ISNULL(Adr.Flat, '-----') as '№ Квартири', 
-	   ISNULL(Adr.Office, '-----') as '№ Офісу',
-	   ISNULL(Adr.EstablishmentName, 'Не вказано') as 'Назва закладу'	   
+	       When (Sn.SensorType = 1 or Sn.SensorType = 3) Then Concat(Convert(varchar(30), Ind.Indicator), ' В°C') 
+		   Else Concat(Convert(varchar(30), Ind.Indicator), ' Р‘Р°СЂ') 
+       End as 'РџРѕРєР°Р·РЅРёРє',
+       St.StreetName as 'РќР°Р·РІР° РІСѓР»РёС†С–', Ds.DistrictName as 'Р Р°Р№РѕРЅ', Adr.House as 'в„– Р‘СѓРґРёРЅРєСѓ', 
+	   ISNULL(Adr.Flat, '-----') as 'в„– РљРІР°СЂС‚РёСЂРё', 
+	   ISNULL(Adr.Office, '-----') as 'в„– РћС„С–СЃСѓ',
+	   ISNULL(Adr.EstablishmentName, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'РќР°Р·РІР° Р·Р°РєР»Р°РґСѓ'	   
 From Indicators Ind
 Join Sensors Sn on Sn.SensorID = Ind.Sensor
 Join SensorTypes Snt on Snt.SensorTypeID = Sn.SensorType
