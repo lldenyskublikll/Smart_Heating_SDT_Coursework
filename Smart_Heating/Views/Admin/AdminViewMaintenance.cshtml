@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Smart_Heating.Models.Maintenance_List_AdminView>
+
+@{
+    ViewBag.Title = "AdminViewMaintenance";
+}
+
+<h2>Технічні роботи</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Тех__роботи)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Працівника)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Логін)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Прізвище_працівника)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ім_я_працівника)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.По_Батькові_працівника)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_народження)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Н_р_телефону)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Резервний_н_р_телефону)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Тип_роботи)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Статус)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_початку_робіт)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_закінчення_робіт)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Тех__роботи)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Працівника)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Логін)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Прізвище_працівника)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ім_я_працівника)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.По_Батькові_працівника)
+        </td>
+        <td>
+            @{ int year = item.Дата_народження.Year; int month = item.Дата_народження.Month; int day = item.Дата_народження.Day; string text = string.Format("{0}-{1}-{2}", year, month, day);}
+            @text
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Н_р_телефону)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Резервний_н_р_телефону)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Тип_роботи)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Статус)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Дата_початку_робіт)
+
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Дата_закінчення_робіт)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

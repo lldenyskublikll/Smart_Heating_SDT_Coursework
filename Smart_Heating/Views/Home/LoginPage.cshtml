@@ -1,0 +1,45 @@
+﻿@model Smart_Heating.Models.User
+
+@{
+    ViewBag.Title = "LoginPage";
+}
+
+<h2>Увійти</h2>
+
+@using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Smart Heating</legend>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        @if (ViewBag.Message != null)
+        {
+            <p style="border: 1px solid red; padding: 5px; display: inline-block;">
+                @ViewBag.Message
+            </p>
+        }
+
+        <table>
+            <tr>
+                <td>@Html.LabelFor(a => a.UserLogin, "Login")</td>
+                <td>@Html.TextBoxFor(a => a.UserLogin)</td>
+                <td>@Html.ValidationMessageFor(a => a.UserLogin)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(a => a.UserPassword, "Пароль") </td>
+                <td>@Html.PasswordFor(a => a.UserPassword)</td>
+                <td>@Html.ValidationMessageFor(a => a.UserPassword)</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" class="btn btn-primary" value="Увійти" /></td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+    <br />
+    <a type="button" href="@Url.Action("Register", "Home")" class="btn btn-secondary">Реєстрація</a>
+}
+

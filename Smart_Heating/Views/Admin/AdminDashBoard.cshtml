@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "AdminDashBoard";
+}
+
+<h2>AdmindashBoard</h2>
+
+<div>
+    <table style="display: block; margin: 10px">
+        <tbody>
+            <tr>
+                <td><a class="btn btn-primary" href="@Url.Action("AdminViewMaintenance", "Admin")" role="button">Переглянути список тех. робіт</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-primary" href="@Url.Action("AdminViewUsers", "Admin")" role="button">Переглянути список користувачів</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-primary" href="@Url.Action("AdminViewSensors", "Admin")" role="button">Переглянути список датчиків</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-primary" href="@Url.Action("AdminViewIndicators", "Admin")" role="button">Переглянути список показників</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-primary" href="@Url.Action("AdminViewAddresses", "Admin")" role="button">Переглянути список адрес</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-primary" href="@Url.Action("AdminViewStreets", "Admin")" role="button">Переглянути список вулиць</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-primary" href="@Url.Action("AdminViewRegions", "Admin")" role="button">Переглянути список районів</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

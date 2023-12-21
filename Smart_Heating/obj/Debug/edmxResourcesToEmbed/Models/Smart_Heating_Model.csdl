@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SMART_HEATINGModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Street" Type="Int32" Nullable="false" />
+    <Property Name="House" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Flat" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Office" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="BuildingType" Type="Int32" Nullable="false" />
+    <Property Name="EstablishmentName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Building_types" Relationship="Self.FK__Addresses__Build__2C3393D0" FromRole="Addresses" ToRole="Building_types" />
+    <NavigationProperty Name="Street1" Relationship="Self.FK__Addresses__Stree__2B3F6F97" FromRole="Addresses" ToRole="Streets" />
+    <NavigationProperty Name="Maintenances" Relationship="Self.FK__Maintenan__Maint__3E52440B" FromRole="Addresses" ToRole="Maintenance" />
+    <NavigationProperty Name="Sensors" Relationship="Self.FK__Sensors__SensorA__31EC6D26" FromRole="Addresses" ToRole="Sensors" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Users__AddressIn__3A81B327" FromRole="Addresses" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Building_types">
+    <Key>
+      <PropertyRef Name="BuildingTypeID" />
+    </Key>
+    <Property Name="BuildingTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BuildingTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK__Addresses__Build__2C3393D0" FromRole="Building_types" ToRole="Addresses" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="DistrictID" />
+    </Key>
+    <Property Name="DistrictID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DistrictName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Streets" Relationship="Self.FK__Streets__Distric__267ABA7A" FromRole="Districts" ToRole="Streets" />
+  </EntityType>
+  <EntityType Name="Indicator">
+    <Key>
+      <PropertyRef Name="IndicatorID" />
+    </Key>
+    <Property Name="IndicatorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sensor" Type="Int32" Nullable="false" />
+    <Property Name="IndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Indicator1" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Sensor1" Relationship="Self.FK__Indicator__Senso__34C8D9D1" FromRole="Indicators" ToRole="Sensors" />
+  </EntityType>
+  <EntityType Name="Maintenance">
+    <Key>
+      <PropertyRef Name="MaintID" />
+    </Key>
+    <Property Name="MaintID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StaffUserID" Type="Int32" Nullable="false" />
+    <Property Name="MaintAddress" Type="Int32" Nullable="false" />
+    <Property Name="MaintType" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MaintStatus" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="MaintStartDate" Type="DateTime" Precision="0" />
+    <Property Name="MaintEndDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Address" Relationship="Self.FK__Maintenan__Maint__3E52440B" FromRole="Maintenance" ToRole="Addresses" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Maintenan__Staff__3D5E1FD2" FromRole="Maintenance" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Sensor">
+    <Key>
+      <PropertyRef Name="SensorID" />
+    </Key>
+    <Property Name="SensorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SensorType" Type="Int32" Nullable="false" />
+    <Property Name="SensorAddress" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Address" Relationship="Self.FK__Sensors__SensorA__31EC6D26" FromRole="Sensors" ToRole="Addresses" />
+    <NavigationProperty Name="Indicators" Relationship="Self.FK__Indicator__Senso__34C8D9D1" FromRole="Sensors" ToRole="Indicators" />
+    <NavigationProperty Name="SensorType1" Relationship="Self.FK__Sensors__SensorT__30F848ED" FromRole="Sensors" ToRole="SensorTypes" />
+  </EntityType>
+  <EntityType Name="SensorType">
+    <Key>
+      <PropertyRef Name="SensorTypeID" />
+    </Key>
+    <Property Name="SensorTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SensorTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Sensors" Relationship="Self.FK__Sensors__SensorT__30F848ED" FromRole="SensorTypes" ToRole="Sensors" />
+  </EntityType>
+  <EntityType Name="Street">
+    <Key>
+      <PropertyRef Name="StreetID" />
+    </Key>
+    <Property Name="StreetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StreetName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="District" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Addresses" Relationship="Self.FK__Addresses__Stree__2B3F6F97" FromRole="Streets" ToRole="Addresses" />
+    <NavigationProperty Name="District1" Relationship="Self.FK__Streets__Distric__267ABA7A" FromRole="Streets" ToRole="Districts" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Users__UserRole__398D8EEE" FromRole="UserRoles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserLogin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserRole" Type="Int32" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrsnName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SecondName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RsrvPhoneNumber" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="AddressInfo" Type="Int32" />
+    <NavigationProperty Name="Address" Relationship="Self.FK__Users__AddressIn__3A81B327" FromRole="Users" ToRole="Addresses" />
+    <NavigationProperty Name="Maintenances" Relationship="Self.FK__Maintenan__Staff__3D5E1FD2" FromRole="Users" ToRole="Maintenance" />
+    <NavigationProperty Name="UserRole1" Relationship="Self.FK__Users__UserRole__398D8EEE" FromRole="Users" ToRole="UserRoles" />
+  </EntityType>
+  <EntityType Name="Address_List_View">
+    <Key>
+      <PropertyRef Name="ID_Вулиці" />
+      <PropertyRef Name="Назва_вулиці" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="C__Будинку" />
+      <PropertyRef Name="C__Квартири" />
+      <PropertyRef Name="C__Офісу" />
+      <PropertyRef Name="Тип_будівлі" />
+      <PropertyRef Name="Назва_закладу" />
+    </Key>
+    <Property Name="ID_Вулиці" Type="Int32" Nullable="false" />
+    <Property Name="Назва_вулиці" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Район" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Будинку" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Квартири" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Офісу" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Тип_будівлі" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Назва_закладу" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Indicators_List_View">
+    <Key>
+      <PropertyRef Name="Дата_та_час" />
+      <PropertyRef Name="ID_сенсору" />
+      <PropertyRef Name="Тип_датчика" />
+      <PropertyRef Name="Показник" />
+      <PropertyRef Name="Назва_вулиці" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="C__Будинку" />
+      <PropertyRef Name="C__Квартири" />
+      <PropertyRef Name="C__Офісу" />
+      <PropertyRef Name="Назва_закладу" />
+    </Key>
+    <Property Name="Дата_та_час" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ID_сенсору" Type="Int32" Nullable="false" />
+    <Property Name="Тип_датчика" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Показник" Type="String" MaxLength="34" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Назва_вулиці" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Район" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Будинку" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Квартири" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Офісу" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Назва_закладу" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Maintenance_List_AdminView">
+    <Key>
+      <PropertyRef Name="ID_Тех__роботи" />
+      <PropertyRef Name="ID_Працівника" />
+      <PropertyRef Name="Логін" />
+      <PropertyRef Name="Прізвище_працівника" />
+      <PropertyRef Name="Ім_я_працівника" />
+      <PropertyRef Name="По_Батькові_працівника" />
+      <PropertyRef Name="Дата_народження" />
+      <PropertyRef Name="Н_р_телефону" />
+      <PropertyRef Name="Резервний_н_р_телефону" />
+    </Key>
+    <Property Name="ID_Тех__роботи" Type="Int32" Nullable="false" />
+    <Property Name="ID_Працівника" Type="Int32" Nullable="false" />
+    <Property Name="Логін" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Прізвище_працівника" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ім_я_працівника" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="По_Батькові_працівника" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Дата_народження" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Н_р_телефону" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Резервний_н_р_телефону" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Тип_роботи" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Статус" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Дата_початку_робіт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Дата_закінчення_робіт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Maintenance_List_StandartView">
+    <Key>
+      <PropertyRef Name="ID_Тех__роботи" />
+      <PropertyRef Name="Прізвище_працівника" />
+      <PropertyRef Name="Ім_я_працівника" />
+      <PropertyRef Name="По_Батькові_працівника" />
+      <PropertyRef Name="Дата_народження" />
+      <PropertyRef Name="Н_р_телефону" />
+      <PropertyRef Name="Резервний_н_р_телефону" />
+    </Key>
+    <Property Name="ID_Тех__роботи" Type="Int32" Nullable="false" />
+    <Property Name="Прізвище_працівника" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ім_я_працівника" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="По_Батькові_працівника" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Дата_народження" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Н_р_телефону" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Резервний_н_р_телефону" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Тип_роботи" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Статус" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Дата_початку_робіт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Дата_закінчення_робіт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Sensor_List_View">
+    <Key>
+      <PropertyRef Name="ID_датчика" />
+      <PropertyRef Name="Тип_датчика" />
+      <PropertyRef Name="Назва_вулиці" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="C__Будинку" />
+      <PropertyRef Name="C__Квартири" />
+      <PropertyRef Name="C__Офісу" />
+      <PropertyRef Name="Назва_закладу" />
+    </Key>
+    <Property Name="ID_датчика" Type="Int32" Nullable="false" />
+    <Property Name="Тип_датчика" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Назва_вулиці" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Район" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Будинку" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Квартири" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Офісу" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Назва_закладу" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_List_View">
+    <Key>
+      <PropertyRef Name="ID_Користувача" />
+      <PropertyRef Name="Логін" />
+      <PropertyRef Name="Прізвище" />
+      <PropertyRef Name="Ім_я" />
+      <PropertyRef Name="По_Батькові" />
+      <PropertyRef Name="Дата_народження" />
+      <PropertyRef Name="Н_р_телефону" />
+      <PropertyRef Name="Резервний_н_р_телефону" />
+      <PropertyRef Name="C__Квартири" />
+      <PropertyRef Name="C__Офісу" />
+      <PropertyRef Name="Назва_закладу" />
+    </Key>
+    <Property Name="ID_Користувача" Type="Int32" Nullable="false" />
+    <Property Name="Логін" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Роль_у_системі" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Прізвище" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ім_я" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="По_Батькові" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Стать" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Дата_народження" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Н_р_телефону" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Резервний_н_р_телефону" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Назва_вулиці" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="C__Будинку" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="C__Квартири" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="C__Офісу" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Район" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Тип_будинку" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Назва_закладу" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Addresses__Build__2C3393D0">
+    <End Role="Building_types" Type="Self.Building_types" Multiplicity="1" />
+    <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Building_types">
+        <PropertyRef Name="BuildingTypeID" />
+      </Principal>
+      <Dependent Role="Addresses">
+        <PropertyRef Name="BuildingType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Addresses__Stree__2B3F6F97">
+    <End Role="Streets" Type="Self.Street" Multiplicity="1" />
+    <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Streets">
+        <PropertyRef Name="StreetID" />
+      </Principal>
+      <Dependent Role="Addresses">
+        <PropertyRef Name="Street" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Maintenan__Maint__3E52440B">
+    <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+    <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Maintenance">
+        <PropertyRef Name="MaintAddress" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sensors__SensorA__31EC6D26">
+    <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+    <End Role="Sensors" Type="Self.Sensor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Sensors">
+        <PropertyRef Name="SensorAddress" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__AddressIn__3A81B327">
+    <End Role="Addresses" Type="Self.Address" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="AddressInfo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Streets__Distric__267ABA7A">
+    <End Role="Districts" Type="Self.District" Multiplicity="1" />
+    <End Role="Streets" Type="Self.Street" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Districts">
+        <PropertyRef Name="DistrictID" />
+      </Principal>
+      <Dependent Role="Streets">
+        <PropertyRef Name="District" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Indicator__Senso__34C8D9D1">
+    <End Role="Sensors" Type="Self.Sensor" Multiplicity="1" />
+    <End Role="Indicators" Type="Self.Indicator" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensors">
+        <PropertyRef Name="SensorID" />
+      </Principal>
+      <Dependent Role="Indicators">
+        <PropertyRef Name="Sensor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Maintenan__Staff__3D5E1FD2">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Maintenance">
+        <PropertyRef Name="StaffUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sensors__SensorT__30F848ED">
+    <End Role="SensorTypes" Type="Self.SensorType" Multiplicity="1" />
+    <End Role="Sensors" Type="Self.Sensor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SensorTypes">
+        <PropertyRef Name="SensorTypeID" />
+      </Principal>
+      <Dependent Role="Sensors">
+        <PropertyRef Name="SensorType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__UserRole__398D8EEE">
+    <End Role="UserRoles" Type="Self.UserRole" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SMART_HEATINGEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Addresses" EntityType="Self.Address" />
+    <EntitySet Name="Building_types" EntityType="Self.Building_types" />
+    <EntitySet Name="Districts" EntityType="Self.District" />
+    <EntitySet Name="Indicators" EntityType="Self.Indicator" />
+    <EntitySet Name="Maintenances" EntityType="Self.Maintenance" />
+    <EntitySet Name="Sensors" EntityType="Self.Sensor" />
+    <EntitySet Name="SensorTypes" EntityType="Self.SensorType" />
+    <EntitySet Name="Streets" EntityType="Self.Street" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Address_List_View" EntityType="Self.Address_List_View" />
+    <EntitySet Name="Indicators_List_View" EntityType="Self.Indicators_List_View" />
+    <EntitySet Name="Maintenance_List_AdminView" EntityType="Self.Maintenance_List_AdminView" />
+    <EntitySet Name="Maintenance_List_StandartView" EntityType="Self.Maintenance_List_StandartView" />
+    <EntitySet Name="Sensor_List_View" EntityType="Self.Sensor_List_View" />
+    <EntitySet Name="Users_List_View" EntityType="Self.Users_List_View" />
+    <AssociationSet Name="FK__Addresses__Build__2C3393D0" Association="Self.FK__Addresses__Build__2C3393D0">
+      <End Role="Building_types" EntitySet="Building_types" />
+      <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Addresses__Stree__2B3F6F97" Association="Self.FK__Addresses__Stree__2B3F6F97">
+      <End Role="Streets" EntitySet="Streets" />
+      <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Maintenan__Maint__3E52440B" Association="Self.FK__Maintenan__Maint__3E52440B">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Maintenance" EntitySet="Maintenances" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sensors__SensorA__31EC6D26" Association="Self.FK__Sensors__SensorA__31EC6D26">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Sensors" EntitySet="Sensors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__AddressIn__3A81B327" Association="Self.FK__Users__AddressIn__3A81B327">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Streets__Distric__267ABA7A" Association="Self.FK__Streets__Distric__267ABA7A">
+      <End Role="Districts" EntitySet="Districts" />
+      <End Role="Streets" EntitySet="Streets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Indicator__Senso__34C8D9D1" Association="Self.FK__Indicator__Senso__34C8D9D1">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="Indicators" EntitySet="Indicators" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Maintenan__Staff__3D5E1FD2" Association="Self.FK__Maintenan__Staff__3D5E1FD2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Maintenance" EntitySet="Maintenances" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sensors__SensorT__30F848ED" Association="Self.FK__Sensors__SensorT__30F848ED">
+      <End Role="SensorTypes" EntitySet="SensorTypes" />
+      <End Role="Sensors" EntitySet="Sensors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__UserRole__398D8EEE" Association="Self.FK__Users__UserRole__398D8EEE">
+      <End Role="UserRoles" EntitySet="UserRoles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(SMART_HEATINGModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(SMART_HEATINGModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

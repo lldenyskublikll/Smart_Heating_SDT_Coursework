@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="96ce93b962104616bf18dabaefcf4677" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Address" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Building_types" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.District" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Indicator" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Maintenance" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Sensor" Width="1.5" PointX="10.5" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.SensorType" Width="1.5" PointX="8.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Street" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.sysdiagram" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.UserRole" Width="1.5" PointX="8.25" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.User" Width="1.5" PointX="10.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Address_List_View" Width="1.5" PointX="2.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Indicators_List_View" Width="1.5" PointX="4.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Maintenance_List_AdminView" Width="1.5" PointX="10.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Maintenance_List_StandartView" Width="1.5" PointX="6.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Sensor_List_View" Width="1.5" PointX="12.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Users_List_View" Width="1.5" PointX="12.75" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Addresses__Build__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Addresses__Stree__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Maintenan__Maint__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Sensors__SensorA__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Users__AddressIn__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Streets__Distric__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Indicator__Senso__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Maintenan__Staff__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Sensors__SensorT__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="SMART_HEATINGModel.FK__Users__UserRole__398D8EEE" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

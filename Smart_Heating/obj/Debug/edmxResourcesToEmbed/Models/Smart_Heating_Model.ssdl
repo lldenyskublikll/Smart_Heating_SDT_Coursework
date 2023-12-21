@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище SMART_HEATINGModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Addresses">
+    <Key>
+      <PropertyRef Name="AddressID" />
+    </Key>
+    <Property Name="AddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Street" Type="int" Nullable="false" />
+    <Property Name="House" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Flat" Type="varchar" MaxLength="10" />
+    <Property Name="Office" Type="varchar" MaxLength="10" />
+    <Property Name="BuildingType" Type="int" Nullable="false" />
+    <Property Name="EstablishmentName" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Building_types">
+    <Key>
+      <PropertyRef Name="BuildingTypeID" />
+    </Key>
+    <Property Name="BuildingTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BuildingTypeName" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Districts">
+    <Key>
+      <PropertyRef Name="DistrictID" />
+    </Key>
+    <Property Name="DistrictID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DistrictName" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Indicators">
+    <Key>
+      <PropertyRef Name="IndicatorID" />
+    </Key>
+    <Property Name="IndicatorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sensor" Type="int" Nullable="false" />
+    <Property Name="IndDate" Type="datetime" Nullable="false" />
+    <Property Name="Indicator" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Maintenance">
+    <Key>
+      <PropertyRef Name="MaintID" />
+    </Key>
+    <Property Name="MaintID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StaffUserID" Type="int" Nullable="false" />
+    <Property Name="MaintAddress" Type="int" Nullable="false" />
+    <Property Name="MaintType" Type="varchar" MaxLength="500" />
+    <Property Name="MaintStatus" Type="varchar" MaxLength="500" />
+    <Property Name="MaintStartDate" Type="date" />
+    <Property Name="MaintEndDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Sensors">
+    <Key>
+      <PropertyRef Name="SensorID" />
+    </Key>
+    <Property Name="SensorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SensorType" Type="int" Nullable="false" />
+    <Property Name="SensorAddress" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SensorTypes">
+    <Key>
+      <PropertyRef Name="SensorTypeID" />
+    </Key>
+    <Property Name="SensorTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SensorTypeName" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Streets">
+    <Key>
+      <PropertyRef Name="StreetID" />
+    </Key>
+    <Property Name="StreetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StreetName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="District" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserLogin" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserRole" Type="int" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PrsnName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="SecondName" Type="varchar" MaxLength="100" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" />
+    <Property Name="BirthDate" Type="date" Nullable="false" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="RsrvPhoneNumber" Type="varchar" MaxLength="13" />
+    <Property Name="AddressInfo" Type="int" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Address_List_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Address_List_View">
+    <Key>
+      <PropertyRef Name="ID Вулиці" />
+      <PropertyRef Name="Назва вулиці" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="№ Будинку" />
+      <PropertyRef Name="№ Квартири" />
+      <PropertyRef Name="№ Офісу" />
+      <PropertyRef Name="Тип будівлі" />
+      <PropertyRef Name="Назва закладу" />
+    </Key>
+    <Property Name="ID Вулиці" Type="int" Nullable="false" />
+    <Property Name="Назва вулиці" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Район" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="№ Будинку" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Квартири" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Офісу" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Тип будівлі" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Indicators_List_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Indicators_List_View">
+    <Key>
+      <PropertyRef Name="Дата та час" />
+      <PropertyRef Name="ID сенсору" />
+      <PropertyRef Name="Тип датчика" />
+      <PropertyRef Name="Показник" />
+      <PropertyRef Name="Назва вулиці" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="№ Будинку" />
+      <PropertyRef Name="№ Квартири" />
+      <PropertyRef Name="№ Офісу" />
+      <PropertyRef Name="Назва закладу" />
+    </Key>
+    <Property Name="Дата та час" Type="datetime" Nullable="false" />
+    <Property Name="ID сенсору" Type="int" Nullable="false" />
+    <Property Name="Тип датчика" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Показник" Type="varchar" MaxLength="34" Nullable="false" />
+    <Property Name="Назва вулиці" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Район" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="№ Будинку" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Квартири" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Офісу" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Maintenance_List_AdminView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Maintenance_List_AdminView">
+    <Key>
+      <PropertyRef Name="ID Тех. роботи" />
+      <PropertyRef Name="ID Працівника" />
+      <PropertyRef Name="Логін" />
+      <PropertyRef Name="Прізвище працівника" />
+      <PropertyRef Name="Ім`я працівника" />
+      <PropertyRef Name="По-Батькові працівника" />
+      <PropertyRef Name="Дата народження" />
+      <PropertyRef Name="Н-р телефону" />
+      <PropertyRef Name="Резервний н-р телефону" />
+    </Key>
+    <Property Name="ID Тех. роботи" Type="int" Nullable="false" />
+    <Property Name="ID Працівника" Type="int" Nullable="false" />
+    <Property Name="Логін" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Прізвище працівника" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ім`я працівника" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="По-Батькові працівника" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Дата народження" Type="date" Nullable="false" />
+    <Property Name="Н-р телефону" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Резервний н-р телефону" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Тип роботи" Type="varchar" MaxLength="500" />
+    <Property Name="Статус" Type="varchar" MaxLength="500" />
+    <Property Name="Дата початку робіт" Type="varchar" MaxLength="50" />
+    <Property Name="Дата закінчення робіт" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Maintenance_List_StandartView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Maintenance_List_StandartView">
+    <Key>
+      <PropertyRef Name="ID Тех. роботи" />
+      <PropertyRef Name="Прізвище працівника" />
+      <PropertyRef Name="Ім`я працівника" />
+      <PropertyRef Name="По-Батькові працівника" />
+      <PropertyRef Name="Дата народження" />
+      <PropertyRef Name="Н-р телефону" />
+      <PropertyRef Name="Резервний н-р телефону" />
+    </Key>
+    <Property Name="ID Тех. роботи" Type="int" Nullable="false" />
+    <Property Name="Прізвище працівника" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ім`я працівника" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="По-Батькові працівника" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Дата народження" Type="date" Nullable="false" />
+    <Property Name="Н-р телефону" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Резервний н-р телефону" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Тип роботи" Type="varchar" MaxLength="500" />
+    <Property Name="Статус" Type="varchar" MaxLength="500" />
+    <Property Name="Дата початку робіт" Type="varchar" MaxLength="50" />
+    <Property Name="Дата закінчення робіт" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Sensor_List_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Sensor_List_View">
+    <Key>
+      <PropertyRef Name="ID датчика" />
+      <PropertyRef Name="Тип датчика" />
+      <PropertyRef Name="Назва вулиці" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="№ Будинку" />
+      <PropertyRef Name="№ Квартири" />
+      <PropertyRef Name="№ Офісу" />
+      <PropertyRef Name="Назва закладу" />
+    </Key>
+    <Property Name="ID датчика" Type="int" Nullable="false" />
+    <Property Name="Тип датчика" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Назва вулиці" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Район" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="№ Будинку" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Квартири" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Офісу" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Users_List_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Users_List_View">
+    <Key>
+      <PropertyRef Name="ID Користувача" />
+      <PropertyRef Name="Логін" />
+      <PropertyRef Name="Прізвище" />
+      <PropertyRef Name="Ім`я" />
+      <PropertyRef Name="По-Батькові" />
+      <PropertyRef Name="Дата народження" />
+      <PropertyRef Name="Н-р телефону" />
+      <PropertyRef Name="Резервний н-р телефону" />
+      <PropertyRef Name="№ Квартири" />
+      <PropertyRef Name="№ Офісу" />
+      <PropertyRef Name="Назва закладу" />
+    </Key>
+    <Property Name="ID Користувача" Type="int" Nullable="false" />
+    <Property Name="Логін" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Роль у системі" Type="varchar" MaxLength="100" />
+    <Property Name="Прізвище" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ім`я" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="По-Батькові" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Стать" Type="varchar" MaxLength="10" />
+    <Property Name="Дата народження" Type="date" Nullable="false" />
+    <Property Name="Н-р телефону" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Резервний н-р телефону" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Назва вулиці" Type="varchar" MaxLength="100" />
+    <Property Name="№ Будинку" Type="varchar" MaxLength="10" />
+    <Property Name="№ Квартири" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Офісу" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Район" Type="varchar" MaxLength="100" />
+    <Property Name="Тип будинку" Type="varchar" MaxLength="100" />
+    <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Addresses__Build__2C3393D0">
+    <End Role="Building_types" Type="Self.Building_types" Multiplicity="1" />
+    <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Building_types">
+        <PropertyRef Name="BuildingTypeID" />
+      </Principal>
+      <Dependent Role="Addresses">
+        <PropertyRef Name="BuildingType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Addresses__Stree__2B3F6F97">
+    <End Role="Streets" Type="Self.Streets" Multiplicity="1" />
+    <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Streets">
+        <PropertyRef Name="StreetID" />
+      </Principal>
+      <Dependent Role="Addresses">
+        <PropertyRef Name="Street" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Indicator__Senso__34C8D9D1">
+    <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
+    <End Role="Indicators" Type="Self.Indicators" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sensors">
+        <PropertyRef Name="SensorID" />
+      </Principal>
+      <Dependent Role="Indicators">
+        <PropertyRef Name="Sensor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Maintenan__Maint__3E52440B">
+    <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+    <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Maintenance">
+        <PropertyRef Name="MaintAddress" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Maintenan__Staff__3D5E1FD2">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Maintenance">
+        <PropertyRef Name="StaffUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sensors__SensorA__31EC6D26">
+    <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+    <End Role="Sensors" Type="Self.Sensors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Sensors">
+        <PropertyRef Name="SensorAddress" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sensors__SensorT__30F848ED">
+    <End Role="SensorTypes" Type="Self.SensorTypes" Multiplicity="1" />
+    <End Role="Sensors" Type="Self.Sensors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SensorTypes">
+        <PropertyRef Name="SensorTypeID" />
+      </Principal>
+      <Dependent Role="Sensors">
+        <PropertyRef Name="SensorType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Streets__Distric__267ABA7A">
+    <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
+    <End Role="Streets" Type="Self.Streets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Districts">
+        <PropertyRef Name="DistrictID" />
+      </Principal>
+      <Dependent Role="Streets">
+        <PropertyRef Name="District" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__AddressIn__3A81B327">
+    <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Addresses">
+        <PropertyRef Name="AddressID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="AddressInfo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__UserRole__398D8EEE">
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="UserRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище SMART_HEATINGModelContainer">
+    <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Building_types" EntityType="Self.Building_types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Districts" EntityType="Self.Districts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Indicators" EntityType="Self.Indicators" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Maintenance" EntityType="Self.Maintenance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sensors" EntityType="Self.Sensors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SensorTypes" EntityType="Self.SensorTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Streets" EntityType="Self.Streets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Address_List_View" EntityType="Self.Address_List_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Address_List_View].[ID Вулиці] AS [ID Вулиці], 
+    [Address_List_View].[Назва вулиці] AS [Назва вулиці], 
+    [Address_List_View].[Район] AS [Район], 
+    [Address_List_View].[№ Будинку] AS [№ Будинку], 
+    [Address_List_View].[№ Квартири] AS [№ Квартири], 
+    [Address_List_View].[№ Офісу] AS [№ Офісу], 
+    [Address_List_View].[Тип будівлі] AS [Тип будівлі], 
+    [Address_List_View].[Назва закладу] AS [Назва закладу]
+    FROM [dbo].[Address_List_View] AS [Address_List_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Indicators_List_View" EntityType="Self.Indicators_List_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Indicators_List_View].[Дата та час] AS [Дата та час], 
+    [Indicators_List_View].[ID сенсору] AS [ID сенсору], 
+    [Indicators_List_View].[Тип датчика] AS [Тип датчика], 
+    [Indicators_List_View].[Показник] AS [Показник], 
+    [Indicators_List_View].[Назва вулиці] AS [Назва вулиці], 
+    [Indicators_List_View].[Район] AS [Район], 
+    [Indicators_List_View].[№ Будинку] AS [№ Будинку], 
+    [Indicators_List_View].[№ Квартири] AS [№ Квартири], 
+    [Indicators_List_View].[№ Офісу] AS [№ Офісу], 
+    [Indicators_List_View].[Назва закладу] AS [Назва закладу]
+    FROM [dbo].[Indicators_List_View] AS [Indicators_List_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Maintenance_List_AdminView" EntityType="Self.Maintenance_List_AdminView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Maintenance_List_AdminView].[ID Тех. роботи] AS [ID Тех. роботи], 
+    [Maintenance_List_AdminView].[ID Працівника] AS [ID Працівника], 
+    [Maintenance_List_AdminView].[Логін] AS [Логін], 
+    [Maintenance_List_AdminView].[Прізвище працівника] AS [Прізвище працівника], 
+    [Maintenance_List_AdminView].[Ім`я працівника] AS [Ім`я працівника], 
+    [Maintenance_List_AdminView].[По-Батькові працівника] AS [По-Батькові працівника], 
+    [Maintenance_List_AdminView].[Дата народження] AS [Дата народження], 
+    [Maintenance_List_AdminView].[Н-р телефону] AS [Н-р телефону], 
+    [Maintenance_List_AdminView].[Резервний н-р телефону] AS [Резервний н-р телефону], 
+    [Maintenance_List_AdminView].[Тип роботи] AS [Тип роботи], 
+    [Maintenance_List_AdminView].[Статус] AS [Статус], 
+    [Maintenance_List_AdminView].[Дата початку робіт] AS [Дата початку робіт], 
+    [Maintenance_List_AdminView].[Дата закінчення робіт] AS [Дата закінчення робіт]
+    FROM [dbo].[Maintenance_List_AdminView] AS [Maintenance_List_AdminView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Maintenance_List_StandartView" EntityType="Self.Maintenance_List_StandartView" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Maintenance_List_StandartView].[ID Тех. роботи] AS [ID Тех. роботи], 
+    [Maintenance_List_StandartView].[Прізвище працівника] AS [Прізвище працівника], 
+    [Maintenance_List_StandartView].[Ім`я працівника] AS [Ім`я працівника], 
+    [Maintenance_List_StandartView].[По-Батькові працівника] AS [По-Батькові працівника], 
+    [Maintenance_List_StandartView].[Дата народження] AS [Дата народження], 
+    [Maintenance_List_StandartView].[Н-р телефону] AS [Н-р телефону], 
+    [Maintenance_List_StandartView].[Резервний н-р телефону] AS [Резервний н-р телефону], 
+    [Maintenance_List_StandartView].[Тип роботи] AS [Тип роботи], 
+    [Maintenance_List_StandartView].[Статус] AS [Статус], 
+    [Maintenance_List_StandartView].[Дата початку робіт] AS [Дата початку робіт], 
+    [Maintenance_List_StandartView].[Дата закінчення робіт] AS [Дата закінчення робіт]
+    FROM [dbo].[Maintenance_List_StandartView] AS [Maintenance_List_StandartView]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Sensor_List_View" EntityType="Self.Sensor_List_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Sensor_List_View].[ID датчика] AS [ID датчика], 
+    [Sensor_List_View].[Тип датчика] AS [Тип датчика], 
+    [Sensor_List_View].[Назва вулиці] AS [Назва вулиці], 
+    [Sensor_List_View].[Район] AS [Район], 
+    [Sensor_List_View].[№ Будинку] AS [№ Будинку], 
+    [Sensor_List_View].[№ Квартири] AS [№ Квартири], 
+    [Sensor_List_View].[№ Офісу] AS [№ Офісу], 
+    [Sensor_List_View].[Назва закладу] AS [Назва закладу]
+    FROM [dbo].[Sensor_List_View] AS [Sensor_List_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Users_List_View" EntityType="Self.Users_List_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Users_List_View].[ID Користувача] AS [ID Користувача], 
+    [Users_List_View].[Логін] AS [Логін], 
+    [Users_List_View].[Роль у системі] AS [Роль у системі], 
+    [Users_List_View].[Прізвище] AS [Прізвище], 
+    [Users_List_View].[Ім`я] AS [Ім`я], 
+    [Users_List_View].[По-Батькові] AS [По-Батькові], 
+    [Users_List_View].[Стать] AS [Стать], 
+    [Users_List_View].[Дата народження] AS [Дата народження], 
+    [Users_List_View].[Н-р телефону] AS [Н-р телефону], 
+    [Users_List_View].[Резервний н-р телефону] AS [Резервний н-р телефону], 
+    [Users_List_View].[Назва вулиці] AS [Назва вулиці], 
+    [Users_List_View].[№ Будинку] AS [№ Будинку], 
+    [Users_List_View].[№ Квартири] AS [№ Квартири], 
+    [Users_List_View].[№ Офісу] AS [№ Офісу], 
+    [Users_List_View].[Район] AS [Район], 
+    [Users_List_View].[Тип будинку] AS [Тип будинку], 
+    [Users_List_View].[Назва закладу] AS [Назва закладу]
+    FROM [dbo].[Users_List_View] AS [Users_List_View]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Addresses__Build__2C3393D0" Association="Self.FK__Addresses__Build__2C3393D0">
+      <End Role="Building_types" EntitySet="Building_types" />
+      <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Addresses__Stree__2B3F6F97" Association="Self.FK__Addresses__Stree__2B3F6F97">
+      <End Role="Streets" EntitySet="Streets" />
+      <End Role="Addresses" EntitySet="Addresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Indicator__Senso__34C8D9D1" Association="Self.FK__Indicator__Senso__34C8D9D1">
+      <End Role="Sensors" EntitySet="Sensors" />
+      <End Role="Indicators" EntitySet="Indicators" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Maintenan__Maint__3E52440B" Association="Self.FK__Maintenan__Maint__3E52440B">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Maintenan__Staff__3D5E1FD2" Association="Self.FK__Maintenan__Staff__3D5E1FD2">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Maintenance" EntitySet="Maintenance" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sensors__SensorA__31EC6D26" Association="Self.FK__Sensors__SensorA__31EC6D26">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Sensors" EntitySet="Sensors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sensors__SensorT__30F848ED" Association="Self.FK__Sensors__SensorT__30F848ED">
+      <End Role="SensorTypes" EntitySet="SensorTypes" />
+      <End Role="Sensors" EntitySet="Sensors" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Streets__Distric__267ABA7A" Association="Self.FK__Streets__Distric__267ABA7A">
+      <End Role="Districts" EntitySet="Districts" />
+      <End Role="Streets" EntitySet="Streets" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__AddressIn__3A81B327" Association="Self.FK__Users__AddressIn__3A81B327">
+      <End Role="Addresses" EntitySet="Addresses" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__UserRole__398D8EEE" Association="Self.FK__Users__UserRole__398D8EEE">
+      <End Role="UserRoles" EntitySet="UserRoles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

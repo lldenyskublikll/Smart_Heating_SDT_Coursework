@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище SMART_HEATINGModelContainer" CdmEntityContainer="SMART_HEATINGEntities">
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Address">
+        <MappingFragment StoreEntitySet="Addresses">
+          <ScalarProperty Name="AddressID" ColumnName="AddressID" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="House" ColumnName="House" />
+          <ScalarProperty Name="Flat" ColumnName="Flat" />
+          <ScalarProperty Name="Office" ColumnName="Office" />
+          <ScalarProperty Name="BuildingType" ColumnName="BuildingType" />
+          <ScalarProperty Name="EstablishmentName" ColumnName="EstablishmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Building_types">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Building_types">
+        <MappingFragment StoreEntitySet="Building_types">
+          <ScalarProperty Name="BuildingTypeID" ColumnName="BuildingTypeID" />
+          <ScalarProperty Name="BuildingTypeName" ColumnName="BuildingTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.District">
+        <MappingFragment StoreEntitySet="Districts">
+          <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+          <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Indicators">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Indicator">
+        <MappingFragment StoreEntitySet="Indicators">
+          <ScalarProperty Name="IndicatorID" ColumnName="IndicatorID" />
+          <ScalarProperty Name="Sensor" ColumnName="Sensor" />
+          <ScalarProperty Name="IndDate" ColumnName="IndDate" />
+          <ScalarProperty Name="Indicator1" ColumnName="Indicator" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maintenances">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Maintenance">
+        <MappingFragment StoreEntitySet="Maintenance">
+          <ScalarProperty Name="MaintID" ColumnName="MaintID" />
+          <ScalarProperty Name="StaffUserID" ColumnName="StaffUserID" />
+          <ScalarProperty Name="MaintAddress" ColumnName="MaintAddress" />
+          <ScalarProperty Name="MaintType" ColumnName="MaintType" />
+          <ScalarProperty Name="MaintStatus" ColumnName="MaintStatus" />
+          <ScalarProperty Name="MaintStartDate" ColumnName="MaintStartDate" />
+          <ScalarProperty Name="MaintEndDate" ColumnName="MaintEndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sensors">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Sensor">
+        <MappingFragment StoreEntitySet="Sensors">
+          <ScalarProperty Name="SensorID" ColumnName="SensorID" />
+          <ScalarProperty Name="SensorType" ColumnName="SensorType" />
+          <ScalarProperty Name="SensorAddress" ColumnName="SensorAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SensorTypes">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.SensorType">
+        <MappingFragment StoreEntitySet="SensorTypes">
+          <ScalarProperty Name="SensorTypeID" ColumnName="SensorTypeID" />
+          <ScalarProperty Name="SensorTypeName" ColumnName="SensorTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Streets">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Street">
+        <MappingFragment StoreEntitySet="Streets">
+          <ScalarProperty Name="StreetID" ColumnName="StreetID" />
+          <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+          <ScalarProperty Name="District" ColumnName="District" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="UserLogin" ColumnName="UserLogin" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="PrsnName" ColumnName="PrsnName" />
+          <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="RsrvPhoneNumber" ColumnName="RsrvPhoneNumber" />
+          <ScalarProperty Name="AddressInfo" ColumnName="AddressInfo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Address_List_View">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Address_List_View">
+        <MappingFragment StoreEntitySet="Address_List_View">
+          <ScalarProperty Name="ID_Вулиці" ColumnName="ID Вулиці" />
+          <ScalarProperty Name="Назва_вулиці" ColumnName="Назва вулиці" />
+          <ScalarProperty Name="Район" ColumnName="Район" />
+          <ScalarProperty Name="C__Будинку" ColumnName="№ Будинку" />
+          <ScalarProperty Name="C__Квартири" ColumnName="№ Квартири" />
+          <ScalarProperty Name="C__Офісу" ColumnName="№ Офісу" />
+          <ScalarProperty Name="Тип_будівлі" ColumnName="Тип будівлі" />
+          <ScalarProperty Name="Назва_закладу" ColumnName="Назва закладу" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Indicators_List_View">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Indicators_List_View">
+        <MappingFragment StoreEntitySet="Indicators_List_View">
+          <ScalarProperty Name="Дата_та_час" ColumnName="Дата та час" />
+          <ScalarProperty Name="ID_сенсору" ColumnName="ID сенсору" />
+          <ScalarProperty Name="Тип_датчика" ColumnName="Тип датчика" />
+          <ScalarProperty Name="Показник" ColumnName="Показник" />
+          <ScalarProperty Name="Назва_вулиці" ColumnName="Назва вулиці" />
+          <ScalarProperty Name="Район" ColumnName="Район" />
+          <ScalarProperty Name="C__Будинку" ColumnName="№ Будинку" />
+          <ScalarProperty Name="C__Квартири" ColumnName="№ Квартири" />
+          <ScalarProperty Name="C__Офісу" ColumnName="№ Офісу" />
+          <ScalarProperty Name="Назва_закладу" ColumnName="Назва закладу" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maintenance_List_AdminView">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Maintenance_List_AdminView">
+        <MappingFragment StoreEntitySet="Maintenance_List_AdminView">
+          <ScalarProperty Name="ID_Тех__роботи" ColumnName="ID Тех. роботи" />
+          <ScalarProperty Name="ID_Працівника" ColumnName="ID Працівника" />
+          <ScalarProperty Name="Логін" ColumnName="Логін" />
+          <ScalarProperty Name="Прізвище_працівника" ColumnName="Прізвище працівника" />
+          <ScalarProperty Name="Ім_я_працівника" ColumnName="Ім`я працівника" />
+          <ScalarProperty Name="По_Батькові_працівника" ColumnName="По-Батькові працівника" />
+          <ScalarProperty Name="Дата_народження" ColumnName="Дата народження" />
+          <ScalarProperty Name="Н_р_телефону" ColumnName="Н-р телефону" />
+          <ScalarProperty Name="Резервний_н_р_телефону" ColumnName="Резервний н-р телефону" />
+          <ScalarProperty Name="Тип_роботи" ColumnName="Тип роботи" />
+          <ScalarProperty Name="Статус" ColumnName="Статус" />
+          <ScalarProperty Name="Дата_початку_робіт" ColumnName="Дата початку робіт" />
+          <ScalarProperty Name="Дата_закінчення_робіт" ColumnName="Дата закінчення робіт" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maintenance_List_StandartView">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Maintenance_List_StandartView">
+        <MappingFragment StoreEntitySet="Maintenance_List_StandartView">
+          <ScalarProperty Name="ID_Тех__роботи" ColumnName="ID Тех. роботи" />
+          <ScalarProperty Name="Прізвище_працівника" ColumnName="Прізвище працівника" />
+          <ScalarProperty Name="Ім_я_працівника" ColumnName="Ім`я працівника" />
+          <ScalarProperty Name="По_Батькові_працівника" ColumnName="По-Батькові працівника" />
+          <ScalarProperty Name="Дата_народження" ColumnName="Дата народження" />
+          <ScalarProperty Name="Н_р_телефону" ColumnName="Н-р телефону" />
+          <ScalarProperty Name="Резервний_н_р_телефону" ColumnName="Резервний н-р телефону" />
+          <ScalarProperty Name="Тип_роботи" ColumnName="Тип роботи" />
+          <ScalarProperty Name="Статус" ColumnName="Статус" />
+          <ScalarProperty Name="Дата_початку_робіт" ColumnName="Дата початку робіт" />
+          <ScalarProperty Name="Дата_закінчення_робіт" ColumnName="Дата закінчення робіт" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sensor_List_View">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Sensor_List_View">
+        <MappingFragment StoreEntitySet="Sensor_List_View">
+          <ScalarProperty Name="ID_датчика" ColumnName="ID датчика" />
+          <ScalarProperty Name="Тип_датчика" ColumnName="Тип датчика" />
+          <ScalarProperty Name="Назва_вулиці" ColumnName="Назва вулиці" />
+          <ScalarProperty Name="Район" ColumnName="Район" />
+          <ScalarProperty Name="C__Будинку" ColumnName="№ Будинку" />
+          <ScalarProperty Name="C__Квартири" ColumnName="№ Квартири" />
+          <ScalarProperty Name="C__Офісу" ColumnName="№ Офісу" />
+          <ScalarProperty Name="Назва_закладу" ColumnName="Назва закладу" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users_List_View">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Users_List_View">
+        <MappingFragment StoreEntitySet="Users_List_View">
+          <ScalarProperty Name="ID_Користувача" ColumnName="ID Користувача" />
+          <ScalarProperty Name="Логін" ColumnName="Логін" />
+          <ScalarProperty Name="Роль_у_системі" ColumnName="Роль у системі" />
+          <ScalarProperty Name="Прізвище" ColumnName="Прізвище" />
+          <ScalarProperty Name="Ім_я" ColumnName="Ім`я" />
+          <ScalarProperty Name="По_Батькові" ColumnName="По-Батькові" />
+          <ScalarProperty Name="Стать" ColumnName="Стать" />
+          <ScalarProperty Name="Дата_народження" ColumnName="Дата народження" />
+          <ScalarProperty Name="Н_р_телефону" ColumnName="Н-р телефону" />
+          <ScalarProperty Name="Резервний_н_р_телефону" ColumnName="Резервний н-р телефону" />
+          <ScalarProperty Name="Назва_вулиці" ColumnName="Назва вулиці" />
+          <ScalarProperty Name="C__Будинку" ColumnName="№ Будинку" />
+          <ScalarProperty Name="C__Квартири" ColumnName="№ Квартири" />
+          <ScalarProperty Name="C__Офісу" ColumnName="№ Офісу" />
+          <ScalarProperty Name="Район" ColumnName="Район" />
+          <ScalarProperty Name="Тип_будинку" ColumnName="Тип будинку" />
+          <ScalarProperty Name="Назва_закладу" ColumnName="Назва закладу" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище SMART_HEATINGModel.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище SMART_HEATINGModel.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище SMART_HEATINGModel.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище SMART_HEATINGModel.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SMART_HEATINGModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище SMART_HEATINGModel.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SMART_HEATINGModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище SMART_HEATINGModel.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище SMART_HEATINGModel.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
