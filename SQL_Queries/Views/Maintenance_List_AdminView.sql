@@ -1,17 +1,27 @@
 Create view Maintenance_List_AdminView as
-Select Mnt.MaintID as 'ID РўРµС…. СЂРѕР±РѕС‚Рё', Us.UserID as 'ID РџСЂР°С†С–РІРЅРёРєР°', 
-       Us.UserLogin as 'Р›РѕРіС–РЅ',  Us.Surname as 'РџСЂС–Р·РІРёС‰Рµ РїСЂР°С†С–РІРЅРёРєР°', 
-       Us.PrsnName as 'Р†Рј`СЏ РїСЂР°С†С–РІРЅРёРєР°', ISNULL(Us.SecondName, '-----') as 'РџРѕ-Р‘Р°С‚СЊРєРѕРІС– РїСЂР°С†С–РІРЅРёРєР°',
-	   Us.BirthDate as 'Р”Р°С‚Р° РЅР°СЂРѕРґР¶РµРЅРЅСЏ', Us.PhoneNumber as 'Рќ-СЂ С‚РµР»РµС„РѕРЅСѓ',	   
-	   ISNULL(Us.RsrvPhoneNumber, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'Р РµР·РµСЂРІРЅРёР№ РЅ-СЂ С‚РµР»РµС„РѕРЅСѓ',
-       Mnt.MaintType as 'РўРёРї СЂРѕР±РѕС‚Рё', Mnt.MaintStatus as 'РЎС‚Р°С‚СѓСЃ', 
+Select Mnt.MaintID as 'ID Тех. роботи', Us.UserID as 'ID Працівника', 
+       Us.UserLogin as 'Логін',  Us.Surname as 'Прізвище працівника', 
+       Us.PrsnName as 'Ім`я працівника', ISNULL(Us.SecondName, '-----') as 'По-Батькові працівника',
+	   Us.BirthDate as 'Дата народження', Us.PhoneNumber as 'Н-р телефону',	   
+	   ISNULL(Us.RsrvPhoneNumber, 'Не вказано') as 'Резервний н-р телефону',
+       Mnt.MaintType as 'Тип роботи', Mnt.MaintStatus as 'Статус', 
 	   Case 
-	       When Mnt.MaintStartDate is null Then 'РќРµ РЅР°РґР°РЅРѕ'
+	       When Mnt.MaintStartDate is null Then 'Не надано'
 		   Else Convert(varchar(50), Mnt.MaintStartDate)
-	   End as 'Р”Р°С‚Р° РїРѕС‡Р°С‚РєСѓ СЂРѕР±С–С‚',
+	   End as 'Дата початку робіт',
 	   Case 
-	       When Mnt.MaintEndDate is null Then 'РќРµ РЅР°РґР°РЅРѕ'
+	       When Mnt.MaintEndDate is null Then 'Не надано'
 		   Else Convert(varchar(50), Mnt.MaintEndDate)
-	   End as 'Р”Р°С‚Р° Р·Р°РєС–РЅС‡РµРЅРЅСЏ СЂРѕР±С–С‚'
+	   End as 'Дата закінчення робіт',
+	   Adr.AddressID as 'ID адреси',
+       St.StreetID as 'ID вулиці', St.StreetName as 'Назва вулиці', 
+	   Ds.DistrictID as 'ID району', Ds.DistrictName as 'Район', 
+	   Adr.House as '№ Будинку', 
+	   ISNULL(Adr.Flat, '-----') as '№ Квартири', 
+	   ISNULL(Adr.Office, '-----') as '№ Офісу',
+	   ISNULL(Adr.EstablishmentName, 'Не вказано') as 'Назва закладу'	
 From Maintenance Mnt
 Join Users Us on Us.UserID = Mnt.StaffUserID
+Join Addresses Adr on Adr.AddressID = Mnt.MaintAddress
+Join Streets St on St.StreetID = Adr.Street
+Join Districts Ds on Ds.DistrictID = St.District

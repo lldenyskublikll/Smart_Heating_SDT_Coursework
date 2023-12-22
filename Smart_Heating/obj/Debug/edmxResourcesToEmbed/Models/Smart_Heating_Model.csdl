@@ -156,6 +156,9 @@
       <PropertyRef Name="C__Квартири" />
       <PropertyRef Name="C__Офісу" />
       <PropertyRef Name="Назва_закладу" />
+      <PropertyRef Name="ID_адреси" />
+      <PropertyRef Name="ID_вулиці" />
+      <PropertyRef Name="ID_району" />
     </Key>
     <Property Name="Дата_та_час" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ID_сенсору" Type="Int32" Nullable="false" />
@@ -167,6 +170,9 @@
     <Property Name="C__Квартири" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="C__Офісу" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Назва_закладу" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_адреси" Type="Int32" Nullable="false" />
+    <Property Name="ID_вулиці" Type="Int32" Nullable="false" />
+    <Property Name="ID_району" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Maintenance_List_AdminView">
     <Key>
@@ -179,6 +185,15 @@
       <PropertyRef Name="Дата_народження" />
       <PropertyRef Name="Н_р_телефону" />
       <PropertyRef Name="Резервний_н_р_телефону" />
+      <PropertyRef Name="ID_адреси" />
+      <PropertyRef Name="ID_вулиці" />
+      <PropertyRef Name="Назва_вулиці" />
+      <PropertyRef Name="ID_району" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="C__Будинку" />
+      <PropertyRef Name="C__Квартири" />
+      <PropertyRef Name="C__Офісу" />
+      <PropertyRef Name="Назва_закладу" />
     </Key>
     <Property Name="ID_Тех__роботи" Type="Int32" Nullable="false" />
     <Property Name="ID_Працівника" Type="Int32" Nullable="false" />
@@ -193,6 +208,15 @@
     <Property Name="Статус" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="Дата_початку_робіт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Дата_закінчення_робіт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_адреси" Type="Int32" Nullable="false" />
+    <Property Name="ID_вулиці" Type="Int32" Nullable="false" />
+    <Property Name="Назва_вулиці" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ID_району" Type="Int32" Nullable="false" />
+    <Property Name="Район" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="C__Будинку" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="C__Квартири" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="C__Офісу" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Назва_закладу" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Maintenance_List_StandartView">
     <Key>
@@ -203,6 +227,15 @@
       <PropertyRef Name="Дата_народження" />
       <PropertyRef Name="Н_р_телефону" />
       <PropertyRef Name="Резервний_н_р_телефону" />
+      <PropertyRef Name="ID_адреси" />
+      <PropertyRef Name="ID_вулиці" />
+      <PropertyRef Name="Назва_вулиці" />
+      <PropertyRef Name="ID_району" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="C__Будинку" />
+      <PropertyRef Name="C__Квартири" />
+      <PropertyRef Name="C__Офісу" />
+      <PropertyRef Name="Назва_закладу" />
     </Key>
     <Property Name="ID_Тех__роботи" Type="Int32" Nullable="false" />
     <Property Name="Прізвище_працівника" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -215,6 +248,15 @@
     <Property Name="Статус" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="Дата_початку_робіт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Дата_закінчення_робіт" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ID_адреси" Type="Int32" Nullable="false" />
+    <Property Name="ID_вулиці" Type="Int32" Nullable="false" />
+    <Property Name="Назва_вулиці" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ID_району" Type="Int32" Nullable="false" />
+    <Property Name="Район" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="C__Будинку" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="C__Квартири" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="C__Офісу" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Назва_закладу" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Sensor_List_View">
     <Key>
@@ -226,6 +268,9 @@
       <PropertyRef Name="C__Квартири" />
       <PropertyRef Name="C__Офісу" />
       <PropertyRef Name="Назва_закладу" />
+      <PropertyRef Name="ID_адреси" />
+      <PropertyRef Name="ID_вулиці" />
+      <PropertyRef Name="ID_району" />
     </Key>
     <Property Name="ID_датчика" Type="Int32" Nullable="false" />
     <Property Name="Тип_датчика" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -235,6 +280,9 @@
     <Property Name="C__Квартири" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="C__Офісу" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Назва_закладу" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_адреси" Type="Int32" Nullable="false" />
+    <Property Name="ID_вулиці" Type="Int32" Nullable="false" />
+    <Property Name="ID_району" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="Users_List_View">
     <Key>
@@ -267,6 +315,9 @@
     <Property Name="Район" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Тип_будинку" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Назва_закладу" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ID_адреси" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_вулиці" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ID_району" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK__Addresses__Build__2C3393D0">
     <End Role="Building_types" Type="Self.Building_types" Multiplicity="1" />

@@ -74,3 +74,5 @@ C:\Users\ddkub\source\repos\Smart_Heating_SDT_Coursework\Smart_Heating\bin\rosly
 C:\Users\ddkub\source\repos\Smart_Heating_SDT_Coursework\Smart_Heating\bin\ru\EntityFramework.SqlServer.resources.dll
 C:\Users\ddkub\source\repos\Smart_Heating_SDT_Coursework\Smart_Heating\bin\PagedList.dll
 C:\Users\ddkub\source\repos\Smart_Heating_SDT_Coursework\Smart_Heating\bin\PagedList.xml
+C:\Users\ddkub\source\repos\Smart_Heating_SDT_Coursework\Smart_Heating\bin\PagedList.Mvc.dll
+C:\Users\ddkub\source\repos\Smart_Heating_SDT_Coursework\Smart_Heating\bin\PagedList.Mvc.xml

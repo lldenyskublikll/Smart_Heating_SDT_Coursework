@@ -14,12 +14,15 @@ namespace Smart_Heating.Controllers
         // GET: Admin
         public ActionResult AdminDashBoard()
         {
+            /// If UserID is Null then redirects to the LoginPage view
             if (Session["UserID"] == null)
                 return RedirectToAction("LoginPage", "Home");
-
-            return View();
+            
+            /// Else returns AdminDashBoard view that helps Administrator to perform all actions that he/she can do in this system
+            return View(); 
         }
 
+        /// Redirects to the view that shows Andmin all information about Maintenances, their statuses, start/end dates and Engineer that leads it
         public ActionResult AdminViewMaintenance() 
         {
             using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
@@ -27,10 +30,11 @@ namespace Smart_Heating.Controllers
                 var query = db.Maintenance_List_AdminView;
 
                 return View(query.ToList());
-            }
-
-                 
+            }                 
         }
+
+
+        
 
         
     }

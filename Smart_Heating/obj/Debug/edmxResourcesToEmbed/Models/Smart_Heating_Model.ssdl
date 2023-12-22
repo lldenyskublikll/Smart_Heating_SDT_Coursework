@@ -134,7 +134,10 @@
       <PropertyRef Name="ID сенсору" />
       <PropertyRef Name="Тип датчика" />
       <PropertyRef Name="Показник" />
+      <PropertyRef Name="ID адреси" />
+      <PropertyRef Name="ID вулиці" />
       <PropertyRef Name="Назва вулиці" />
+      <PropertyRef Name="ID району" />
       <PropertyRef Name="Район" />
       <PropertyRef Name="№ Будинку" />
       <PropertyRef Name="№ Квартири" />
@@ -145,7 +148,10 @@
     <Property Name="ID сенсору" Type="int" Nullable="false" />
     <Property Name="Тип датчика" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Показник" Type="varchar" MaxLength="34" Nullable="false" />
+    <Property Name="ID адреси" Type="int" Nullable="false" />
+    <Property Name="ID вулиці" Type="int" Nullable="false" />
     <Property Name="Назва вулиці" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID району" Type="int" Nullable="false" />
     <Property Name="Район" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="№ Будинку" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="№ Квартири" Type="varchar" MaxLength="10" Nullable="false" />
@@ -165,6 +171,15 @@
       <PropertyRef Name="Дата народження" />
       <PropertyRef Name="Н-р телефону" />
       <PropertyRef Name="Резервний н-р телефону" />
+      <PropertyRef Name="ID адреси" />
+      <PropertyRef Name="ID вулиці" />
+      <PropertyRef Name="Назва вулиці" />
+      <PropertyRef Name="ID району" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="№ Будинку" />
+      <PropertyRef Name="№ Квартири" />
+      <PropertyRef Name="№ Офісу" />
+      <PropertyRef Name="Назва закладу" />
     </Key>
     <Property Name="ID Тех. роботи" Type="int" Nullable="false" />
     <Property Name="ID Працівника" Type="int" Nullable="false" />
@@ -179,6 +194,15 @@
     <Property Name="Статус" Type="varchar" MaxLength="500" />
     <Property Name="Дата початку робіт" Type="varchar" MaxLength="50" />
     <Property Name="Дата закінчення робіт" Type="varchar" MaxLength="50" />
+    <Property Name="ID адреси" Type="int" Nullable="false" />
+    <Property Name="ID вулиці" Type="int" Nullable="false" />
+    <Property Name="Назва вулиці" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID району" Type="int" Nullable="false" />
+    <Property Name="Район" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="№ Будинку" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Квартири" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Офісу" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
   </EntityType>
   <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Maintenance_List_StandartView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -191,6 +215,15 @@
       <PropertyRef Name="Дата народження" />
       <PropertyRef Name="Н-р телефону" />
       <PropertyRef Name="Резервний н-р телефону" />
+      <PropertyRef Name="ID адреси" />
+      <PropertyRef Name="ID вулиці" />
+      <PropertyRef Name="Назва вулиці" />
+      <PropertyRef Name="ID району" />
+      <PropertyRef Name="Район" />
+      <PropertyRef Name="№ Будинку" />
+      <PropertyRef Name="№ Квартири" />
+      <PropertyRef Name="№ Офісу" />
+      <PropertyRef Name="Назва закладу" />
     </Key>
     <Property Name="ID Тех. роботи" Type="int" Nullable="false" />
     <Property Name="Прізвище працівника" Type="varchar" MaxLength="100" Nullable="false" />
@@ -203,6 +236,15 @@
     <Property Name="Статус" Type="varchar" MaxLength="500" />
     <Property Name="Дата початку робіт" Type="varchar" MaxLength="50" />
     <Property Name="Дата закінчення робіт" Type="varchar" MaxLength="50" />
+    <Property Name="ID адреси" Type="int" Nullable="false" />
+    <Property Name="ID вулиці" Type="int" Nullable="false" />
+    <Property Name="Назва вулиці" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID району" Type="int" Nullable="false" />
+    <Property Name="Район" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="№ Будинку" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Квартири" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="№ Офісу" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
   </EntityType>
   <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Sensor_List_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -210,7 +252,10 @@
     <Key>
       <PropertyRef Name="ID датчика" />
       <PropertyRef Name="Тип датчика" />
+      <PropertyRef Name="ID адреси" />
+      <PropertyRef Name="ID вулиці" />
       <PropertyRef Name="Назва вулиці" />
+      <PropertyRef Name="ID району" />
       <PropertyRef Name="Район" />
       <PropertyRef Name="№ Будинку" />
       <PropertyRef Name="№ Квартири" />
@@ -219,7 +264,10 @@
     </Key>
     <Property Name="ID датчика" Type="int" Nullable="false" />
     <Property Name="Тип датчика" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID адреси" Type="int" Nullable="false" />
+    <Property Name="ID вулиці" Type="int" Nullable="false" />
     <Property Name="Назва вулиці" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID району" Type="int" Nullable="false" />
     <Property Name="Район" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="№ Будинку" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="№ Квартири" Type="varchar" MaxLength="10" Nullable="false" />
@@ -252,10 +300,13 @@
     <Property Name="Дата народження" Type="date" Nullable="false" />
     <Property Name="Н-р телефону" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="Резервний н-р телефону" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="ID адреси" Type="varchar" MaxLength="10" />
+    <Property Name="ID вулиці" Type="varchar" MaxLength="10" />
     <Property Name="Назва вулиці" Type="varchar" MaxLength="100" />
     <Property Name="№ Будинку" Type="varchar" MaxLength="10" />
     <Property Name="№ Квартири" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="№ Офісу" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ID району" Type="varchar" MaxLength="10" />
     <Property Name="Район" Type="varchar" MaxLength="100" />
     <Property Name="Тип будинку" Type="varchar" MaxLength="100" />
     <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
@@ -441,7 +492,10 @@
     [Indicators_List_View].[ID сенсору] AS [ID сенсору], 
     [Indicators_List_View].[Тип датчика] AS [Тип датчика], 
     [Indicators_List_View].[Показник] AS [Показник], 
+    [Indicators_List_View].[ID адреси] AS [ID адреси], 
+    [Indicators_List_View].[ID вулиці] AS [ID вулиці], 
     [Indicators_List_View].[Назва вулиці] AS [Назва вулиці], 
+    [Indicators_List_View].[ID району] AS [ID району], 
     [Indicators_List_View].[Район] AS [Район], 
     [Indicators_List_View].[№ Будинку] AS [№ Будинку], 
     [Indicators_List_View].[№ Квартири] AS [№ Квартири], 
@@ -463,7 +517,16 @@
     [Maintenance_List_AdminView].[Тип роботи] AS [Тип роботи], 
     [Maintenance_List_AdminView].[Статус] AS [Статус], 
     [Maintenance_List_AdminView].[Дата початку робіт] AS [Дата початку робіт], 
-    [Maintenance_List_AdminView].[Дата закінчення робіт] AS [Дата закінчення робіт]
+    [Maintenance_List_AdminView].[Дата закінчення робіт] AS [Дата закінчення робіт], 
+    [Maintenance_List_AdminView].[ID адреси] AS [ID адреси], 
+    [Maintenance_List_AdminView].[ID вулиці] AS [ID вулиці], 
+    [Maintenance_List_AdminView].[Назва вулиці] AS [Назва вулиці], 
+    [Maintenance_List_AdminView].[ID району] AS [ID району], 
+    [Maintenance_List_AdminView].[Район] AS [Район], 
+    [Maintenance_List_AdminView].[№ Будинку] AS [№ Будинку], 
+    [Maintenance_List_AdminView].[№ Квартири] AS [№ Квартири], 
+    [Maintenance_List_AdminView].[№ Офісу] AS [№ Офісу], 
+    [Maintenance_List_AdminView].[Назва закладу] AS [Назва закладу]
     FROM [dbo].[Maintenance_List_AdminView] AS [Maintenance_List_AdminView]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Maintenance_List_StandartView" EntityType="Self.Maintenance_List_StandartView" store:Type="Views" store:Schema="dbo">
@@ -478,14 +541,26 @@
     [Maintenance_List_StandartView].[Тип роботи] AS [Тип роботи], 
     [Maintenance_List_StandartView].[Статус] AS [Статус], 
     [Maintenance_List_StandartView].[Дата початку робіт] AS [Дата початку робіт], 
-    [Maintenance_List_StandartView].[Дата закінчення робіт] AS [Дата закінчення робіт]
+    [Maintenance_List_StandartView].[Дата закінчення робіт] AS [Дата закінчення робіт], 
+    [Maintenance_List_StandartView].[ID адреси] AS [ID адреси], 
+    [Maintenance_List_StandartView].[ID вулиці] AS [ID вулиці], 
+    [Maintenance_List_StandartView].[Назва вулиці] AS [Назва вулиці], 
+    [Maintenance_List_StandartView].[ID району] AS [ID району], 
+    [Maintenance_List_StandartView].[Район] AS [Район], 
+    [Maintenance_List_StandartView].[№ Будинку] AS [№ Будинку], 
+    [Maintenance_List_StandartView].[№ Квартири] AS [№ Квартири], 
+    [Maintenance_List_StandartView].[№ Офісу] AS [№ Офісу], 
+    [Maintenance_List_StandartView].[Назва закладу] AS [Назва закладу]
     FROM [dbo].[Maintenance_List_StandartView] AS [Maintenance_List_StandartView]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Sensor_List_View" EntityType="Self.Sensor_List_View" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 
     [Sensor_List_View].[ID датчика] AS [ID датчика], 
     [Sensor_List_View].[Тип датчика] AS [Тип датчика], 
+    [Sensor_List_View].[ID адреси] AS [ID адреси], 
+    [Sensor_List_View].[ID вулиці] AS [ID вулиці], 
     [Sensor_List_View].[Назва вулиці] AS [Назва вулиці], 
+    [Sensor_List_View].[ID району] AS [ID району], 
     [Sensor_List_View].[Район] AS [Район], 
     [Sensor_List_View].[№ Будинку] AS [№ Будинку], 
     [Sensor_List_View].[№ Квартири] AS [№ Квартири], 
@@ -505,10 +580,13 @@
     [Users_List_View].[Дата народження] AS [Дата народження], 
     [Users_List_View].[Н-р телефону] AS [Н-р телефону], 
     [Users_List_View].[Резервний н-р телефону] AS [Резервний н-р телефону], 
+    [Users_List_View].[ID адреси] AS [ID адреси], 
+    [Users_List_View].[ID вулиці] AS [ID вулиці], 
     [Users_List_View].[Назва вулиці] AS [Назва вулиці], 
     [Users_List_View].[№ Будинку] AS [№ Будинку], 
     [Users_List_View].[№ Квартири] AS [№ Квартири], 
     [Users_List_View].[№ Офісу] AS [№ Офісу], 
+    [Users_List_View].[ID району] AS [ID району], 
     [Users_List_View].[Район] AS [Район], 
     [Users_List_View].[Тип будинку] AS [Тип будинку], 
     [Users_List_View].[Назва закладу] AS [Назва закладу]

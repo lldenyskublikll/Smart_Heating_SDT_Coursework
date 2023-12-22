@@ -1,10 +1,10 @@
 Create view Address_List_View as
-Select Adr.AddressID as 'ID Р’СѓР»РёС†С–', St.StreetName as 'РќР°Р·РІР° РІСѓР»РёС†С–', Ds.DistrictName as 'Р Р°Р№РѕРЅ',
-       Adr.House as 'в„– Р‘СѓРґРёРЅРєСѓ', 
-	   ISNULL(Adr.Flat, '-----') as 'в„– РљРІР°СЂС‚РёСЂРё', 
-	   ISNULL(Adr.Office, '-----') as 'в„– РћС„С–СЃСѓ', 
-	   Bldt.BuildingTypeName as 'РўРёРї Р±СѓРґС–РІР»С–',
-	   ISNULL(Adr.EstablishmentName, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'РќР°Р·РІР° Р·Р°РєР»Р°РґСѓ'
+Select Adr.AddressID as 'ID Вулиці', St.StreetName as 'Назва вулиці', Ds.DistrictName as 'Район',
+       Adr.House as '№ Будинку', 
+	   ISNULL(Adr.Flat, '-----') as '№ Квартири', 
+	   ISNULL(Adr.Office, '-----') as '№ Офісу', 
+	   Bldt.BuildingTypeName as 'Тип будівлі',
+	   ISNULL(Adr.EstablishmentName, 'Не вказано') as 'Назва закладу'
 From Addresses Adr
 Join Streets St on St.StreetID = Adr.Street
 Join Districts Ds on Ds.DistrictID = St.District

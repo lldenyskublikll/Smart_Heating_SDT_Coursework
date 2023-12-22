@@ -133,6 +133,9 @@
     <EntitySetMapping Name="Indicators_List_View">
       <EntityTypeMapping TypeName="SMART_HEATINGModel.Indicators_List_View">
         <MappingFragment StoreEntitySet="Indicators_List_View">
+          <ScalarProperty Name="ID_району" ColumnName="ID району" />
+          <ScalarProperty Name="ID_вулиці" ColumnName="ID вулиці" />
+          <ScalarProperty Name="ID_адреси" ColumnName="ID адреси" />
           <ScalarProperty Name="Дата_та_час" ColumnName="Дата та час" />
           <ScalarProperty Name="ID_сенсору" ColumnName="ID сенсору" />
           <ScalarProperty Name="Тип_датчика" ColumnName="Тип датчика" />
@@ -149,6 +152,15 @@
     <EntitySetMapping Name="Maintenance_List_AdminView">
       <EntityTypeMapping TypeName="SMART_HEATINGModel.Maintenance_List_AdminView">
         <MappingFragment StoreEntitySet="Maintenance_List_AdminView">
+          <ScalarProperty Name="Назва_закладу" ColumnName="Назва закладу" />
+          <ScalarProperty Name="C__Офісу" ColumnName="№ Офісу" />
+          <ScalarProperty Name="C__Квартири" ColumnName="№ Квартири" />
+          <ScalarProperty Name="C__Будинку" ColumnName="№ Будинку" />
+          <ScalarProperty Name="Район" ColumnName="Район" />
+          <ScalarProperty Name="ID_району" ColumnName="ID району" />
+          <ScalarProperty Name="Назва_вулиці" ColumnName="Назва вулиці" />
+          <ScalarProperty Name="ID_вулиці" ColumnName="ID вулиці" />
+          <ScalarProperty Name="ID_адреси" ColumnName="ID адреси" />
           <ScalarProperty Name="ID_Тех__роботи" ColumnName="ID Тех. роботи" />
           <ScalarProperty Name="ID_Працівника" ColumnName="ID Працівника" />
           <ScalarProperty Name="Логін" ColumnName="Логін" />
@@ -168,6 +180,15 @@
     <EntitySetMapping Name="Maintenance_List_StandartView">
       <EntityTypeMapping TypeName="SMART_HEATINGModel.Maintenance_List_StandartView">
         <MappingFragment StoreEntitySet="Maintenance_List_StandartView">
+          <ScalarProperty Name="Назва_закладу" ColumnName="Назва закладу" />
+          <ScalarProperty Name="C__Офісу" ColumnName="№ Офісу" />
+          <ScalarProperty Name="C__Квартири" ColumnName="№ Квартири" />
+          <ScalarProperty Name="C__Будинку" ColumnName="№ Будинку" />
+          <ScalarProperty Name="Район" ColumnName="Район" />
+          <ScalarProperty Name="ID_району" ColumnName="ID району" />
+          <ScalarProperty Name="Назва_вулиці" ColumnName="Назва вулиці" />
+          <ScalarProperty Name="ID_вулиці" ColumnName="ID вулиці" />
+          <ScalarProperty Name="ID_адреси" ColumnName="ID адреси" />
           <ScalarProperty Name="ID_Тех__роботи" ColumnName="ID Тех. роботи" />
           <ScalarProperty Name="Прізвище_працівника" ColumnName="Прізвище працівника" />
           <ScalarProperty Name="Ім_я_працівника" ColumnName="Ім`я працівника" />
@@ -185,6 +206,9 @@
     <EntitySetMapping Name="Sensor_List_View">
       <EntityTypeMapping TypeName="SMART_HEATINGModel.Sensor_List_View">
         <MappingFragment StoreEntitySet="Sensor_List_View">
+          <ScalarProperty Name="ID_району" ColumnName="ID району" />
+          <ScalarProperty Name="ID_вулиці" ColumnName="ID вулиці" />
+          <ScalarProperty Name="ID_адреси" ColumnName="ID адреси" />
           <ScalarProperty Name="ID_датчика" ColumnName="ID датчика" />
           <ScalarProperty Name="Тип_датчика" ColumnName="Тип датчика" />
           <ScalarProperty Name="Назва_вулиці" ColumnName="Назва вулиці" />
@@ -199,6 +223,9 @@
     <EntitySetMapping Name="Users_List_View">
       <EntityTypeMapping TypeName="SMART_HEATINGModel.Users_List_View">
         <MappingFragment StoreEntitySet="Users_List_View">
+          <ScalarProperty Name="ID_району" ColumnName="ID району" />
+          <ScalarProperty Name="ID_вулиці" ColumnName="ID вулиці" />
+          <ScalarProperty Name="ID_адреси" ColumnName="ID адреси" />
           <ScalarProperty Name="ID_Користувача" ColumnName="ID Користувача" />
           <ScalarProperty Name="Логін" ColumnName="Логін" />
           <ScalarProperty Name="Роль_у_системі" ColumnName="Роль у системі" />

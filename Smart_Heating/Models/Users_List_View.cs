@@ -31,5 +31,8 @@ namespace Smart_Heating.Models
         public string Район { get; set; }
         public string Тип_будинку { get; set; }
         public string Назва_закладу { get; set; }
+        public string ID_адреси { get; set; }
+        public string ID_вулиці { get; set; }
+        public string ID_району { get; set; }
     }
 }

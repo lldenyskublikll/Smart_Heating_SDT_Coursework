@@ -4,42 +4,47 @@
     ViewBag.Title = "LoginPage";
 }
 
-<h2>Увійти</h2>
+<div class="d-flex justify-content-center">
+    @*<div class="d-flex p-2">Увійти</div>*@
+    
+    @using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
+    {
+        <fieldset>
+            <legend>Smart Heating: Увійти</legend>
 
-@using (Html.BeginForm("LoginPage", "Home", FormMethod.Post))
-{
-    <fieldset>
-        <legend>Smart Heating</legend>
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
 
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
+            @if (ViewBag.Message != null)
+            {
+                <p style="border: 1px solid red; padding: 5px; display: inline-block;">
+                    @ViewBag.Message
+                </p>
+            }
 
-        @if (ViewBag.Message != null)
-        {
-            <p style="border: 1px solid red; padding: 5px; display: inline-block;">
-                @ViewBag.Message
-            </p>
-        }
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(a => a.UserLogin, "Логін", htmlAttributes: new {style=" margin: 8px"})</td>
+                    <td>@Html.TextBoxFor(a => a.UserLogin)</td>
+                    <td>@Html.ValidationMessageFor(a => a.UserLogin)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(a => a.UserPassword, "Пароль") </td>
+                    <td>@Html.PasswordFor(a => a.UserPassword)</td>
+                    <td>@Html.ValidationMessageFor(a => a.UserPassword)</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" class="btn btn-success" value="Увійти" style="display : inline; margin-top : 12px" />
+                        <a type="button" href="@Url.Action("Register", "Home")" class="btn btn-dark " style=" margin-top: 12px">Реєстрація</a>
+                    </td>                    
+                    <td></td>
+                </tr>
+            </table>
+        </fieldset>
+        <br />        
+    }
+</div>
 
-        <table>
-            <tr>
-                <td>@Html.LabelFor(a => a.UserLogin, "Login")</td>
-                <td>@Html.TextBoxFor(a => a.UserLogin)</td>
-                <td>@Html.ValidationMessageFor(a => a.UserLogin)</td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(a => a.UserPassword, "Пароль") </td>
-                <td>@Html.PasswordFor(a => a.UserPassword)</td>
-                <td>@Html.ValidationMessageFor(a => a.UserPassword)</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" class="btn btn-primary" value="Увійти" /></td>
-                <td></td>
-            </tr>
-        </table>
-    </fieldset>
-    <br />
-    <a type="button" href="@Url.Action("Register", "Home")" class="btn btn-secondary">Реєстрація</a>
-}
 

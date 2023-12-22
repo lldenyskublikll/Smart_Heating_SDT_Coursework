@@ -1,0 +1,147 @@
+﻿﻿@model PagedList.IPagedList<Smart_Heating.Models.Maintenance_List_StandartView>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@{
+    ViewBag.Title = "StandartUserViewMaintenance";
+}
+
+<h2>StandartUserViewMaintenance</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Знайти за Прізвищем або Ім'ям: @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Пошук" />
+    </p>
+}
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">
+                @Html.ActionLink("ID", "StandartUserViewMaintenance", new { sort_order = ViewBag.IdSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Прізвище працівника", "StandartUserViewMaintenance", new { sort_order = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Ім'я працівника", "StandartUserViewMaintenance", new { sort_order = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("По-батькові працівника", "StandartUserViewMaintenance", new { sort_order = ViewBag.SecondnameSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Дата народження", "StandartUserViewMaintenance", new { sort_order = ViewBag.BirthdateSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                Н-р телефону
+            </th>
+            <th scope="col">
+                Резервний н-р телефону
+            </th>
+            <th scope="col">
+                Тип роботи
+            </th>
+            <th scope="col">
+                Статус
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Дата початку робіт", "StandartUserViewMaintenance", new { sort_order = ViewBag.StartdateSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Дата завершення робіт", "StandartUserViewMaintenance", new { sort_order = ViewBag.EnddateSort, currentFilter = ViewBag.CurrentFilter })
+            <th scope="col">
+                @Html.ActionLink("Район", "StandartUserViewMaintenance", new { sort_order = ViewBag.DistrictSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Вулиця", "StandartUserViewMaintenance", new { sort_order = ViewBag.StreetSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                № Будинку
+            </th>
+            <th scope="col">
+                № Квартири
+            </th>
+            <th scope="col">
+                № Офісу
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Назва закладу", "StandartUserViewMaintenance", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_Тех__роботи)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Прізвище_працівника)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ім_я_працівника)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.По_Батькові_працівника)
+                </td>
+                <td>
+                    @{ int year = item.Дата_народження.Year; int month = item.Дата_народження.Month; int day = item.Дата_народження.Day; string text = string.Format("{0}-{1}-{2}", year, month, day);}
+                    @text
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Н_р_телефону)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Резервний_н_р_телефону)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Тип_роботи)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Статус)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дата_початку_робіт)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дата_закінчення_робіт)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Район)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Назва_вулиці)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Будинку)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Квартири)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Офісу)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Назва_закладу)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("StandartUserViewMaintenance",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+<div>
+    <a type="button" href="@Url.Action("StandartUserDashBoard", "StandartUser")" class="btn btn-light" style="margin-top:12px">Повернутись</a>
+</div>

@@ -1,0 +1,113 @@
+﻿﻿@model PagedList.IPagedList<Smart_Heating.Models.Maintenance_List_AdminView>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@{
+    ViewBag.Title = "StaffViewMaintenance";
+}
+
+<h2>StaffViewMaintenance</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Знайти за параметрами "Дата початку/завершення роботи", "Тип/статус роботи", "Район", "Вулиця": @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Пошук" />
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.ActionLink("ID", "StaffViewMaintenance", new { sort_order = ViewBag.IdSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                Тип роботи
+            </th>
+            <th scope="col">
+                Статус
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Дата початку робіт", "StaffViewMaintenance", new { sort_order = ViewBag.StartdateSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Дата завершення робіт", "StaffViewMaintenance", new { sort_order = ViewBag.EnddateSort, currentFilter = ViewBag.CurrentFilter })
+            <th scope="col">
+                @Html.ActionLink("Район", "StaffViewMaintenance", new { sort_order = ViewBag.DistrictSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Вулиця", "StaffViewMaintenance", new { sort_order = ViewBag.StreetSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                № Будинку
+            </th>
+            <th scope="col">
+                № Квартири
+            </th>
+            <th scope="col">
+                № Офісу
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Назва закладу", "StaffViewMaintenance", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_Тех__роботи)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Тип_роботи)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Статус)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дата_початку_робіт)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дата_закінчення_робіт)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Назва_вулиці)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Район)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Будинку)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Квартири)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Офісу)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Назва_закладу)
+                </td>
+                <td>
+                    <a href="@Url.Action("ChangeMaintInfo", "Staff", new { MaintID = item.ID_Тех__роботи })" class="btn btn-secondary" >Змінити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("StaffViewMaintenance",
+    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+<div>
+    <a type="button" href="@Url.Action("StaffDashBoard", "Staff")" class="btn btn-light" style="margin-top:12px">Повернутись</a>
+</div>

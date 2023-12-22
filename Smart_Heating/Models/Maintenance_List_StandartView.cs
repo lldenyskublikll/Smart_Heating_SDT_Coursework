@@ -25,5 +25,14 @@ namespace Smart_Heating.Models
         public string Статус { get; set; }
         public string Дата_початку_робіт { get; set; }
         public string Дата_закінчення_робіт { get; set; }
+        public int ID_адреси { get; set; }
+        public int ID_вулиці { get; set; }
+        public string Назва_вулиці { get; set; }
+        public int ID_району { get; set; }
+        public string Район { get; set; }
+        public string C__Будинку { get; set; }
+        public string C__Квартири { get; set; }
+        public string C__Офісу { get; set; }
+        public string Назва_закладу { get; set; }
     }
 }

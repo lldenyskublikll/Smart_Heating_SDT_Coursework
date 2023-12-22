@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "StandartUserDashBoard";
+}
+
+<h2>StandartUserDashBoard</h2>
+
+<div>
+    <table style="display: block; margin: 10px">
+        <tbody>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("StandartUserViewMaintenance", "StandartUser")" role="button">Переглянути список тех.робіт (за своєю адресою)</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("StandartUserViewSensors", "StandartUser")" role="button">Переглянути список датчиків (за своєю адресою)</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("StandartUserViewIndicators", "StandartUser")" role="button">Переглянути список показників (за своєю адресою)</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

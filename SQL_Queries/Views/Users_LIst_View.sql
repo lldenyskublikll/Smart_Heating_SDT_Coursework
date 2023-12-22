@@ -1,37 +1,49 @@
 Create view Users_List_View as
-Select Us.UserID as 'ID РљРѕСЂРёСЃС‚СѓРІР°С‡Р°', Us.UserLogin as 'Р›РѕРіС–РЅ', Usr.RoleName as 'Р РѕР»СЊ Сѓ СЃРёСЃС‚РµРјС–',
-       Us.Surname as 'РџСЂС–Р·РІРёС‰Рµ', Us.PrsnName as 'Р†Рј`СЏ', 
-	   ISNULL(Us.SecondName, '-----') as 'РџРѕ-Р‘Р°С‚СЊРєРѕРІС–',
-	   Us.Gender as 'РЎС‚Р°С‚СЊ', Us.BirthDate as 'Р”Р°С‚Р° РЅР°СЂРѕРґР¶РµРЅРЅСЏ', Us.PhoneNumber as 'Рќ-СЂ С‚РµР»РµС„РѕРЅСѓ',	   
-	   ISNULL(Us.RsrvPhoneNumber, 'РќРµ РІРєР°Р·Р°РЅРѕ') as 'Р РµР·РµСЂРІРЅРёР№ РЅ-СЂ С‚РµР»РµС„РѕРЅСѓ',
+Select Us.UserID as 'ID Користувача', Us.UserLogin as 'Логін', Usr.RoleName as 'Роль у системі',
+       Us.Surname as 'Прізвище', Us.PrsnName as 'Ім`я', 
+	   ISNULL(Us.SecondName, '-----') as 'По-Батькові',
+	   Us.Gender as 'Стать', Us.BirthDate as 'Дата народження', Us.PhoneNumber as 'Н-р телефону',	   
+	   ISNULL(Us.RsrvPhoneNumber, 'Не вказано') as 'Резервний н-р телефону',
+	   Case 
+	       When Us.AddressInfo IS NULL Then '-----'
+		   Else Convert(varchar(10), Adr.AddressID)
+	   End as 'ID адреси',
+	   Case 
+	       When Us.AddressInfo IS NULL Then '-----'
+		   Else Convert(varchar(10), St.StreetID)
+	   End as 'ID вулиці',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 		   Else St.StreetName
-	   End as 'РќР°Р·РІР° РІСѓР»РёС†С–',
+	   End as 'Назва вулиці',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 	       Else Adr.House
-	   End as 'в„– Р‘СѓРґРёРЅРєСѓ',
+	   End as '№ Будинку',
 	   Case
 	       When Us.AddressInfo IS NULL Then '-----'
-		   Else ISNULL(Convert(varchar(10),Adr.Flat) , '-----')
-	   End as 'в„– РљРІР°СЂС‚РёСЂРё',
+		   Else ISNULL(Convert(varchar(10), Adr.Flat) , '-----')
+	   End as '№ Квартири',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 		   Else ISNULL(Convert(varchar(10), Adr.Office), '-----')
-	   End as 'в„– РћС„С–СЃСѓ',
+	   End as '№ Офісу',
+	   Case 
+	       When Us.AddressInfo IS NULL Then '-----'
+		   Else Convert(varchar(10), Ds.DistrictID)
+	   End as 'ID району',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 		   Else Ds.DistrictName
-	   End as 'Р Р°Р№РѕРЅ',
+	   End as 'Район',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
 		   Else Bdt.BuildingTypeName
-	   End as 'РўРёРї Р±СѓРґРёРЅРєСѓ',
+	   End as 'Тип будинку',
 	   Case 
 	       When Us.AddressInfo IS NULL Then '-----'
-	       Else ISNULL(Adr.EstablishmentName, 'РќРµ РІРєР°Р·Р°РЅРѕ')
-       End as 'РќР°Р·РІР° Р·Р°РєР»Р°РґСѓ'
+	       Else ISNULL(Adr.EstablishmentName, 'Не вказано')
+       End as 'Назва закладу'
 From Users Us
 Left Join UserRoles Usr on Usr.RoleID = Us.UserRole
 Left Join Addresses Adr on Adr.AddressID = Us.AddressInfo
