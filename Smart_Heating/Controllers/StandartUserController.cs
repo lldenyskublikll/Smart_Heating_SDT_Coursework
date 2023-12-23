@@ -58,7 +58,11 @@ namespace Smart_Heating.Controllers
                 {                    
                     string sstr = search_str.ToLower();
                     st_user_maint_query = st_user_maint_query.Where(s => s.Прізвище_працівника.ToLower().Contains(search_str) 
-                                                                      || s.Ім_я_працівника.ToLower().Contains(search_str));
+                                                                      || s.Ім_я_працівника.ToLower().Contains(search_str)
+                                                                      || s.Тип_роботи.ToLower().Contains(search_str)
+                                                                      || s.Статус.ToLower().Contains(search_str)
+                                                                      || s.Дата_початку_робіт.ToLower().Contains(search_str)
+                                                                      || s.Дата_закінчення_робіт.ToLower().Contains(search_str));
                 }
 
                 switch (sort_order)      //page sorting switch
@@ -153,13 +157,11 @@ namespace Smart_Heating.Controllers
                 int.TryParse(Session["Address"].ToString(), out int id);
                 var st_user_sensors_query = db.Sensor_List_View.Where(a => a.ID_адреси == id) as IEnumerable<Sensor_List_View>; 
 
-
                 if (!String.IsNullOrEmpty(search_str))        //searching bar 
                 {
                     string sstr = search_str.ToLower();
                     st_user_sensors_query = st_user_sensors_query.Where(s => s.Тип_датчика.ToLower().Contains(search_str)); 
                 }
-
 
                 switch (sort_order)      //page sorting switch
                 {

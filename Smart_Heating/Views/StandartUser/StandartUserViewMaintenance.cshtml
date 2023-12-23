@@ -15,7 +15,7 @@
 @using (Html.BeginForm())
 {
     <p>
-        Знайти за Прізвищем або Ім'ям: @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        Знайти за параметрами "Дата початку/завершення роботи", "Тип/статус роботи", ""Прізвище"" або ""Ім'я"": @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
         <input type="submit" value="Пошук" />
     </p>
 }
@@ -27,13 +27,13 @@
                 @Html.ActionLink("ID", "StandartUserViewMaintenance", new { sort_order = ViewBag.IdSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Прізвище працівника", "StandartUserViewMaintenance", new { sort_order = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Прізвище інженера", "StandartUserViewMaintenance", new { sort_order = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Ім'я працівника", "StandartUserViewMaintenance", new { sort_order = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Ім'я інженера", "StandartUserViewMaintenance", new { sort_order = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("По-батькові працівника", "StandartUserViewMaintenance", new { sort_order = ViewBag.SecondnameSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("По-батькові інженера", "StandartUserViewMaintenance", new { sort_order = ViewBag.SecondnameSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
                 @Html.ActionLink("Дата народження", "StandartUserViewMaintenance", new { sort_order = ViewBag.BirthdateSort, currentFilter = ViewBag.CurrentFilter })
@@ -51,10 +51,10 @@
                 Статус
             </th>
             <th scope="col">
-                @Html.ActionLink("Дата початку робіт", "StandartUserViewMaintenance", new { sort_order = ViewBag.StartdateSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Дата початку", "StandartUserViewMaintenance", new { sort_order = ViewBag.StartdateSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Дата завершення робіт", "StandartUserViewMaintenance", new { sort_order = ViewBag.EnddateSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Дата завершення", "StandartUserViewMaintenance", new { sort_order = ViewBag.EnddateSort, currentFilter = ViewBag.CurrentFilter })
             <th scope="col">
                 @Html.ActionLink("Район", "StandartUserViewMaintenance", new { sort_order = ViewBag.DistrictSort, currentFilter = ViewBag.CurrentFilter })
             </th>
