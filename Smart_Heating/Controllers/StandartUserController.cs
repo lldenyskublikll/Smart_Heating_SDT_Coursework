@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PagedList;
 using System.Data.SqlClient;
+using System.Drawing.Printing;
 
 namespace Smart_Heating.Controllers
 {
@@ -54,8 +55,7 @@ namespace Smart_Heating.Controllers
                 var st_user_maint_query = db.Maintenance_List_StandartView.Where(a => a.ID_адреси == id) as IEnumerable<Maintenance_List_StandartView>;
 
                 if (!String.IsNullOrEmpty(search_str))        //searching bar 
-                {
-                    
+                {                    
                     string sstr = search_str.ToLower();
                     st_user_maint_query = st_user_maint_query.Where(s => s.Прізвище_працівника.ToLower().Contains(search_str) 
                                                                       || s.Ім_я_працівника.ToLower().Contains(search_str));
@@ -135,22 +135,111 @@ namespace Smart_Heating.Controllers
         /// Returns to the StandartUserViewSensors view list with sensors by User's AddressID
         public ActionResult StandartUserViewSensors(string sort_order, string current_filter, string search_str, int? page) 
         {
+            ViewBag.CurrentSort = sort_order;
+
+            ViewBag.IdSort = String.IsNullOrEmpty(sort_order) ? "SensorID_desc" : "";
+            ViewBag.TypeSort = sort_order == "Type" ? "Type_desc" : "Type";
+
+            if (search_str != null)       //If searchbar is not null -> first page
+                page = 1;
+            else
+                search_str = current_filter;
+
+            ViewBag.CurrentFilter = search_str;
+
+
             using (SMART_HEATINGEntities db = new SMART_HEATINGEntities()) 
             {
-                var st_user_sensors_query = db.Sensor_List_View.Where(a => a.ID_адреси.ToString() == Session["Address"].ToString());
+                int.TryParse(Session["Address"].ToString(), out int id);
+                var st_user_sensors_query = db.Sensor_List_View.Where(a => a.ID_адреси == id) as IEnumerable<Sensor_List_View>; 
 
-                return View(st_user_sensors_query.ToList());
+
+                if (!String.IsNullOrEmpty(search_str))        //searching bar 
+                {
+                    string sstr = search_str.ToLower();
+                    st_user_sensors_query = st_user_sensors_query.Where(s => s.Тип_датчика.ToLower().Contains(search_str)); 
+                }
+
+
+                switch (sort_order)      //page sorting switch
+                {
+                    case "SensorID_desc":
+                        st_user_sensors_query = st_user_sensors_query.OrderByDescending(s => s.ID_датчика);
+                        break;
+                    case "Type":
+                        st_user_sensors_query = st_user_sensors_query.OrderBy(s => s.Тип_датчика);
+                        break;
+                    case "Type_desc":
+                        st_user_sensors_query = st_user_sensors_query.OrderByDescending(s => s.Тип_датчика);
+                        break;                    
+                    default:
+                        st_user_sensors_query = st_user_sensors_query.OrderBy(s => s.ID_датчика);
+                        break;
+                }
+
+                int pagesize = 10;
+                int pagenumber = (page ?? 1);
+
+                return View(st_user_sensors_query.ToList().ToPagedList(pagenumber, pagesize));
             }
         }
 
         /// Returns to the StandartUserViewIndicators view list with indicators by User's AddressID
         public ActionResult StandartUserViewIndicators(string sort_order, string current_filter, string search_str, int? page) 
         {
+            ViewBag.CurrentSort = sort_order;
+
+            ViewBag.DateSort = String.IsNullOrEmpty(sort_order) ? "Date_desc" : "";
+            ViewBag.TypeSort = sort_order == "Type" ? "Type_desc" : "Type";
+            ViewBag.IndSort = sort_order == "Ind" ? "Ind_desc" : "Ind";
+
+            if (search_str != null)       //If searchbar is not null -> first page
+                page = 1;
+            else
+                search_str = current_filter;
+
+            ViewBag.CurrentFilter = search_str;
+
+
             using (SMART_HEATINGEntities db = new SMART_HEATINGEntities()) 
             {
-                var st_user_indicators_query = db.Indicators_List_View.Where(a => a.ID_адреси.ToString() == Session["Address"].ToString());
+                int.TryParse(Session["Address"].ToString(), out int id);                
+                var st_user_indicators_query = db.Indicators_List_View.Where(a => a.ID_адреси == id) as IEnumerable<Indicators_List_View>; 
 
-                return View(st_user_indicators_query.ToList());
+                if (!String.IsNullOrEmpty(search_str))        //searching bar 
+                {
+                    string sstr = search_str.ToLower();
+                    st_user_indicators_query = st_user_indicators_query.Where(s => s.Тип_датчика.ToLower().Contains(search_str)
+                                                                                || s.Показник.ToLower().Contains(search_str)
+                                                                                || s.Дата_та_час.ToString().Contains(search_str));
+                }
+
+                switch (sort_order)      //page sorting switch
+                {
+                    case "Date_desc":
+                        st_user_indicators_query = st_user_indicators_query.OrderByDescending(s => s.Дата_та_час);
+                        break;
+                    case "Type":
+                        st_user_indicators_query = st_user_indicators_query.OrderBy(s => s.Тип_датчика);
+                        break;
+                    case "Type_desc":
+                        st_user_indicators_query = st_user_indicators_query.OrderByDescending(s => s.Тип_датчика);
+                        break;
+                    case "Ind":
+                        st_user_indicators_query = st_user_indicators_query.OrderBy(s => s.Показник);
+                        break;
+                    case "Ind_desc":
+                        st_user_indicators_query = st_user_indicators_query.OrderByDescending(s => s.Показник);
+                        break;
+                    default:
+                        st_user_indicators_query = st_user_indicators_query.OrderBy(s => s.Дата_та_час);
+                        break;
+                }
+
+                int pagesize = 10;
+                int pagenumber = (page ?? 1);
+
+                return View(st_user_indicators_query.ToPagedList(pagenumber, pagesize));
             }
         }
     }

@@ -290,6 +290,8 @@
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Staff\StaffViewMaintenance.cshtml" />
     <Content Include="Views\Staff\ChangeMaintInfo.cshtml" />
+    <Content Include="Views\StandartUser\StandartUserViewSensors.cshtml" />
+    <Content Include="Views\StandartUser\StandartUserViewIndicators.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

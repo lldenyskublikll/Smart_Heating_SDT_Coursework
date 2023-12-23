@@ -10,7 +10,7 @@
     ViewBag.Title = "StandartUserViewMaintenance";
 }
 
-<h2>StandartUserViewMaintenance</h2>
+<h2>Список технічних робіт за вашою адресою</h2>
 
 @using (Html.BeginForm())
 {
@@ -20,8 +20,8 @@
     </p>
 }
 
-<table class="table">
-    <thead class="table-dark">
+<table class="table table-warning table-striped table-hover">
+    <thead >
         <tr>
             <th scope="col">
                 @Html.ActionLink("ID", "StandartUserViewMaintenance", new { sort_order = ViewBag.IdSort, currentFilter = ViewBag.CurrentFilter })
@@ -136,12 +136,15 @@
     </tbody>
 </table>
 
-<br />
-Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
+<div style="margin-left: 11px">
+    <br />
+    Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("StandartUserViewMaintenance",
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    @Html.PagedListPager(Model, page => Url.Action("StandartUserViewMaintenance",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
 
 <div>
-    <a type="button" href="@Url.Action("StandartUserDashBoard", "StandartUser")" class="btn btn-light" style="margin-top:12px">Повернутись</a>
+    <a type="button" href="@Url.Action("StandartUserDashBoard", "StandartUser")" class="btn btn-light" style="margin-top:12px; margin-left: 11px">Повернутись</a>
 </div>

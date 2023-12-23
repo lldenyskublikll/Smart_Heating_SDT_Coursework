@@ -1,0 +1,58 @@
+﻿﻿@model PagedList.IPagedList<Smart_Heating.Models.Sensor_List_View>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "StandartUserViewSensors";
+}
+
+<h2>Список ваших датчиків</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Знайти за типом: @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Пошук" />
+    </p>
+}
+
+<table class="table table-warning table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.ActionLink("ID", "StandartUserViewSensors", new { sort_order = ViewBag.IdSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Тип датчику", "StandartUserViewSensors", new { sort_order = ViewBag.TypeSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_датчика)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Тип_датчика)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div style="margin-left: 11px">
+    <br />
+    Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("StandartUserViewSensors",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+
+<div>
+    <a type="button" href="@Url.Action("StandartUserDashBoard", "StandartUser")" class="btn btn-light" style="margin-top:12px; margin-left: 11px">Повернутись</a>
+</div>
+
