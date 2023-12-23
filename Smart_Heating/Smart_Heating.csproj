@@ -294,6 +294,10 @@
     <Content Include="Views\StandartUser\StandartUserViewIndicators.cshtml" />
     <Content Include="Views\Staff\StaffViewSensors.cshtml" />
     <Content Include="Views\Staff\StaffViewIndicators.cshtml" />
+    <Content Include="Views\OMS\OMSViewMaintenance.cshtml" />
+    <Content Include="Views\OMS\OMSViewSensors.cshtml" />
+    <Content Include="Views\OMS\OMSViewIndicators.cshtml" />
+    <Content Include="Views\OMS\OMSViewUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

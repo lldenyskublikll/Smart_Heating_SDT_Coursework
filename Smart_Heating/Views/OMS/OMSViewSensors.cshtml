@@ -3,10 +3,10 @@
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "StaffViewSensors";
+    ViewBag.Title = "OMSViewSensors";
 }
 
-<h2>Список датчиків</h2>
+<h2>Список датчиків міста</h2>
 
 @using (Html.BeginForm())
 {
@@ -20,16 +20,16 @@
     <thead>
         <tr>
             <th scope="col">
-                @Html.ActionLink("ID", "StaffViewSensors", new { sort_order = ViewBag.IdSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("ID", "OMSViewSensors", new { sort_order = ViewBag.IdSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Тип датчику", "StaffViewSensors", new { sort_order = ViewBag.TypeSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Тип датчику", "OMSViewSensors", new { sort_order = ViewBag.TypeSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Район", "StaffViewSensors", new { sort_order = ViewBag.DistrictSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Район", "OMSViewSensors", new { sort_order = ViewBag.DistrictSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Вулиця", "StaffViewSensors", new { sort_order = ViewBag.StreetSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Вулиця", "OMSViewSensors", new { sort_order = ViewBag.StreetSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
                 № Будинку
@@ -41,9 +41,9 @@
                 № Офісу
             </th>
             <th scope="col">
-                @Html.ActionLink("Назва закладу", "StaffViewSensors", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Назва закладу", "OMSViewSensors", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
             </th>
-        </tr>   
+        </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
@@ -75,17 +75,17 @@
                 </td>
             </tr>
         }
-    </tbody>    
+    </tbody>
 </table>
 
 <div style="margin-left: 11px">
     <br />
     Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("StaffViewSensors",
+    @Html.PagedListPager(Model, page => Url.Action("OMSViewSensors",
         new { page, sort_order = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 
 <div>
-    <a type="button" href="@Url.Action("StaffDashBoard", "Staff")" class="btn btn-light" style="margin-top: 12px; margin-left: 11px">Повернутись</a>
+    <a type="button" href="@Url.Action("OMSDashBoard", "OMS")" class="btn btn-light" style="margin-top: 12px; margin-left: 11px">Повернутись</a>
 </div>

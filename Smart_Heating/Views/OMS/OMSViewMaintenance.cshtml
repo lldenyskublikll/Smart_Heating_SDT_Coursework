@@ -1,4 +1,4 @@
-﻿﻿@model PagedList.IPagedList<Smart_Heating.Models.Maintenance_List_StandartView>
+﻿@model PagedList.IPagedList<Smart_Heating.Models.Maintenance_List_StandartView>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
@@ -7,36 +7,36 @@
 }
 
 @{
-    ViewBag.Title = "StandartUserViewMaintenance";
+    ViewBag.Title = "OMSViewMaintenance";
 }
 
-<h2>Список технічних робіт за вашою адресою</h2>
+<h2>Список технічних робіт міста</h2>
 
 @using (Html.BeginForm())
 {
     <p>
-        Знайти за параметрами "Дата початку/завершення роботи", "Тип/статус роботи", "Прізвище" або "Ім'я": @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        Знайти за параметрами "Дата початку/завершення роботи", "Тип/статус роботи", "Район", "Вулиця", "Прізвище" або "Ім'я": @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
         <input type="submit" value="Пошук" />
     </p>
 }
 
 <table class="table table-warning table-striped table-hover">
-    <thead >
+    <thead>
         <tr>
             <th scope="col">
-                @Html.ActionLink("ID", "StandartUserViewMaintenance", new { sort_order = ViewBag.IdSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("ID", "OMSViewMaintenance", new { sort_order = ViewBag.IdSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Прізвище інженера", "StandartUserViewMaintenance", new { sort_order = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Прізвище інженера", "OMSViewMaintenance", new { sort_order = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Ім'я інженера", "StandartUserViewMaintenance", new { sort_order = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Ім'я інженера", "OMSViewMaintenance", new { sort_order = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("По-батькові інженера", "StandartUserViewMaintenance", new { sort_order = ViewBag.SecondnameSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("По-батькові інженера", "OMSViewMaintenance", new { sort_order = ViewBag.SecondnameSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Дата народження", "StandartUserViewMaintenance", new { sort_order = ViewBag.BirthdateSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Дата народження", "OMSViewMaintenance", new { sort_order = ViewBag.BirthdateSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
                 Н-р телефону
@@ -51,15 +51,15 @@
                 Статус
             </th>
             <th scope="col">
-                @Html.ActionLink("Дата початку", "StandartUserViewMaintenance", new { sort_order = ViewBag.StartdateSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Дата початку", "OMSViewMaintenance", new { sort_order = ViewBag.StartdateSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Дата завершення", "StandartUserViewMaintenance", new { sort_order = ViewBag.EnddateSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Дата завершення", "OMSViewMaintenance", new { sort_order = ViewBag.EnddateSort, currentFilter = ViewBag.CurrentFilter })
             <th scope="col">
-                @Html.ActionLink("Район", "StandartUserViewMaintenance", new { sort_order = ViewBag.DistrictSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Район", "OMSViewMaintenance", new { sort_order = ViewBag.DistrictSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
-                @Html.ActionLink("Вулиця", "StandartUserViewMaintenance", new { sort_order = ViewBag.StreetSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Вулиця", "OMSViewMaintenance", new { sort_order = ViewBag.StreetSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col">
                 № Будинку
@@ -71,7 +71,7 @@
                 № Офісу
             </th>
             <th scope="col">
-                @Html.ActionLink("Назва закладу", "StandartUserViewMaintenance", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Назва закладу", "OMSViewMaintenance", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
             </th>
         </tr>
     </thead>
@@ -133,18 +133,21 @@
                 </td>
             </tr>
         }
+
+
     </tbody>
 </table>
+
 
 <div style="margin-left: 11px">
     <br />
     Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
 
-    @Html.PagedListPager(Model, page => Url.Action("StandartUserViewMaintenance",
+    @Html.PagedListPager(Model, page => Url.Action("OMSViewMaintenance",
         new { page, sort_order = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
 </div>
 
 
 <div>
-    <a type="button" href="@Url.Action("StandartUserDashBoard", "StandartUser")" class="btn btn-light" style="margin-top:12px; margin-left: 11px">Повернутись</a>
+    <a type="button" href="@Url.Action("OMSDashBoard", "OMS")" class="btn btn-light" style="margin-top:12px; margin-left: 11px">Повернутись</a>
 </div>
