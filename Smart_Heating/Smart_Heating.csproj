@@ -298,12 +298,20 @@
     <Content Include="Views\OMS\OMSViewSensors.cshtml" />
     <Content Include="Views\OMS\OMSViewIndicators.cshtml" />
     <Content Include="Views\OMS\OMSViewUsers.cshtml" />
+    <Content Include="Views\ORS\ORSViewMaintenance.cshtml" />
+    <Content Include="Views\ORS\ORSDashBoard.cshtml" />
+    <Content Include="Views\ORS\ORSViewSensors.cshtml" />
+    <Content Include="Views\ORS\ORSViewIndicators.cshtml" />
+    <Content Include="Views\ORS\ORSViewUsers.cshtml" />
+    <Content Include="Views\OSBB\OSBBDashBoard.cshtml" />
+    <Content Include="Views\OSBB\OSBBViewMaintenance.cshtml" />
+    <Content Include="Views\OSBB\OSBBViewSensors.cshtml" />
+    <Content Include="Views\OSBB\OSBBViewIndicators.cshtml" />
+    <Content Include="Views\OSBB\OSBBViewUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Application\" />
-    <Folder Include="Views\ORS\" />
-    <Folder Include="Views\OSBB\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

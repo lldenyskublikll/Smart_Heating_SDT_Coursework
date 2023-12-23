@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<Smart_Heating.Models.Indicators_List_View>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "OSBBViewIndicators";
+}
+
+<h2>Список показників</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Знайти за параметрами "Дата та час", "ID/Тип сенсору", "Показник", "Назва закладу", "№ Квартири/Офісу": @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Пошук" />
+    </p>
+}
+
+<table class="table table-warning table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.ActionLink("Дата та час", "OSBBViewIndicators", new { sort_order = ViewBag.DateSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("ID датчика", "OSBBViewIndicators", new { sort_order = ViewBag.SensorSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Тип датчика", "OSBBViewIndicators", new { sort_order = ViewBag.TypeSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Показник", "OSBBViewIndicators", new { sort_order = ViewBag.IndSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                № Квартири
+            </th>
+            <th scope="col">
+                № Офісу
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Назва закладу", "OSBBViewIndicators", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дата_та_час)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_сенсору)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Тип_датчика)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Показник)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Квартири)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Офісу)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Назва_закладу)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div style="margin-left: 11px">
+    <br />
+    Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("OSBBViewIndicators",
+        new { page, sort_order = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+
+<div>
+    <a type="button" href="@Url.Action("OSBBDashBoard", "OSBB")" class="btn btn-light" style="margin-top: 12px; margin-left: 11px">Повернутись</a>
+</div>

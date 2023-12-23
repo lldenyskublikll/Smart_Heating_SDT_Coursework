@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "ORSDashBoard";
+}
+
+<h2>ORSDashBoard</h2>
+
+<div>
+    <table style="display: block; margin: 10px">
+        <tbody>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("ORSViewMaintenance", "ORS")" role="button" style=" margin-top: 12px">Переглянути список тех.робіт району</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("ORSViewSensors", "ORS")" role="button" style=" margin-top: 12px">Переглянути список датчиків району</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("ORSViewIndicators", "ORS")" role="button" style=" margin-top: 12px">Переглянути список показників</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("ORSViewUsers", "ORS")" role="button" style=" margin-top: 12px">Переглянути список користувачів району</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

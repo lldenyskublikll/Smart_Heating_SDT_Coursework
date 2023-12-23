@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "OSBBDashBoard";
+}
+
+<h2>OSBBDashBoard</h2>
+
+<div>
+    <table style="display: block; margin: 10px">
+        <tbody>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("OSBBViewMaintenance", "OSBB")" role="button" style=" margin-top: 12px">Переглянути список тех.робіт будинку</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("OSBBViewSensors", "OSBB")" role="button" style=" margin-top: 12px">Переглянути список датчиків будинку</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("OSBBViewIndicators", "OSBB")" role="button" style=" margin-top: 12px">Переглянути список показників</a></td>
+            </tr>
+            <tr>
+                <td><a class="btn btn-warning" href="@Url.Action("OSBBViewUsers", "OSBB")" role="button" style=" margin-top: 12px">Переглянути список користувачів будинку</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,128 @@
+﻿@model PagedList.IPagedList<Smart_Heating.Models.Users_List_View>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+﻿@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+@{
+    ViewBag.Title = "OSBBViewUsers";
+}
+
+<h2>Список користувачів будинку</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Знайти за параметрами "ID/прізвище/ім'я/по-батькові", "Дата народження", "Вулиця", "Назва закладу": @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Пошук" />
+    </p>
+}
+
+<table class="table table-warning table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.ActionLink("ID", "OSBBViewUsers", new { sort_order = ViewBag.IDSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Роль у системі", "OSBBViewUsers", new { sort_order = ViewBag.RoleSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Прізвище", "OSBBViewUsers", new { sort_order = ViewBag.SurnameSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Ім'я", "OSBBViewUsers", new { sort_order = ViewBag.NameSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                По-батькові
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Стать", "OSBBViewUsers", new { sort_order = ViewBag.GenderSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Дата народження", "OSBBViewUsers", new { sort_order = ViewBag.BirthdateSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                Н-р телефону
+            </th>
+            <th scope="col">
+                Резервний н-р
+            </th>
+            <th scope="col">
+                № Квартири
+            </th>
+            <th scope="col">
+                № Офісу
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Тип будинку", "OSBBViewUsers", new { sort_order = ViewBag.BuildingSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Назва закладу", "OSBBViewUsers", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_Користувача)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Роль_у_системі)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Прізвище)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ім_я)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.По_Батькові)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Стать)
+                </td>
+                <td>
+                    @{ int year = item.Дата_народження.Year; int month = item.Дата_народження.Month; int day = item.Дата_народження.Day; string text = string.Format("{0}-{1}-{2}", year, month, day);}
+                    @text
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Н_р_телефону)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Резервний_н_р_телефону)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Квартири)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.C__Офісу)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Тип_будинку)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Назва_закладу)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div style="margin-left: 11px">
+    <br />
+    Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("OSBBViewUsers",
+        new { page, sort_order = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+
+<div>
+    <a type="button" href="@Url.Action("OSBBDashBoard", "OSBB")" class="btn btn-light" style="margin-top: 12px; margin-left: 11px">Повернутись</a>
+</div>
