@@ -1,0 +1,67 @@
+﻿@model PagedList.IPagedList<Smart_Heating.Models.District>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "AdminViewDistricts";
+}
+
+<h2>Список районів</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Знайти за параметрами "ID району", "Район": @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Пошук" />
+    </p>
+}
+
+<table class="table table-warning table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.ActionLink("ID району", "AdminViewDistricts", new { sort_order = ViewBag.DistrictIDSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Район", "AdminViewDistricts", new { sort_order = ViewBag.DistrictSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DistrictID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DistrictName)
+                </td>
+                <td>
+                    <a href="@Url.Action("AdminChangeDistrictInfo", "Admin", new { DistrictID = item.DistrictID })" class="btn btn-secondary">Змінити</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("AdminDeleteDistrict", "Admin", new { DistrictID = item.DistrictID })" class="btn btn-danger ">Видалити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div style="margin-left: 11px">
+    <br />
+    Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("AdminViewDistricts",
+        new { page, sort_order = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+<div>
+    <a type="button" href="@Url.Action("AdminAddNewDistrict", "Admin")" class="btn btn-success" style="margin-top:12px; margin-left: 11px">Додати новий запис</a>
+</div>
+
+<div>
+    <a type="button" href="@Url.Action("AdminDashBoard", "Admin")" class="btn btn-light" style="margin-top: 12px; margin-left: 11px">Повернутись</a>
+</div>

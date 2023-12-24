@@ -77,14 +77,14 @@ namespace Smart_Heating.Controllers
             {
                 /// Creating Address list for user registration
                 var adrquery = from adr in db.Addresses select adr;
-                var adrview = adrquery
+                var adrview = adrquery                    
                     .Include(adr => adr.Street1)
                     .Include(adr => adr.Street1.District1) as IEnumerable<Address>;
 
                 
                 var addressList = adrview.Select(addr => new {
                     AddressInfo = addr.AddressID,
-                    displayName = $"{addr.Street1.StreetName}, {addr.Street1.District1.DistrictName}"
+                    displayName = $"{addr.Street1.StreetName} {addr.House}, {addr.Street1.District1.DistrictName}"
                 }).ToList();
 
                 SelectList selectaddress = new SelectList(addressList, "AddressInfo", "displayName");

@@ -280,6 +280,20 @@
           <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Streets_List_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Streets_List_View">
+          <Key>
+            <PropertyRef Name="ID вулиці" />
+            <PropertyRef Name="Вулиця" />
+            <PropertyRef Name="ID району" />
+            <PropertyRef Name="Район" />
+          </Key>
+          <Property Name="ID вулиці" Type="int" Nullable="false" />
+          <Property Name="Вулиця" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ID району" Type="int" Nullable="false" />
+          <Property Name="Район" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Users_List_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="Users_List_View">
           <Key>
@@ -572,6 +586,14 @@
     [Sensor_List_View].[№ Офісу] AS [№ Офісу], 
     [Sensor_List_View].[Назва закладу] AS [Назва закладу]
     FROM [dbo].[Sensor_List_View] AS [Sensor_List_View]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Streets_List_View" EntityType="Self.Streets_List_View" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Streets_List_View].[ID вулиці] AS [ID вулиці], 
+    [Streets_List_View].[Вулиця] AS [Вулиця], 
+    [Streets_List_View].[ID району] AS [ID району], 
+    [Streets_List_View].[Район] AS [Район]
+    FROM [dbo].[Streets_List_View] AS [Streets_List_View]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="Users_List_View" EntityType="Self.Users_List_View" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1169,6 +1191,7 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="Streets_List_View" EntityType="SMART_HEATINGModel.Streets_List_View" />
         </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
@@ -1181,6 +1204,18 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Streets_List_View">
+          <Key>
+            <PropertyRef Name="ID_вулиці" />
+            <PropertyRef Name="Вулиця" />
+            <PropertyRef Name="ID_району" />
+            <PropertyRef Name="Район" />
+          </Key>
+          <Property Name="ID_вулиці" Type="Int32" Nullable="false" />
+          <Property Name="Вулиця" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ID_району" Type="Int32" Nullable="false" />
+          <Property Name="Район" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1456,6 +1491,16 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище SMART_HEATINGModel.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище SMART_HEATINGModel.sp_upgraddiagrams" />
+          <EntitySetMapping Name="Streets_List_View">
+            <EntityTypeMapping TypeName="SMART_HEATINGModel.Streets_List_View">
+              <MappingFragment StoreEntitySet="Streets_List_View">
+                <ScalarProperty Name="Район" ColumnName="Район" />
+                <ScalarProperty Name="ID_району" ColumnName="ID району" />
+                <ScalarProperty Name="Вулиця" ColumnName="Вулиця" />
+                <ScalarProperty Name="ID_вулиці" ColumnName="ID вулиці" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

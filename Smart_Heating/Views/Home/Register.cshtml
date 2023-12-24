@@ -4,9 +4,9 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Register</h2>
+<h2>Реєстрація</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Register", "Home", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
@@ -73,7 +73,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.BirthDate, "Дата народження", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
@@ -81,7 +81,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.PhoneNumber, "Номер телефону", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
@@ -89,7 +89,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.RsrvPhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.RsrvPhoneNumber, "Резервний н-р телефону (можна не заповнювати)", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.RsrvPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.RsrvPhoneNumber, "", new { @class = "text-danger" })
@@ -106,12 +106,12 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
+            <input type="submit" value="Create" class="btn btn-success "style="margin-top: 12px" />
         </div>
     </div>
 </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    <a type="button" href="@Url.Action("LoginPage", "Home")" class="btn btn-light" style="margin-top: 12px">Повернутись</a>
 </div>

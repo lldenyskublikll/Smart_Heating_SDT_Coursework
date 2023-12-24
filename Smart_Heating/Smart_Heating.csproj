@@ -196,6 +196,9 @@
     <Compile Include="Models\Street.cs">
       <DependentUpon>Smart_Heating_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Streets_List_View.cs">
+      <DependentUpon>Smart_Heating_Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Smart_Heating_Model.tt</DependentUpon>
     </Compile>
@@ -308,6 +311,12 @@
     <Content Include="Views\OSBB\OSBBViewSensors.cshtml" />
     <Content Include="Views\OSBB\OSBBViewIndicators.cshtml" />
     <Content Include="Views\OSBB\OSBBViewUsers.cshtml" />
+    <Content Include="Views\Admin\AdminViewUsers.cshtml" />
+    <Content Include="Views\Admin\AdminViewSensors.cshtml" />
+    <Content Include="Views\Admin\AdminViewIndicators.cshtml" />
+    <Content Include="Views\Admin\AdminViewAddresses.cshtml" />
+    <Content Include="Views\Admin\AdminViewStreets.cshtml" />
+    <Content Include="Views\Admin\AdminViewDistricts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

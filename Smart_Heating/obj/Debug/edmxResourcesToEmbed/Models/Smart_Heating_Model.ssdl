@@ -275,6 +275,20 @@
     <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
   </EntityType>
   <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Streets_List_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Streets_List_View">
+    <Key>
+      <PropertyRef Name="ID вулиці" />
+      <PropertyRef Name="Вулиця" />
+      <PropertyRef Name="ID району" />
+      <PropertyRef Name="Район" />
+    </Key>
+    <Property Name="ID вулиці" Type="int" Nullable="false" />
+    <Property Name="Вулиця" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID району" Type="int" Nullable="false" />
+    <Property Name="Район" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "SMART_HEATING.dbo.Users_List_View" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
   <EntityType Name="Users_List_View">
     <Key>
@@ -567,6 +581,14 @@
     [Sensor_List_View].[№ Офісу] AS [№ Офісу], 
     [Sensor_List_View].[Назва закладу] AS [Назва закладу]
     FROM [dbo].[Sensor_List_View] AS [Sensor_List_View]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Streets_List_View" EntityType="Self.Streets_List_View" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Streets_List_View].[ID вулиці] AS [ID вулиці], 
+    [Streets_List_View].[Вулиця] AS [Вулиця], 
+    [Streets_List_View].[ID району] AS [ID району], 
+    [Streets_List_View].[Район] AS [Район]
+    FROM [dbo].[Streets_List_View] AS [Streets_List_View]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="Users_List_View" EntityType="Self.Users_List_View" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

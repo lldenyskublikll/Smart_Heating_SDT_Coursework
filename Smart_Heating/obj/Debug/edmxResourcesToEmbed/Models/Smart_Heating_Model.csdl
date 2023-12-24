@@ -527,6 +527,7 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Streets_List_View" EntityType="SMART_HEATINGModel.Streets_List_View" />
   </EntityContainer>
   <ComplexType Name="sp_helpdiagramdefinition_Result">
     <Property Type="Int32" Name="version" Nullable="true" />
@@ -539,4 +540,16 @@
     <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
     <Property Type="Int32" Name="OwnerID" Nullable="false" />
   </ComplexType>
+  <EntityType Name="Streets_List_View">
+    <Key>
+      <PropertyRef Name="ID_вулиці" />
+      <PropertyRef Name="Вулиця" />
+      <PropertyRef Name="ID_району" />
+      <PropertyRef Name="Район" />
+    </Key>
+    <Property Name="ID_вулиці" Type="Int32" Nullable="false" />
+    <Property Name="Вулиця" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ID_району" Type="Int32" Nullable="false" />
+    <Property Name="Район" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

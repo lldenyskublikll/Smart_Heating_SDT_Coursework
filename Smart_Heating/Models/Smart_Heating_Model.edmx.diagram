@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="96ce93b962104616bf18dabaefcf4677" Name="Diagram1" ZoomLevel="86">
+      <Diagram DiagramId="96ce93b962104616bf18dabaefcf4677" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="SMART_HEATINGModel.Address" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="SMART_HEATINGModel.Building_types" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SMART_HEATINGModel.District" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
@@ -32,6 +32,7 @@
         <AssociationConnector Association="SMART_HEATINGModel.FK__Maintenan__Staff__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="SMART_HEATINGModel.FK__Sensors__SensorT__30F848ED" ManuallyRouted="false" />
         <AssociationConnector Association="SMART_HEATINGModel.FK__Users__UserRole__398D8EEE" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SMART_HEATINGModel.Streets_List_View" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

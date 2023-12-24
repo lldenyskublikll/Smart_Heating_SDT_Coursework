@@ -270,5 +270,15 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище SMART_HEATINGModel.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище SMART_HEATINGModel.sp_upgraddiagrams" />
+    <EntitySetMapping Name="Streets_List_View">
+      <EntityTypeMapping TypeName="SMART_HEATINGModel.Streets_List_View">
+        <MappingFragment StoreEntitySet="Streets_List_View">
+          <ScalarProperty Name="Район" ColumnName="Район" />
+          <ScalarProperty Name="ID_району" ColumnName="ID району" />
+          <ScalarProperty Name="Вулиця" ColumnName="Вулиця" />
+          <ScalarProperty Name="ID_вулиці" ColumnName="ID вулиці" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

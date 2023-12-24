@@ -1,0 +1,79 @@
+﻿@model PagedList.IPagedList<Smart_Heating.Models.Streets_List_View>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "AdminViewStreets";
+}
+
+<h2>Список вулиць</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Знайти за параметрами "ID вулиці", "ID району", "Район", "Вулиця": @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Пошук" />
+    </p>
+}
+
+<table class="table table-warning table-striped table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.ActionLink("ID вулиці", "AdminViewStreets", new { sort_order = ViewBag.StreetIDSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Вулиця", "AdminViewStreets", new { sort_order = ViewBag.StreetSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("ID району", "AdminViewStreets", new { sort_order = ViewBag.DistrictIDSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col">
+                @Html.ActionLink("Район", "AdminViewStreets", new { sort_order = ViewBag.DistrictSort, currentFilter = ViewBag.CurrentFilter })
+            </th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_вулиці)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Вулиця)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID_району)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Район)
+                </td>
+                <td>
+                    <a href="@Url.Action("AdminChangeStreetInfo", "Admin", new { StreetID = item.ID_вулиці })" class="btn btn-secondary">Змінити</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("AdminDeleteStreet", "Admin", new { StreetID = item.ID_вулиці })" class="btn btn-danger ">Видалити</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div style="margin-left: 11px">
+    <br />
+    Сторінка @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) з @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("AdminViewStreets",
+        new { page, sort_order = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+<div>
+    <a type="button" href="@Url.Action("AdminAddNewStreet", "Admin")" class="btn btn-success" style="margin-top:12px; margin-left: 11px">Додати новий запис</a>
+</div>
+
+<div>
+    <a type="button" href="@Url.Action("AdminDashBoard", "Admin")" class="btn btn-light" style="margin-top: 12px; margin-left: 11px">Повернутись</a>
+</div>

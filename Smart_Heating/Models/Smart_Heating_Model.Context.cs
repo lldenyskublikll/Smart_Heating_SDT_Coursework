@@ -44,6 +44,7 @@ namespace Smart_Heating.Models
         public virtual DbSet<Maintenance_List_StandartView> Maintenance_List_StandartView { get; set; }
         public virtual DbSet<Sensor_List_View> Sensor_List_View { get; set; }
         public virtual DbSet<Users_List_View> Users_List_View { get; set; }
+        public virtual DbSet<Streets_List_View> Streets_List_View { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
