@@ -94,7 +94,9 @@
                     @Html.DisplayFor(modelItem => item.Назва_закладу)
                 </td>
                 <td>
-                    <a href="@Url.Action("AdminDeleteIndicator", "Admin", new { IndDate = item.Дата_та_час, Sensor = item.ID_сенсору,  Indicator = item.Показник})" class="btn btn-danger ">Видалити</a>
+                    <form action="AdminDeleteIndicator" method="post">
+                        <a href="@Url.Action("AdminDeleteIndicator", "Admin", new { IndDate = item.Дата_та_час, Sensor = item.ID_сенсору})" class="btn btn-danger ">Видалити</a>
+                    </form>
                 </td>
             </tr>
         }

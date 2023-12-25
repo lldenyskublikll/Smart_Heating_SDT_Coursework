@@ -81,7 +81,9 @@
                     @Html.DisplayFor(modelItem => item.Назва_закладу)
                 </td>
                 <td>
-                    <a href="@Url.Action("AdminDeleteSensor", "Admin", new { SensorID = item.ID_датчика })" class="btn btn-danger ">Видалити</a>
+                    <form action="AdminDeleteSensor" method="post">
+                        <a href="@Url.Action("AdminDeleteSensor", "Admin", new { SensorID = item.ID_датчика })" class="btn btn-danger ">Видалити</a>
+                    </form>
                 </td>
             </tr>
         }

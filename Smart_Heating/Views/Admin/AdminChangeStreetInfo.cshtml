@@ -1,0 +1,56 @@
+﻿@model Smart_Heating.Models.Street
+
+@{
+    ViewBag.Title = "AdminChangeStreetInfo";
+}
+
+@{
+    var districts = ViewData["Districts"] as SelectList;
+}
+
+<h2>AdminChangeStreetInfo</h2>
+
+<h4>Редагувати інформацію про вулицю</h4>
+<hr />
+
+@using (Html.BeginForm("AdminChangeStreetInfo", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.StreetID)
+    <table class="table table-warning table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Вулиця</th>
+                <th scope="col">Район</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StreetName, "Вулиця", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.StreetName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.StreetName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.District, "Район", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.District, districts, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.District, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+    <input type="submit" value="Зберегти зміни" class="btn btn-success" style=" margin-top: 12px; margin-left: 11px" />
+}
+
+<div>
+    <a type="button" href="@Url.Action("AdminViewStreets", "Admin")" class="btn btn-light" style="margin-top: 12px; margin-left: 11px">Повернутись</a>
+</div>

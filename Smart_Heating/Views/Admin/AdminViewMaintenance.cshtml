@@ -12,6 +12,14 @@
 
 <h2>Список технічних робіт міста</h2>
 
+@using (Html.BeginForm())
+{
+    <p>
+        Знайти за параметрами "Дата початку/завершення роботи", "Тип/статус роботи", "Район", "Вулиця", "ID/Прізвище/Ім'я інженера": @Html.TextBox("search_str", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Пошук" />
+    </p>
+}
+
 <table class="table table-warning table-striped table-hover">
     <thead>
         <tr>
@@ -75,7 +83,6 @@
             <th scope="col">
                 @Html.ActionLink("Назва закладу", "AdminViewMaintenance", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
             </th>
-            <th scope="col"></th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -145,10 +152,9 @@
                     @Html.DisplayFor(modelItem => item.Назва_закладу)
                 </td>
                 <td>
-                    <a href="@Url.Action("AdminChangeMaintInfo", "Admin", new { MaintID = item.ID_Тех__роботи })" class="btn btn-secondary">Змінити</a>
-                </td>
-                <td>
-                    <a href="@Url.Action("AdminDeleteMaint", "Admin", new { MaintID = item.ID_Тех__роботи })" class="btn btn-danger ">Видалити</a>
+                    <form action="AdminDeleteMaint" method="post">
+                        <a href="@Url.Action("AdminDeleteMaint", "Admin", new { MaintID = item.ID_Тех__роботи })" class="btn btn-danger ">Видалити</a>
+                    </form>
                 </td>
             </tr>
         }

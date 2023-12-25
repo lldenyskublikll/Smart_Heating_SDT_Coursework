@@ -6,7 +6,6 @@
     Layout = "~/Views/Shared/_Layout2.cshtml";
 }
 
-
 @{
     ViewBag.Title = "AdminViewUsers";
 }
@@ -79,7 +78,6 @@
                 @Html.ActionLink("Назва закладу", "AdminViewUsers", new { sort_order = ViewBag.EstablishmentSort, currentFilter = ViewBag.CurrentFilter })
             </th>
             <th scope="col"></th>
-            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
@@ -142,10 +140,9 @@
                     @Html.DisplayFor(modelItem => item.Назва_закладу)
                 </td>
                 <td>
-                    <a href="@Url.Action("AdminChangeUserInfo", "Admin", new { UserID = item.ID_Користувача })" class="btn btn-secondary">Змінити</a>
-                </td>
-                <td>
-                    <a href="@Url.Action("AdminDeleteUser", "Admin", new { UserID = item.ID_Користувача })" class="btn btn-danger ">Видалити</a>
+                    <form action="AdminDeleteUser" method="post">
+                        <a href="@Url.Action("AdminDeleteUser", "Admin", new { UserID = item.ID_Користувача })" class="btn btn-danger ">Видалити</a>
+                    </form>
                 </td>
             </tr>
         }

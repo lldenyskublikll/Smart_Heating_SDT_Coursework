@@ -43,7 +43,9 @@
                     <a href="@Url.Action("AdminChangeDistrictInfo", "Admin", new { DistrictID = item.DistrictID })" class="btn btn-secondary">Змінити</a>
                 </td>
                 <td>
-                    <a href="@Url.Action("AdminDeleteDistrict", "Admin", new { DistrictID = item.DistrictID })" class="btn btn-danger ">Видалити</a>
+                    <form action="AdminDeleteDistrict" method="post">
+                        <a href="@Url.Action("AdminDeleteDistrict", "Admin", new { DistrictID = item.DistrictID })" type="submit" class="btn btn-danger ">Видалити</a>
+                    </form>                   
                 </td>
             </tr>
         }

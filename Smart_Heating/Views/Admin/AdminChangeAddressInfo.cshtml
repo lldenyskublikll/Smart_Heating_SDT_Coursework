@@ -1,0 +1,82 @@
+﻿@model Smart_Heating.Models.Address
+
+@{
+    ViewBag.Title = "AdminChangeAddressInfo";
+}
+
+@{
+    var streets = ViewData["Streets"] as SelectList;
+    var buildingtyhpes = ViewData["BuildingTypes"] as SelectList;
+}
+
+<h2>AdminChangeAddressInfo</h2>
+
+<h4>Редагувати інформацію про адресу</h4>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.AddressID)
+    <table class="table table-warning table-striped table-hover">
+        <thead><tr><td></td></tr></thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Street, "Вулиця", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.Street, streets, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Street, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.House, "№ Будинку", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.House, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.House, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Flat, "№ Квартири", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Flat, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Flat, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Office, "№ Офісу", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Office, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Office, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BuildingType, "Тип будинку", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.BuildingType, buildingtyhpes, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.BuildingType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.EstablishmentName, "Назва закладу", htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.EstablishmentName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.EstablishmentName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>        
+        </tbody>        
+    </table>
+    <input type="submit" value="Зберегти зміни" class="btn btn-success" style=" margin-top: 12px; margin-left: 11px" />
+}
+
+<div>
+    <a type="button" href="@Url.Action("AdminViewAddresses", "Admin")" class="btn btn-light" style="margin-top: 12px; margin-left: 11px">Повернутись</a>
+</div>

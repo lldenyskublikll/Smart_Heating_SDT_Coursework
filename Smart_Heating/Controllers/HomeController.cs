@@ -75,23 +75,28 @@ namespace Smart_Heating.Controllers
         {
             using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
             {
-                /// Creating Address list for user registration
-                var adrquery = from adr in db.Addresses select adr;
-                var adrview = adrquery                    
-                    .Include(adr => adr.Street1)
-                    .Include(adr => adr.Street1.District1) as IEnumerable<Address>;
+                var address_query = from addr in db.Addresses select addr;
+                var address_view = address_query
+                    .Include(addr => addr.Street1)
+                    .Include(addr => addr.Building_types)
+                    .Include(addr => addr.Street1.District1) as IEnumerable<Address>;
 
-                
-                var addressList = adrview.Select(addr => new {
-                    AddressInfo = addr.AddressID,
-                    displayName = $"{addr.Street1.StreetName} {addr.House}, {addr.Street1.District1.DistrictName}"
+                var address_list = address_view.Select(addrs => new
+                {
+                    AddressInfo = addrs.AddressID,
+                    displayName = $"{addrs.Street1.District1.DistrictName} район, вулиця {addrs.Street1.StreetName} {addrs.House}, квартира {addrs.Flat}, офіс {addrs.Office}, тип будинку: {addrs.Building_types.BuildingTypeName}, {addrs.EstablishmentName}"
                 }).ToList();
 
-                SelectList selectaddress = new SelectList(addressList, "AddressInfo", "displayName");
+                SelectList select_addresses = new SelectList(address_list, "AddressInfo", "displayName");
+                ViewData["Addresses"] = select_addresses;
 
-                ViewData["addressList"] = selectaddress;
+                var gendertype_query = db.Users.Select(item => item.Gender).Distinct().ToList();
+
+                SelectList select_genders = new SelectList(gendertype_query, "Gender");
+                ViewData["Genders"] = select_genders;                
+
+                return View();
             }
-            return View();
         }
 
         [HttpPost]
@@ -109,6 +114,12 @@ namespace Smart_Heating.Controllers
                         Session["UserID"] = objUser.UserID.ToString();
                         Session["FirstName"] = objUser.UserLogin.ToString();
                         Session["Role"] = objUser.UserRole.ToString();
+
+                        int.TryParse(Session["Role"].ToString(), out int id);
+                        Session["RoleName"] = db.UserRoles.First(r => r.RoleID == id).RoleName.ToString();
+
+                        Session["Address"] = objUser.AddressInfo.ToString();
+
                         return RedirectToAction("UserDashBoard", "Application");
                     }
                     catch
@@ -119,8 +130,25 @@ namespace Smart_Heating.Controllers
             }
             using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
             {
-                var addresslist = db.Addresses.OrderBy(item => item.AddressID).ToList();
-                ViewData["addresslist"] = addresslist;
+                var address_query = from addr in db.Addresses select addr;
+                var address_view = address_query
+                    .Include(addr => addr.Street1)
+                    .Include(addr => addr.Building_types)
+                    .Include(addr => addr.Street1.District1) as IEnumerable<Address>;
+
+                var address_list = address_view.Select(addrs => new
+                {
+                    AddressInfo = addrs.AddressID,
+                    displayName = $"{addrs.Street1.District1.DistrictName} район, вулиця {addrs.Street1.StreetName} {addrs.House}, квартира {addrs.Flat}, офіс {addrs.Office}, тип будинку: {addrs.Building_types.BuildingTypeName}, {addrs.EstablishmentName}"
+                }).ToList();
+
+                SelectList select_addresses = new SelectList(address_list, "AddressInfo", "displayName");
+                ViewData["Addresses"] = select_addresses;
+
+                var gendertype_query = db.Users.Select(item => item.Gender).Distinct().ToList();
+
+                SelectList select_genders = new SelectList(gendertype_query, "Gender");
+                ViewData["Genders"] = select_genders;
             }
             return View();
         }

@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PagedList;
+using System.Web.UI.WebControls;
+using System.Data.Entity;
 
 namespace Smart_Heating.Controllers
 {
@@ -17,13 +19,13 @@ namespace Smart_Heating.Controllers
             /// If UserID is Null then redirects to the LoginPage view
             if (Session["UserID"] == null)
                 return RedirectToAction("LoginPage", "Home");
-            
+
             /// Else returns AdminDashBoard view that helps Administrator to perform all actions that he/she can do in this system
-            return View(); 
+            return View();
         }
 
         /// Redirects to the view that shows Andmin all information about Maintenances, their statuses, start/end dates and Engineer that leads it
-        public ActionResult AdminViewMaintenance(string sort_order, string current_filter, string search_str, int? page) 
+        public ActionResult AdminViewMaintenance(string sort_order, string current_filter, string search_str, int? page)
         {
             ViewBag.CurrentSort = sort_order;
 
@@ -155,10 +157,10 @@ namespace Smart_Heating.Controllers
                 int pagenumber = (page ?? 1);
 
                 return View(admin_maint_query.ToList().ToPagedList(pagenumber, pagesize));
-            }                 
+            }
         }
 
-        public ActionResult AdminViewUsers(string sort_order, string current_filter, string search_str, int? page) 
+        public ActionResult AdminViewUsers(string sort_order, string current_filter, string search_str, int? page)
         {
             ViewBag.CurrentSort = sort_order;
 
@@ -253,7 +255,7 @@ namespace Smart_Heating.Controllers
                         break;
                     case "Street_desc":
                         admin_userlist_query = admin_userlist_query.OrderByDescending(s => s.Назва_вулиці);
-                        break;                    
+                        break;
                     case "District":
                         admin_userlist_query = admin_userlist_query.OrderBy(s => s.Район);
                         break;
@@ -478,7 +480,7 @@ namespace Smart_Heating.Controllers
 
             ViewBag.CurrentFilter = search_str;
 
-            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities()) 
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
             {
                 var admin_addresslist_query = db.Address_List_View as IEnumerable<Address_List_View>;
 
@@ -529,7 +531,7 @@ namespace Smart_Heating.Controllers
                 int pagenumber = (page ?? 1);
 
                 return View(admin_addresslist_query.ToList().ToPagedList(pagenumber, pagesize));
-            }              
+            }
         }
 
         public ActionResult AdminViewStreets(string sort_order, string current_filter, string search_str, int? page)
@@ -596,11 +598,11 @@ namespace Smart_Heating.Controllers
             }
         }
 
-        public ActionResult AdminViewDistricts(string sort_order, string current_filter, string search_str, int? page) 
+        public ActionResult AdminViewDistricts(string sort_order, string current_filter, string search_str, int? page)
         {
             ViewBag.CurrentSort = sort_order;
 
-            ViewBag.DistrictIDSort = String.IsNullOrEmpty(sort_order) ? "DistrictID_desc" : "";           
+            ViewBag.DistrictIDSort = String.IsNullOrEmpty(sort_order) ? "DistrictID_desc" : "";
             ViewBag.DistrictSort = sort_order == "District" ? "District_desc" : "District";
 
             if (search_str != null)       //If searchbar is not null -> first page
@@ -610,7 +612,7 @@ namespace Smart_Heating.Controllers
 
             ViewBag.CurrentFilter = search_str;
 
-            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities()) 
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
             {
                 var admin_districtlist_query = db.Districts as IEnumerable<District>;
 
@@ -645,99 +647,476 @@ namespace Smart_Heating.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-        public ActionResult AdminChangeMaintInfo() 
+        /// Maintenance edit methods
+        public ActionResult AdminDeleteMaint(int? MaintID)
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities()) 
+            {
+                try
+                {
+                    var maintenance = db.Maintenances.Find(MaintID);
+                    db.Maintenances.Remove(maintenance);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("AdminViewMaintenance");
+                }
+
+                return RedirectToAction("AdminViewMaintenance");
+            }
         }
-        public ActionResult AdminDeleteMaint()
-        {
-            return View();
-        }
+        [HttpGet]           
         public ActionResult AdminAddNewMaintenance()
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var address_query = from addr in db.Addresses select addr;
+                var address_view = address_query
+                    .Include(addr => addr.Street1)
+                    .Include(addr => addr.Building_types)
+                    .Include(addr => addr.Street1.District1) as IEnumerable<Address>;
+
+                var address_list = address_view.Select(addrs => new
+                {
+                    MaintAddress = addrs.AddressID,
+                    displayName = $"{addrs.Street1.District1.DistrictName} район, вулиця {addrs.Street1.StreetName} {addrs.House}, квартира {addrs.Flat}, офіс {addrs.Office}, тип будинку: {addrs.Building_types.BuildingTypeName}, {addrs.EstablishmentName}"
+                }).ToList();
+
+                SelectList select_addresses = new SelectList(address_list, "MaintAddress", "displayName");
+                ViewData["Addresses"] = select_addresses;
+
+                var engineer_query = db.Users.Where(e => e.UserRole == 2).ToList() as IEnumerable<User>;
+
+                var engineer_view = engineer_query.Select(eng => new
+                {
+                    StaffUserID = eng.UserID,
+                    displayName = $"{eng.Surname} {eng.PrsnName} {eng.SecondName} ({eng.UserLogin}, {eng.BirthDate}, {eng.PhoneNumber})"
+                }).ToList();
+
+                SelectList select_engineers = new SelectList(engineer_view, "StaffUserID", "displayName");
+                ViewData["Engineers"] = select_engineers;
+
+                return View();
+            }
+        }
+        [HttpPost]
+        public ActionResult AdminAddNewMaintenance(Maintenance maintenance) 
+        {
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                db.Maintenances.Add(maintenance);
+                db.SaveChanges();
+                return RedirectToAction("AdminViewMaintenance");
+            }
         }
 
 
-        public ActionResult AdminChangeUserInfo()
+        /// User edit methods
+        public ActionResult AdminDeleteUser(int? UserID)
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities()) 
+            {
+                try
+                {
+                    var user = db.Users.Find(UserID);
+                    db.Users.Remove(user);
+                    db.SaveChanges();
+                }
+                catch 
+                {
+                    return RedirectToAction("AdminViewUsers");
+                }
+
+                return RedirectToAction("AdminViewUsers");
+            }
         }
-        public ActionResult AdminDeleteUser()
-        {
-            return View();
-        }
+        [HttpGet]
         public ActionResult AdminAddNewUser()
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var address_query = from addr in db.Addresses select addr;
+                var address_view = address_query
+                    .Include(addr => addr.Street1)
+                    .Include(addr => addr.Building_types)
+                    .Include(addr => addr.Street1.District1) as IEnumerable<Address>;
+
+                var address_list = address_view.Select(addrs => new
+                {
+                    AddressInfo = addrs.AddressID,
+                    displayName = $"{addrs.Street1.District1.DistrictName} район, вулиця {addrs.Street1.StreetName} {addrs.House}, квартира {addrs.Flat}, офіс {addrs.Office}, тип будинку: {addrs.Building_types.BuildingTypeName}, {addrs.EstablishmentName}"
+                }).ToList();
+
+                SelectList select_addresses = new SelectList(address_list, "AddressInfo", "displayName");
+                ViewData["Addresses"] = select_addresses;
+
+                var gendertype_query = db.Users.Select(item => item.Gender).Distinct().ToList();
+
+                SelectList select_genders = new SelectList(gendertype_query, "Gender");
+                ViewData["Genders"] = select_genders;
+
+                SelectList select_user_roles = new SelectList(db.UserRoles.ToList(), "RoleID", "RoleName");
+                ViewData["UserRoles"] = select_user_roles;
+
+                return View();
+            }
         }
-
-
-        public ActionResult AdminDeleteSensor()
+        [HttpPost]
+        public ActionResult AdminAddNewUser(User user) 
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                db.Users.Add(user);
+                db.SaveChanges();
+                return RedirectToAction("AdminViewUsers");
+            }
         }
+
+
+        /// Sensor edit methods
+        public ActionResult AdminDeleteSensor(int? SensorID)
+        {
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                try
+                {
+                    var sensor = db.Sensors.Find(SensorID);
+                    db.Sensors.Remove(sensor);
+                    db.SaveChanges();
+                }
+                catch 
+                {
+                    return RedirectToAction("AdminViewSensors");
+                }
+
+                return RedirectToAction("AdminViewSensors");   
+            }            
+        }
+        [HttpGet]
         public ActionResult AdminAddNewSensor()
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var address_query = from addr in db.Addresses select addr;
+                var address_view = address_query
+                    .Include(addr => addr.Street1)
+                    .Include(addr => addr.Building_types)
+                    .Include(addr => addr.Street1.District1) as IEnumerable<Address>;
+
+                var address_list = address_view.Select(addrs => new 
+                {
+                    SensorAddress = addrs.AddressID,
+                    displayName = $"{addrs.Street1.District1.DistrictName} район, вулиця {addrs.Street1.StreetName} {addrs.House}, квартира {addrs.Flat}, офіс {addrs.Office}, тип будинку: {addrs.Building_types.BuildingTypeName}"
+                }).ToList();
+
+                SelectList select_addresses = new SelectList(address_list, "SensorAddress", "displayName");
+                ViewData["Addresses"] = select_addresses;
+
+                SelectList select_sensortypes = new SelectList(db.SensorTypes.ToList(), "SensorTypeID", "SensorTypeName");
+                ViewData["SensorTypes"] = select_sensortypes;
+
+                return View();
+            }
         }
-
-
-        public ActionResult AdminDeleteIndicator()
+        [HttpPost]
+        public ActionResult AdminAddNewSensor(Sensor sensor) 
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                db.Sensors.Add(sensor);
+                db.SaveChanges();
+                return RedirectToAction("AdminViewSensors");
+            }
         }
 
 
-        public ActionResult AdminChangeAddressInfo()
+        /// Indicator edit methods
+        public ActionResult AdminDeleteIndicator(DateTime IndDate, int? Sensor)
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities()) 
+            {
+                var indicatorID = db.Indicators.First(i => i.IndDate == IndDate && i.Sensor == Sensor).IndicatorID;
+
+                try
+                {
+                    var indicator = db.Indicators.Find(indicatorID);
+                    db.Indicators.Remove(indicator);
+                    db.SaveChanges();   
+                }
+                catch 
+                {
+                    return RedirectToAction("AdminViewIndicators");   
+                }
+
+                return RedirectToAction("AdminViewIndicators");
+            }
         }
-        public ActionResult AdminDeleteAddress()
+
+
+        /// Address edit methods
+        public ActionResult AdminChangeAddressInfo(int? AddressID)
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var address = db.Addresses.Find(AddressID);
+
+                if (address != null)
+                {
+                    var streets_query = from str in db.Streets select str;
+                    var streets_view = streets_query
+                        .Include(str => str.District1) as IEnumerable<Street>;
+
+                    var streetslist = streets_view.Select(strt => new
+                    {
+                        Street = strt.StreetID,
+                        displayName = $"Вулиця {strt.StreetName}, {strt.District1.DistrictName} район"
+                    }).ToList();
+
+                    SelectList select_streets = new SelectList(streetslist, "Street", "displayName");
+                    ViewData["Streets"] = select_streets;
+
+                    SelectList select_buildingtypes = new SelectList(db.Building_types.ToList(), "BuildingTypeID", "BuildingTypeName");
+                    ViewData["BuildingTypes"] = select_buildingtypes;
+
+                    return View(address);
+                }
+                return RedirectToAction("AdminViewAddresses");
+            }
         }
+        [HttpPost]
+        public ActionResult AdminChangeAddressInfo(Address new_address) 
+        {
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var address = db.Addresses.Find(new_address.AddressID);
+
+                if (address != null)
+                {
+                    address.Street = new_address.Street;
+                    address.House = new_address.House;
+                    address.Flat = new_address.Flat;    
+                    address.Office = new_address.Office;
+                    address.BuildingType = new_address.BuildingType;    
+                    address.EstablishmentName = new_address.EstablishmentName;
+                    
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+                        ViewBag.Message = "Помилка під час зміни значень";
+                        return View(address.AddressID);
+                    }
+                }
+                return RedirectToAction("AdminViewAddresses");
+            }
+        }
+        public ActionResult AdminDeleteAddress(int? AddressID)
+        {
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                try
+                {
+                    var address = db.Addresses.Find(AddressID);
+                    db.Addresses.Remove(address);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("AdminViewAddresses");
+                }
+
+                return RedirectToAction("AdminViewAddresses");
+            }
+        }
+        [HttpGet]
         public ActionResult AdminAddNewAddress()
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var streets_query = from str in db.Streets select str;
+                var streets_view = streets_query
+                    .Include(str => str.District1) as IEnumerable<Street>;
+
+                var streetslist = streets_view.Select(strt => new
+                {
+                    Street = strt.StreetID,
+                    displayName = $"Вулиця {strt.StreetName}, {strt.District1.DistrictName} район"
+                }).ToList();
+
+                SelectList select_streets = new SelectList(streetslist, "Street", "displayName");
+                ViewData["Streets"] = select_streets;
+
+                SelectList select_buildingtypes = new SelectList(db.Building_types.ToList(), "BuildingTypeID", "BuildingTypeName");
+                ViewData["BuildingTypes"] = select_buildingtypes;
+
+                return View();
+            }
+        }
+        [HttpPost]
+        public ActionResult AdminAddNewAddress(Address address) 
+        {
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                db.Addresses.Add(address);
+                db.SaveChanges();
+                return RedirectToAction("AdminViewAddresses");
+            }
         }
 
 
-        public ActionResult AdminChangeStreetInfo()
+        /// Street edit methods
+        public ActionResult AdminChangeStreetInfo(int? StreetID)
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var street = db.Streets.Find(StreetID);
+
+                if (street != null)
+                {
+                    SelectList select_districts = new SelectList(db.Districts.ToList(), "DistrictID", "DistrictName");
+                    ViewData["Districts"] = select_districts;
+                    return View(street);
+                }
+                return RedirectToAction("AdminViewStreets");
+            }
         }
-        public ActionResult AdminDeleteStreet()
+        [HttpPost]
+        public ActionResult AdminChangeStreetInfo(Street new_street)
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var street = db.Streets.Find(new_street.StreetID);
+
+                if (street != null)
+                {
+                    street.StreetName = new_street.StreetName;
+                    street.District = new_street.District;
+
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+                        ViewBag.Message = "Помилка під час зміни значень";
+                        return View(street.StreetID);
+                    }
+                }
+                return RedirectToAction("AdminViewStreets");
+            }
         }
+        public ActionResult AdminDeleteStreet(int? StreetID)
+        {
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                try
+                {
+                    var street = db.Streets.Find(StreetID);
+                    db.Streets.Remove(street);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("AdminViewStreets");
+                }
+
+                return RedirectToAction("AdminViewStreets");
+            }
+        }
+        [HttpGet]
         public ActionResult AdminAddNewStreet()
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                SelectList select_districts = new SelectList(db.Districts.ToList(), "DistrictID", "DistrictName");
+                ViewData["Districts"] = select_districts;
+                return View();
+            }            
+        }
+        [HttpPost]
+        public ActionResult AdminAddNewStreet(Street street)
+        {
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                db.Streets.Add(street);
+                db.SaveChanges();
+                return RedirectToAction("AdminViewStreets");
+            }
         }
 
 
-        public ActionResult AdminChangeDistrictInfo()
+        /// District edit methods
+        public ActionResult AdminChangeDistrictInfo(int? DistrictID)
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var district = db.Districts.Find(DistrictID);
+
+                if (district != null)
+                {
+                    return View(district);
+                }
+                return RedirectToAction("AdminViewDistricts");
+            }
         }
-        public ActionResult AdminDeleteDistrict()
+        [HttpPost]
+        public ActionResult AdminChangeDistrictInfo(District new_district)
         {
-            return View();
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                var district = db.Districts.Find(new_district.DistrictID);
+                
+                if (district != null)
+                {
+                    district.DistrictName = new_district.DistrictName;
+
+                    try
+                    {
+                        db.SaveChanges();
+                    }
+                    catch (Exception)
+                    {
+                        ViewBag.Message = "Помилка під час зміни значень";
+                        return View(district.DistrictID);
+                    }
+                }
+                return RedirectToAction("AdminViewDistricts");
+            }
+        }        
+        public ActionResult AdminDeleteDistrict(int? DistrictID)
+        {
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+            {
+                try
+                {
+                    var district = db.Districts.Find(DistrictID);
+                    db.Districts.Remove(district);
+                    db.SaveChanges();
+                }
+                catch
+                {
+                    return RedirectToAction("AdminViewDistricts");
+                }
+
+                return RedirectToAction("AdminViewDistricts");
+            }
         }
         public ActionResult AdminAddNewDistrict()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult AdminAddNewDistrict(District district) 
+        {
+            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities()) 
+            {
+                db.Districts.Add(district);
+                db.SaveChanges();
+                return RedirectToAction("AdminViewDistricts");
+            }
         }
     }
 }

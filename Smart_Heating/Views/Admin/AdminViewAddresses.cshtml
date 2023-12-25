@@ -79,7 +79,9 @@
                     <a href="@Url.Action("AdminChangeAddressInfo", "Admin", new { AddressID = item.ID_Вулиці })" class="btn btn-secondary">Змінити</a>
                 </td>
                 <td>
-                    <a href="@Url.Action("AdminDeleteAddress", "Admin", new { AddressID = item.ID_Вулиці })" class="btn btn-danger ">Видалити</a>
+                    <form action="AdminDeleteAddress" method="post">
+                        <a href="@Url.Action("AdminDeleteAddress", "Admin", new { AddressID = item.ID_Вулиці })" class="btn btn-danger ">Видалити</a>
+                    </form>
                 </td>
             </tr>
         }

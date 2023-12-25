@@ -317,6 +317,15 @@
     <Content Include="Views\Admin\AdminViewAddresses.cshtml" />
     <Content Include="Views\Admin\AdminViewStreets.cshtml" />
     <Content Include="Views\Admin\AdminViewDistricts.cshtml" />
+    <Content Include="Views\Admin\AdminChangeDistrictInfo.cshtml" />
+    <Content Include="Views\Admin\AdminAddNewDistrict.cshtml" />
+    <Content Include="Views\Admin\AdminAddNewStreet.cshtml" />
+    <Content Include="Views\Admin\AdminChangeStreetInfo.cshtml" />
+    <Content Include="Views\Admin\AdminAddNewAddress.cshtml" />
+    <Content Include="Views\Admin\AdminChangeAddressInfo.cshtml" />
+    <Content Include="Views\Admin\AdminAddNewSensor.cshtml" />
+    <Content Include="Views\Admin\AdminAddNewUser.cshtml" />
+    <Content Include="Views\Admin\AdminAddNewMaintenance.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,41 @@
+﻿@model Smart_Heating.Models.District
+
+@{
+    ViewBag.Title = "AdminChangeDistrictInfo";
+}
+
+<h2>AdminChangeDistrictInfo</h2>
+
+<h4>Редагувати інформацію про район</h4>
+<hr />
+
+@using (Html.BeginForm("AdminChangeDistrictInfo", "Admin", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(modelItem => modelItem.DistrictID)
+    <table class="table table-warning table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Назва району</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DistrictName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.DistrictName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DistrictName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <input type="submit" value="Зберегти зміни" class="btn btn-success" style=" margin-top: 12px; margin-left: 11px" />
+}
+
+<div>
+    <a type="button" href="@Url.Action("AdminViewDistricts", "Admin")" class="btn btn-light" style="margin-top: 12px; margin-left: 11px">Повернутись</a>
+</div>
