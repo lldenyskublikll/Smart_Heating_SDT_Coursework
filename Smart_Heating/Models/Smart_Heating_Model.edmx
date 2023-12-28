@@ -330,7 +330,7 @@
           <Property Name="Тип будинку" Type="varchar" MaxLength="100" />
           <Property Name="Назва закладу" Type="varchar" MaxLength="300" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Addresses__Build__2C3393D0">
+        <Association Name="FK__Addresses__Build__0F624AF8">
           <End Role="Building_types" Type="Self.Building_types" Multiplicity="1" />
           <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
           <ReferentialConstraint>
@@ -342,7 +342,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Addresses__Stree__2B3F6F97">
+        <Association Name="FK__Addresses__Stree__0E6E26BF">
           <End Role="Streets" Type="Self.Streets" Multiplicity="1" />
           <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
           <ReferentialConstraint>
@@ -354,7 +354,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Indicator__Senso__34C8D9D1">
+        <Association Name="FK__Indicator__Senso__18EBB532">
           <End Role="Sensors" Type="Self.Sensors" Multiplicity="1" />
           <End Role="Indicators" Type="Self.Indicators" Multiplicity="*" />
           <ReferentialConstraint>
@@ -366,7 +366,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Maintenan__Maint__3E52440B">
+        <Association Name="FK__Maintenan__Maint__25518C17">
           <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
           <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -378,7 +378,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Maintenan__Staff__3D5E1FD2">
+        <Association Name="FK__Maintenan__Staff__245D67DE">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Maintenance" Type="Self.Maintenance" Multiplicity="*" />
           <ReferentialConstraint>
@@ -390,7 +390,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sensors__SensorA__31EC6D26">
+        <Association Name="FK__Sensors__SensorA__160F4887">
           <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
           <End Role="Sensors" Type="Self.Sensors" Multiplicity="*" />
           <ReferentialConstraint>
@@ -402,7 +402,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Sensors__SensorT__30F848ED">
+        <Association Name="FK__Sensors__SensorT__151B244E">
           <End Role="SensorTypes" Type="Self.SensorTypes" Multiplicity="1" />
           <End Role="Sensors" Type="Self.Sensors" Multiplicity="*" />
           <ReferentialConstraint>
@@ -414,7 +414,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Streets__Distric__267ABA7A">
+        <Association Name="FK__Streets__Distric__08B54D69">
           <End Role="Districts" Type="Self.Districts" Multiplicity="1" />
           <End Role="Streets" Type="Self.Streets" Multiplicity="*" />
           <ReferentialConstraint>
@@ -426,7 +426,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Users__AddressIn__3A81B327">
+        <Association Name="FK__Users__AddressIn__2180FB33">
           <End Role="Addresses" Type="Self.Addresses" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -438,7 +438,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Users__UserRole__398D8EEE">
+        <Association Name="FK__Users__UserRole__208CD6FA">
           <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -619,43 +619,43 @@
     [Users_List_View].[Назва закладу] AS [Назва закладу]
     FROM [dbo].[Users_List_View] AS [Users_List_View]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__Addresses__Build__2C3393D0" Association="Self.FK__Addresses__Build__2C3393D0">
+          <AssociationSet Name="FK__Addresses__Build__0F624AF8" Association="Self.FK__Addresses__Build__0F624AF8">
             <End Role="Building_types" EntitySet="Building_types" />
             <End Role="Addresses" EntitySet="Addresses" />
           </AssociationSet>
-          <AssociationSet Name="FK__Addresses__Stree__2B3F6F97" Association="Self.FK__Addresses__Stree__2B3F6F97">
+          <AssociationSet Name="FK__Addresses__Stree__0E6E26BF" Association="Self.FK__Addresses__Stree__0E6E26BF">
             <End Role="Streets" EntitySet="Streets" />
             <End Role="Addresses" EntitySet="Addresses" />
           </AssociationSet>
-          <AssociationSet Name="FK__Indicator__Senso__34C8D9D1" Association="Self.FK__Indicator__Senso__34C8D9D1">
+          <AssociationSet Name="FK__Indicator__Senso__18EBB532" Association="Self.FK__Indicator__Senso__18EBB532">
             <End Role="Sensors" EntitySet="Sensors" />
             <End Role="Indicators" EntitySet="Indicators" />
           </AssociationSet>
-          <AssociationSet Name="FK__Maintenan__Maint__3E52440B" Association="Self.FK__Maintenan__Maint__3E52440B">
+          <AssociationSet Name="FK__Maintenan__Maint__25518C17" Association="Self.FK__Maintenan__Maint__25518C17">
             <End Role="Addresses" EntitySet="Addresses" />
             <End Role="Maintenance" EntitySet="Maintenance" />
           </AssociationSet>
-          <AssociationSet Name="FK__Maintenan__Staff__3D5E1FD2" Association="Self.FK__Maintenan__Staff__3D5E1FD2">
+          <AssociationSet Name="FK__Maintenan__Staff__245D67DE" Association="Self.FK__Maintenan__Staff__245D67DE">
             <End Role="Users" EntitySet="Users" />
             <End Role="Maintenance" EntitySet="Maintenance" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sensors__SensorA__31EC6D26" Association="Self.FK__Sensors__SensorA__31EC6D26">
+          <AssociationSet Name="FK__Sensors__SensorA__160F4887" Association="Self.FK__Sensors__SensorA__160F4887">
             <End Role="Addresses" EntitySet="Addresses" />
             <End Role="Sensors" EntitySet="Sensors" />
           </AssociationSet>
-          <AssociationSet Name="FK__Sensors__SensorT__30F848ED" Association="Self.FK__Sensors__SensorT__30F848ED">
+          <AssociationSet Name="FK__Sensors__SensorT__151B244E" Association="Self.FK__Sensors__SensorT__151B244E">
             <End Role="SensorTypes" EntitySet="SensorTypes" />
             <End Role="Sensors" EntitySet="Sensors" />
           </AssociationSet>
-          <AssociationSet Name="FK__Streets__Distric__267ABA7A" Association="Self.FK__Streets__Distric__267ABA7A">
+          <AssociationSet Name="FK__Streets__Distric__08B54D69" Association="Self.FK__Streets__Distric__08B54D69">
             <End Role="Districts" EntitySet="Districts" />
             <End Role="Streets" EntitySet="Streets" />
           </AssociationSet>
-          <AssociationSet Name="FK__Users__AddressIn__3A81B327" Association="Self.FK__Users__AddressIn__3A81B327">
+          <AssociationSet Name="FK__Users__AddressIn__2180FB33" Association="Self.FK__Users__AddressIn__2180FB33">
             <End Role="Addresses" EntitySet="Addresses" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
-          <AssociationSet Name="FK__Users__UserRole__398D8EEE" Association="Self.FK__Users__UserRole__398D8EEE">
+          <AssociationSet Name="FK__Users__UserRole__208CD6FA" Association="Self.FK__Users__UserRole__208CD6FA">
             <End Role="UserRoles" EntitySet="UserRoles" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>

@@ -124,7 +124,7 @@ namespace Smart_Heating.Controllers
                     }
                     catch
                     {
-                        ViewBag.Message = "Credentials is not valid";
+                        ViewBag.Message = "Дані введені невірно, або такий логін/пароль вже існує";
                     }
                 }
             }

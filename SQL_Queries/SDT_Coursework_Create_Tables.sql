@@ -7,7 +7,7 @@ USE SMART_HEATING
 CREATE TABLE Districts
 (
 	DistrictID int Identity Primary key NOT NULL, 
-	DistrictName varchar(100) NOT NULL
+	DistrictName varchar(100) Unique NOT NULL
 )
 
 --Таблиця "Вулиці міста"
@@ -17,7 +17,7 @@ CREATE TABLE Districts
 CREATE TABLE Streets
 (
 	StreetID int Identity Primary key NOT NULL,
-	StreetName varchar(100) NOT NULL,
+	StreetName varchar(100) Unique NOT NULL,
 	District int Foreign key references Districts(DistrictID) NOT NULL
 )
 
@@ -27,7 +27,7 @@ CREATE TABLE Streets
 CREATE TABLE Building_types
 (
 	BuildingTypeID int Identity Primary key NOT NULL,
-	BuildingTypeName varchar(100) NOT NULL
+	BuildingTypeName varchar(100) Unique NOT NULL
 )
 
 --Таблиця "Адреси"
@@ -55,7 +55,7 @@ CREATE TABLE Addresses
 CREATE TABLE SensorTypes
 (
 	SensorTypeID int Identity Primary key NOT NULL,
-	SensorTypeName varchar(100) NOT NULL
+	SensorTypeName varchar(100) Unique NOT NULL
 )
 
 --Таблиця "Датчики"
@@ -88,7 +88,7 @@ CREATE TABLE Indicators
 CREATE TABLE UserRoles
 (
 	RoleID int Identity Primary Key NOT NULL,
-	RoleName varchar(100) NOT NULL
+	RoleName varchar(100) Unique NOT NULL
 )
 
 --Таблиця "Користувачі"
@@ -107,8 +107,8 @@ CREATE TABLE UserRoles
 CREATE TABLE Users
 (
 	UserID int Identity Primary key NOT NULL,
-	UserLogin varchar(20) NOT NULL,
-	UserPassword varchar(20) NOT NULL,
+	UserLogin varchar(20) Unique NOT NULL,
+	UserPassword varchar(20) Unique NOT NULL,
 	UserRole int Foreign key references UserRoles(RoleID) NOT NULL,
 	Surname varchar(100) NOT NULL,
 	PrsnName varchar(100) NOT NULL,

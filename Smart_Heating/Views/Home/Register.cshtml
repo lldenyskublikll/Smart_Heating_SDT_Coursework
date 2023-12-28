@@ -11,6 +11,13 @@
 
 <h2>Реєстрація</h2>
 
+@if (ViewBag.Message != null)
+{
+    <p style="border: 1px solid red; padding: 5px; display: inline-block;">
+        @ViewBag.Message
+    </p>
+}
+
 @using (Html.BeginForm("Register", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
@@ -69,7 +76,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Gender, "Стать", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.Gender, genders, new { @class = "form-control" })                            
+                            @Html.DropDownListFor(model => model.Gender, genders, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                         </div>
                     </div>

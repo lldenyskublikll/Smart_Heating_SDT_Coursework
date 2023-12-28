@@ -13,6 +13,13 @@
 <h4>Сторення нової вулиці</h4>
 <hr />
 
+@if (ViewBag.Message != null)
+{
+    <p style="border: 1px solid red; padding: 5px; display: inline-block;">
+        @ViewBag.Message
+    </p>
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -38,7 +45,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.District, "Район", htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.DropDownListFor(model => model.District, districts, new { @class = "form-control" })                           
+                            @Html.DropDownListFor(model => model.District, districts, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.District, "", new { @class = "text-danger" })
                         </div>
                     </div>

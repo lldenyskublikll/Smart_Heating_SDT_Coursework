@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using PagedList;
 using System.Web.UI.WebControls;
 using System.Data.Entity;
+using Microsoft.Ajax.Utilities;
 
 namespace Smart_Heating.Controllers
 {
@@ -765,12 +766,53 @@ namespace Smart_Heating.Controllers
         [HttpPost]
         public ActionResult AdminAddNewUser(User user) 
         {
+            if (ModelState.IsValid)
+            {
+                using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+                {
+                    try
+                    {
+                        if (user.UserRole == 1 || user.UserRole == 2)
+                        {
+                            user.AddressInfo = null;
+                        }
+
+                        db.Users.Add(user);
+                        db.SaveChanges();
+                        return RedirectToAction("AdminViewUsers");
+                    }
+                    catch
+                    {
+                        ViewBag.Message = "Дані введені невірно, або такий логін/пароль вже існує";
+                    }                   
+                }
+            }
             using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
             {
-                db.Users.Add(user);
-                db.SaveChanges();
-                return RedirectToAction("AdminViewUsers");
+                var address_query = from addr in db.Addresses select addr;
+                var address_view = address_query
+                    .Include(addr => addr.Street1)
+                    .Include(addr => addr.Building_types)
+                    .Include(addr => addr.Street1.District1) as IEnumerable<Address>;
+
+                var address_list = address_view.Select(addrs => new
+                {
+                    AddressInfo = addrs.AddressID,
+                    displayName = $"{addrs.Street1.District1.DistrictName} район, вулиця {addrs.Street1.StreetName} {addrs.House}, квартира {addrs.Flat}, офіс {addrs.Office}, тип будинку: {addrs.Building_types.BuildingTypeName}, {addrs.EstablishmentName}"
+                }).ToList();
+
+                SelectList select_addresses = new SelectList(address_list, "AddressInfo", "displayName");
+                ViewData["Addresses"] = select_addresses;
+
+                var gendertype_query = db.Users.Select(item => item.Gender).Distinct().ToList();
+
+                SelectList select_genders = new SelectList(gendertype_query, "Gender");
+                ViewData["Genders"] = select_genders;
+
+                SelectList select_user_roles = new SelectList(db.UserRoles.ToList(), "RoleID", "RoleName");
+                ViewData["UserRoles"] = select_user_roles;
             }
+            return View();
         }
 
 
@@ -992,17 +1034,32 @@ namespace Smart_Heating.Controllers
 
                 if (street != null)
                 {
-                    street.StreetName = new_street.StreetName;
-                    street.District = new_street.District;
+                    var check = db.Streets.FirstOrDefault(a => a.StreetName == new_street.StreetName);
 
+                    if (check != null)
+                    {
+                        ViewBag.Message = "Така вулиця вже існує";
+
+                        SelectList select_districts = new SelectList(db.Districts.ToList(), "DistrictID", "DistrictName");
+                        ViewData["Districts"] = select_districts;
+
+                        return View(street);
+                    }
+                    
                     try
                     {
+                        street.StreetName = new_street.StreetName;
+                        street.District = new_street.District;
                         db.SaveChanges();
                     }
-                    catch (Exception)
+                    catch
                     {
-                        ViewBag.Message = "Помилка під час зміни значень";
-                        return View(street.StreetID);
+                        ViewBag.Message = "Дані введено невірно, або такий район вже існує";
+
+                        SelectList select_districts = new SelectList(db.Districts.ToList(), "DistrictID", "DistrictName");
+                        ViewData["Districts"] = select_districts;
+
+                        return View(street);
                     }
                 }
                 return RedirectToAction("AdminViewStreets");
@@ -1039,12 +1096,28 @@ namespace Smart_Heating.Controllers
         [HttpPost]
         public ActionResult AdminAddNewStreet(Street street)
         {
+            if (ModelState.IsValid)
+            {
+                using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+                {
+                    try
+                    {
+                        db.Streets.Add(street);
+                        db.SaveChanges();
+                        return RedirectToAction("AdminViewStreets");
+                    }
+                    catch
+                    {
+                        ViewBag.Message = "Дані введено невірно, або така вулиця вже існує";
+                    }
+                }
+            }
             using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
             {
-                db.Streets.Add(street);
-                db.SaveChanges();
-                return RedirectToAction("AdminViewStreets");
+                SelectList select_districts = new SelectList(db.Districts.ToList(), "DistrictID", "DistrictName");
+                ViewData["Districts"] = select_districts;                
             }
+            return View();
         }
 
 
@@ -1071,16 +1144,23 @@ namespace Smart_Heating.Controllers
                 
                 if (district != null)
                 {
-                    district.DistrictName = new_district.DistrictName;
+                    var check = db.Districts.FirstOrDefault(a => a.DistrictName == new_district.DistrictName);
+                    
+                    if (check != null)
+                    {
+                        ViewBag.Message = "Такий район вже існує";
+                        return View(district);
+                    }                    
 
                     try
                     {
+                        district.DistrictName = new_district.DistrictName;
                         db.SaveChanges();
                     }
-                    catch (Exception)
+                    catch
                     {
-                        ViewBag.Message = "Помилка під час зміни значень";
-                        return View(district.DistrictID);
+                        ViewBag.Message = "Дані введено невірно, або такий район вже існує";
+                        return View(district);
                     }
                 }
                 return RedirectToAction("AdminViewDistricts");
@@ -1111,12 +1191,23 @@ namespace Smart_Heating.Controllers
         [HttpPost]
         public ActionResult AdminAddNewDistrict(District district) 
         {
-            using (SMART_HEATINGEntities db = new SMART_HEATINGEntities()) 
+            if (ModelState.IsValid)
             {
-                db.Districts.Add(district);
-                db.SaveChanges();
-                return RedirectToAction("AdminViewDistricts");
-            }
+                using (SMART_HEATINGEntities db = new SMART_HEATINGEntities())
+                {
+                    try
+                    {
+                        db.Districts.Add(district);
+                        db.SaveChanges();
+                        return RedirectToAction("AdminViewDistricts");
+                    }
+                    catch 
+                    {
+                        ViewBag.Message = "Дані введено невірно, або такий район вже існує";
+                    }                   
+                }
+            }            
+            return View();
         }
     }
 }
