@@ -52,12 +52,12 @@ namespace Smart_Heating.Controllers
                 {
 
                     string sstr = search_str.ToLower();
-                    staff_maint_query = staff_maint_query.Where(s => s.Тип_роботи.ToLower().Contains(search_str)
-                                                                  || s.Статус.ToLower().Contains(search_str) 
-                                                                  || s.Дата_початку_робіт.ToLower().Contains(search_str)
-                                                                  || s.Дата_закінчення_робіт.ToLower().Contains(search_str)
-                                                                  || s.Район.ToLower().Contains(search_str)
-                                                                  || s.Назва_вулиці.ToLower().Contains(search_str));
+                    staff_maint_query = staff_maint_query.Where(s => s.Тип_роботи.ToLower().Contains(sstr)
+                                                                  || s.Статус.ToLower().Contains(sstr) 
+                                                                  || s.Дата_початку_робіт.ToLower().Contains(sstr)
+                                                                  || s.Дата_закінчення_робіт.ToLower().Contains(sstr)
+                                                                  || s.Район.ToLower().Contains(sstr)
+                                                                  || s.Назва_вулиці.ToLower().Contains(sstr));
                 }
 
                 switch (sort_order)      //page sorting switch
@@ -134,10 +134,10 @@ namespace Smart_Heating.Controllers
                 if (!String.IsNullOrEmpty(search_str))        //searching bar 
                 {
                     string sstr = search_str.ToLower();
-                    staff_sensors_query = staff_sensors_query.Where(s => s.Тип_датчика.ToLower().Contains(search_str)
-                                                                      || s.Назва_вулиці.ToLower().Contains(search_str)
-                                                                      || s.Район.ToLower().Contains(search_str)
-                                                                      || s.Назва_закладу.ToLower().Contains(search_str));
+                    staff_sensors_query = staff_sensors_query.Where(s => s.Тип_датчика.ToLower().Contains(sstr)
+                                                                      || s.Назва_вулиці.ToLower().Contains(sstr)
+                                                                      || s.Район.ToLower().Contains(sstr)
+                                                                      || s.Назва_закладу.ToLower().Contains(sstr));
                 }
 
                 switch (sort_order)      //page sorting switch
@@ -210,13 +210,13 @@ namespace Smart_Heating.Controllers
                 if (!String.IsNullOrEmpty(search_str))        //searching bar 
                 {
                     string sstr = search_str.ToLower();
-                    staff_indicators_query = staff_indicators_query.Where(s => s.Дата_та_час.ToString().Contains(search_str)
-                                                                            || s.ID_сенсору.ToString().Contains(search_str)
-                                                                            || s.Тип_датчика.ToLower().Contains(search_str)
-                                                                            || s.Показник.ToLower().Contains(search_str)
-                                                                            || s.Назва_вулиці.ToLower().Contains(search_str)
-                                                                            || s.Район.ToLower().Contains(search_str)
-                                                                            || s.Назва_закладу.ToLower().Contains(search_str));
+                    staff_indicators_query = staff_indicators_query.Where(s => s.Дата_та_час.ToString().Contains(sstr)
+                                                                            || s.ID_сенсору.ToString().Contains(sstr)
+                                                                            || s.Тип_датчика.ToLower().Contains(sstr)
+                                                                            || s.Показник.ToLower().Contains(sstr)
+                                                                            || s.Назва_вулиці.ToLower().Contains(sstr)
+                                                                            || s.Район.ToLower().Contains(sstr)
+                                                                            || s.Назва_закладу.ToLower().Contains(sstr));
                 }
 
                 switch (sort_order)      //page sorting switch

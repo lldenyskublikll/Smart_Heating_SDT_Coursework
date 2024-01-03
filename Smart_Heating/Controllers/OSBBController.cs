@@ -58,14 +58,14 @@ namespace Smart_Heating.Controllers
                 if (!String.IsNullOrEmpty(search_str))        //searching bar 
                 {
                     string sstr = search_str.ToLower();
-                    osbb_maint_query = osbb_maint_query.Where(s => s.Прізвище_працівника.ToLower().Contains(search_str)
-                                                                || s.Ім_я_працівника.ToLower().Contains(search_str)
-                                                                || s.Тип_роботи.ToLower().Contains(search_str)
-                                                                || s.Статус.ToLower().Contains(search_str)
-                                                                || s.Дата_початку_робіт.ToLower().Contains(search_str)
-                                                                || s.Дата_закінчення_робіт.ToLower().Contains(search_str)
-                                                                || s.C__Квартири.ToLower().Contains(search_str)
-                                                                || s.C__Офісу.ToLower().Contains(search_str));
+                    osbb_maint_query = osbb_maint_query.Where(s => s.Прізвище_працівника.ToLower().Contains(sstr)
+                                                                || s.Ім_я_працівника.ToLower().Contains(sstr)
+                                                                || s.Тип_роботи.ToLower().Contains(sstr)
+                                                                || s.Статус.ToLower().Contains(sstr)
+                                                                || s.Дата_початку_робіт.ToLower().Contains(sstr)
+                                                                || s.Дата_закінчення_робіт.ToLower().Contains(sstr)
+                                                                || s.C__Квартири.ToLower().Contains(sstr)
+                                                                || s.C__Офісу.ToLower().Contains(sstr));
                 }
 
                 switch (sort_order)      //page sorting switch
@@ -156,10 +156,10 @@ namespace Smart_Heating.Controllers
                 if (!String.IsNullOrEmpty(search_str))        //searching bar 
                 {
                     string sstr = search_str.ToLower();
-                    osbb_sensors_query = osbb_sensors_query.Where(s => s.Тип_датчика.ToLower().Contains(search_str)
-                                                                    || s.Назва_закладу.ToLower().Contains(search_str)
-                                                                    || s.C__Квартири.ToLower().Contains(search_str)
-                                                                    || s.C__Офісу.ToLower().Contains(search_str));
+                    osbb_sensors_query = osbb_sensors_query.Where(s => s.Тип_датчика.ToLower().Contains(sstr)
+                                                                    || s.Назва_закладу.ToLower().Contains(sstr)
+                                                                    || s.C__Квартири.ToLower().Contains(sstr)
+                                                                    || s.C__Офісу.ToLower().Contains(sstr));
                 }
 
                 switch (sort_order)      //page sorting switch
@@ -223,13 +223,13 @@ namespace Smart_Heating.Controllers
                 if (!String.IsNullOrEmpty(search_str))        //searching bar 
                 {
                     string sstr = search_str.ToLower();
-                    osbb_indicators_query = osbb_indicators_query.Where(s => s.Дата_та_час.ToString().Contains(search_str)
-                                                                            || s.ID_сенсору.ToString().Contains(search_str)
-                                                                            || s.Тип_датчика.ToLower().Contains(search_str)
-                                                                            || s.Показник.ToLower().Contains(search_str)
-                                                                            || s.Назва_закладу.ToLower().Contains(search_str)
-                                                                            || s.C__Квартири.ToLower().Contains(search_str)
-                                                                            || s.C__Офісу.ToLower().Contains(search_str));
+                    osbb_indicators_query = osbb_indicators_query.Where(s => s.Дата_та_час.ToString().Contains(sstr)
+                                                                            || s.ID_сенсору.ToString().Contains(sstr)
+                                                                            || s.Тип_датчика.ToLower().Contains(sstr)
+                                                                            || s.Показник.ToLower().Contains(sstr)
+                                                                            || s.Назва_закладу.ToLower().Contains(sstr)
+                                                                            || s.C__Квартири.ToLower().Contains(sstr)
+                                                                            || s.C__Офісу.ToLower().Contains(sstr));
                 }
 
                 switch (sort_order)      //page sorting switch
@@ -308,15 +308,15 @@ namespace Smart_Heating.Controllers
                 if (!String.IsNullOrEmpty(search_str))        //searching bar 
                 {
                     string sstr = search_str.ToLower();
-                    osbb_userlist_query = osbb_userlist_query.Where(s => s.ID_Користувача.ToString().Contains(search_str)
-                                                                      || s.Роль_у_системі.ToLower().Contains(search_str)
-                                                                      || s.Прізвище.ToLower().Contains(search_str)
-                                                                      || s.Ім_я.ToLower().Contains(search_str)
-                                                                      || s.По_Батькові.ToLower().Contains(search_str)
-                                                                      || s.Дата_народження.ToString().Contains(search_str)
-                                                                      || s.C__Квартири.ToLower().Contains(search_str)
-                                                                      || s.C__Офісу.ToLower().Contains(search_str)
-                                                                      || s.Назва_закладу.ToLower().Contains(search_str));
+                    osbb_userlist_query = osbb_userlist_query.Where(s => s.ID_Користувача.ToString().Contains(sstr)
+                                                                      || s.Роль_у_системі.ToLower().Contains(sstr)
+                                                                      || s.Прізвище.ToLower().Contains(sstr)
+                                                                      || s.Ім_я.ToLower().Contains(sstr)
+                                                                      || s.По_Батькові.ToLower().Contains(sstr)
+                                                                      || s.Дата_народження.ToString().Contains(sstr)
+                                                                      || s.C__Квартири.ToLower().Contains(sstr)
+                                                                      || s.C__Офісу.ToLower().Contains(sstr)
+                                                                      || s.Назва_закладу.ToLower().Contains(sstr));
                 }
 
                 switch (sort_order)      //page sorting switch
